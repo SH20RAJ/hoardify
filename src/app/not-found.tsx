@@ -13,7 +13,7 @@ export default function NotFound() {
 				<h1 className="text-4xl font-extrabold tracking-tight mb-2 text-gray-900 dark:text-white">404</h1>
 				<h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Lost in the city?</h2>
 				<p className="text-gray-500 mb-8 max-w-[280px] dark:text-gray-400">
-					We couldn't find the page or hoarding you're looking for. It might have been moved or removed.
+					We couldn&apos;t find the page or hoarding you&apos;re looking for. It might have been moved or removed.
 				</p>
 				<Link 
 					href="/" 
