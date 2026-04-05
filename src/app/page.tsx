@@ -1,52 +1,93 @@
-import Image from "next/image";
+import { Search, Monitor, Smartphone, Video, Grid, Settings2 } from "lucide-react";
+import TopBar from "@/components/layout/TopBar";
+import HoardingCard from "@/components/hoardings/HoardingCard";
+import Pill from "@/components/ui/Pill";
+import Link from "next/link";
 
-export default function Home() {
+// Mock Data
+const MOST_VIEWED = [
+	{
+		id: "1",
+		title: "Billboards in M.G. Road",
+		imageUrl: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd",
+		price: 50000,
+		location: "Sujata Chowk",
+		views: "150,000+",
+	},
+	{
+		id: "2",
+		title: "Digital display near Airport",
+		imageUrl: "https://images.unsplash.com/photo-1549468057-5b7fa1a41d7a",
+		price: 120000,
+		location: "Airport Road",
+		views: "200,000+",
+	},
+];
+
+const NEARBY = [
+	{
+		id: "3",
+		title: "Ratu Road Junction",
+		imageUrl: "https://images.unsplash.com/photo-1563212036-7c9fa19020bd",
+		price: 45000,
+		location: "Ratu Road",
+	},
+	{
+		id: "4",
+		title: "Gantries on Circular Road",
+		imageUrl: "https://images.unsplash.com/photo-1623945952611-64547bebb948",
+		price: 80000,
+		location: "Circular Road",
+	},
+];
+
+export default function ExplorePage() {
 	return (
-		<div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-				<Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
-				<ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-					<li className="mb-2 tracking-[-.01em]">
-						Get started by editing{" "}
-						<code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-							src/app/page.tsx
-						</code>
-						.
-					</li>
-					<li className="tracking-[-.01em]">Save and see your changes instantly.</li>
-				</ol>
+		<div className="flex flex-col pb-6">
+			<TopBar 
+				isLogo 
+				rightAction={
+					<Link href="/search" className="rounded-full bg-brand p-2 text-white shadow-md">
+						<Search size={20} />
+					</Link>
+				} 
+			/>
 
-				<div className="flex gap-4 items-center flex-col sm:flex-row">
-					<a
-						className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Read our docs
-					</a>
+			{/* Most Viewed Section */}
+			<section className="mt-4 px-4">
+				<h2 className="mb-3 text-lg font-bold">Most Viewed</h2>
+				<div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+					{MOST_VIEWED.map(hoarding => (
+						<HoardingCard key={hoarding.id} {...hoarding} />
+					))}
 				</div>
-			</main>
-			<footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-					Learn
-				</a>
-				<a
-					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-					href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-					Go to nextjs.org →
-				</a>
-			</footer>
+			</section>
+
+			{/* Categories Section */}
+			<section className="mt-4">
+				<h2 className="mb-3 px-4 text-lg font-bold">Categories</h2>
+				<div className="flex gap-4 overflow-x-auto px-4 pb-2 no-scrollbar">
+					<Pill variant="category" active icon={<Monitor size={20} className="mb-1 block mx-auto" />} label="Lit Billboards" className="flex-col !gap-0 text-xs" />
+					<Pill variant="category" icon={<Grid size={20} className="mb-1 block mx-auto" />} label="Non-lit Billboards" className="flex-col !gap-0 text-xs" />
+					<Pill variant="category" icon={<Video size={20} className="mb-1 block mx-auto" />} label="Digital" className="flex-col !gap-0 text-xs" />
+					<Pill variant="category" icon={<Smartphone size={20} className="mb-1 block mx-auto" />} label="Mobile" className="flex-col !gap-0 text-xs" />
+				</div>
+			</section>
+
+			{/* Nearby Section */}
+			<section className="mt-6 px-4">
+				<div className="flex items-center justify-between mb-3">
+					<h2 className="text-lg font-bold">Nearby you</h2>
+					<Link href="/filters" className="text-xs text-brand font-medium flex items-center gap-1">
+						<Settings2 size={14} /> Filter
+					</Link>
+				</div>
+				<div className="flex flex-col gap-4">
+					{NEARBY.map(hoarding => (
+						<HoardingCard key={hoarding.id} {...hoarding} variant="banner" />
+					))}
+				</div>
+			</section>
 		</div>
 	);
 }
