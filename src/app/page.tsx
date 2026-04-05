@@ -1,47 +1,16 @@
 import { Search, Monitor, Smartphone, Video, Grid, Settings2 } from "lucide-react";
 import TopBar from "@/components/layout/TopBar";
 import HoardingCard from "@/components/hoardings/HoardingCard";
+import HorizontalScrollList from "@/components/hoardings/HorizontalScrollList";
 import Pill from "@/components/ui/Pill";
 import Link from "next/link";
-
-// Mock Data
-const MOST_VIEWED = [
-	{
-		id: "1",
-		title: "Billboards in M.G. Road",
-		imageUrl: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd",
-		price: 50000,
-		location: "Sujata Chowk",
-		views: "150,000+",
-	},
-	{
-		id: "2",
-		title: "Digital display near Airport",
-		imageUrl: "https://images.unsplash.com/photo-1549468057-5b7fa1a41d7a",
-		price: 120000,
-		location: "Airport Road",
-		views: "200,000+",
-	},
-];
-
-const NEARBY = [
-	{
-		id: "3",
-		title: "Ratu Road Junction",
-		imageUrl: "https://images.unsplash.com/photo-1563212036-7c9fa19020bd",
-		price: 45000,
-		location: "Ratu Road",
-	},
-	{
-		id: "4",
-		title: "Gantries on Circular Road",
-		imageUrl: "https://images.unsplash.com/photo-1623945952611-64547bebb948",
-		price: 80000,
-		location: "Circular Road",
-	},
-];
+import { HOARDINGS } from "@/lib/mock-data";
 
 export default function ExplorePage() {
+	// Let's feature specific hoardings for the main page
+	const mostViewed = HOARDINGS.slice(0, 3);
+	const nearby = HOARDINGS.slice(3, 5);
+
 	return (
 		<div className="flex flex-col pb-6">
 			<TopBar 
@@ -56,22 +25,22 @@ export default function ExplorePage() {
 			{/* Most Viewed Section */}
 			<section className="mt-4 px-4">
 				<h2 className="mb-3 text-lg font-bold">Most Viewed</h2>
-				<div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
-					{MOST_VIEWED.map(hoarding => (
+				<HorizontalScrollList>
+					{mostViewed.map(hoarding => (
 						<HoardingCard key={hoarding.id} {...hoarding} />
 					))}
-				</div>
+				</HorizontalScrollList>
 			</section>
 
 			{/* Categories Section */}
 			<section className="mt-4">
 				<h2 className="mb-3 px-4 text-lg font-bold">Categories</h2>
-				<div className="flex gap-4 overflow-x-auto px-4 pb-2 no-scrollbar">
+				<HorizontalScrollList className="px-4">
 					<Pill variant="category" active icon={<Monitor size={20} className="mb-1 block mx-auto" />} label="Lit Billboards" className="flex-col !gap-0 text-xs" />
 					<Pill variant="category" icon={<Grid size={20} className="mb-1 block mx-auto" />} label="Non-lit Billboards" className="flex-col !gap-0 text-xs" />
 					<Pill variant="category" icon={<Video size={20} className="mb-1 block mx-auto" />} label="Digital" className="flex-col !gap-0 text-xs" />
 					<Pill variant="category" icon={<Smartphone size={20} className="mb-1 block mx-auto" />} label="Mobile" className="flex-col !gap-0 text-xs" />
-				</div>
+				</HorizontalScrollList>
 			</section>
 
 			{/* Nearby Section */}
@@ -83,7 +52,7 @@ export default function ExplorePage() {
 					</Link>
 				</div>
 				<div className="flex flex-col gap-4">
-					{NEARBY.map(hoarding => (
+					{nearby.map(hoarding => (
 						<HoardingCard key={hoarding.id} {...hoarding} variant="banner" />
 					))}
 				</div>
