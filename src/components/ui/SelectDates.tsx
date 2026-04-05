@@ -1,37 +1,38 @@
 "use client";
 
-import React, { useState } from "react";
-
-interface DateOption {
-	day: string;
-	month: string;
-	fullDate: string;
-}
-
-const DATES: DateOption[] = [
-	{ day: "16", month: "JUL", fullDate: "16 July" },
-	{ day: "17", month: "JUL", fullDate: "17 July" },
-	{ day: "18", month: "JUL", fullDate: "18 July" },
-	{ day: "19", month: "JUL", fullDate: "19 July" },
-	{ day: "20", month: "JUL", fullDate: "20 July" },
-	{ day: "21", month: "JUL", fullDate: "21 July" },
-	{ day: "22", month: "JUL", fullDate: "22 July" },
-];
+import React, { useState, useMemo } from "react";
 
 export default function SelectDates() {
-	const [selectedDate, setSelectedDate] = useState<string>("16 July");
+	// Dynamically generate the next 14 days
+	const availableDates = useMemo(() => {
+		const dates = [];
+		const today = new Date();
+		for (let i = 0; i < 14; i++) {
+			const futureDate = new Date(today);
+			futureDate.setDate(today.getDate() + i);
+			
+			dates.push({
+				day: futureDate.getDate().toString(),
+				month: futureDate.toLocaleString('default', { month: 'short' }).toUpperCase(),
+				fullDate: futureDate.toISOString().split("T")[0],
+			});
+		}
+		return dates;
+	}, []);
+
+	const [selectedDate, setSelectedDate] = useState<string>(availableDates[0].fullDate);
 
 	return (
 		<div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar border-y border-gray-100 py-3 dark:border-gray-800">
-			{DATES.map((date, i) => {
+			{availableDates.map((date, i) => {
 				const isSelected = selectedDate === date.fullDate;
 				return (
 					<button
 						key={i}
 						onClick={() => setSelectedDate(date.fullDate)}
-						className={`flex flex-col items-center justify-center border rounded-xl min-w-[60px] h-[70px] transition-colors ${
+						className={`flex flex-col items-center justify-center border rounded-xl min-w-[60px] h-[70px] transition-all active:scale-95 ${
 							isSelected
-								? "border-brand bg-brand/5 text-brand"
+								? "border-brand bg-brand/5 text-brand shadow-sm"
 								: "border-gray-200 text-gray-400 hover:border-brand/40 dark:border-gray-800"
 						}`}
 					>

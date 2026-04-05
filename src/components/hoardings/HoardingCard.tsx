@@ -25,7 +25,7 @@ export default function HoardingCard({
 }: HoardingCardProps) {
 	if (variant === "compact") {
 		return (
-			<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-[240px] snaps-center">
+			<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-[240px] snaps-center transition-all active:scale-[0.98]">
 				<div className="flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
 					<div className="relative h-28 w-full">
 						<Image src={imageUrl} alt={title} fill className="object-cover" />
@@ -46,7 +46,7 @@ export default function HoardingCard({
 
 	if (variant === "banner") {
 		return (
-			<Link href={`/hoardings/${id}`} className="block w-full">
+			<Link href={`/hoardings/${id}`} className="block w-full transition-all active:scale-[0.98]">
 				<div className="relative h-32 w-full overflow-hidden rounded-xl">
 					<Image src={imageUrl} alt={title} fill className="object-cover" />
 					<div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
@@ -60,7 +60,7 @@ export default function HoardingCard({
 
 	// large variant
 	return (
-		<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-[280px]">
+		<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-[280px] transition-all active:scale-[0.98]">
 			<div className="relative h-48 w-full overflow-hidden rounded-2xl shadow-md">
 				<Image src={imageUrl} alt={title} fill className="object-cover" />
 				<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
