@@ -1,26 +1,26 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Share2, Heart, MapPin } from "lucide-react";
+import { ArrowLeft, Share2, Heart } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
+import SelectDates from "@/components/ui/SelectDates";
+import GoogleMapWrapper from "@/components/maps/GoogleMapWrapper";
+import { HOARDINGS } from "@/lib/mock-data";
+import { notFound } from "next/navigation";
 
 // Mock data fetcher
 async function getHoarding(id: string) {
-	return {
-		id,
-		title: "Billboard",
-		price: 50000,
-		status: "For Rent",
-		features: ["Classic Billboard", "Large 14x48 ft", "High visibility", "Weather proof"],
-		location: "Sujata Chowk, M.G. Road",
-		imageUrl: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd"
-	};
+	const hoarding = HOARDINGS.find((h) => h.id === id);
+	if (!hoarding) return null;
+	return hoarding;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
 	const p = await params;
 	const hoarding = await getHoarding(p.id);
 	
+	if (!hoarding) return { title: "Not Found" };
+
 	return {
 		title: `${hoarding.title} at ${hoarding.location} | Hoardify`,
 		description: `Rent this ${hoarding.features.join(", ")} billboard located at ${hoarding.location}.`,
@@ -33,6 +33,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 export default async function HoardingDetailPage({ params }: { params: Promise<{ id: string }> }) {
 	const p = await params;
 	const hoarding = await getHoarding(p.id);
+
+	if (!hoarding) return notFound();
 
 	return (
 		<div className="flex flex-col min-h-screen bg-white dark:bg-black pb-8">
@@ -58,7 +60,7 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 
 				{/* Image indicator */}
 				<div className="absolute bottom-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-md backdrop-blur-sm">
-					1/9
+					1/1
 				</div>
 			</div>
 
@@ -91,30 +93,22 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 					<h2 className="text-lg font-bold mb-2">Location</h2>
 					<p className="text-sm text-gray-600 mb-3 font-medium dark:text-gray-300">{hoarding.location}</p>
 					
-					{/* Map Preview */}
-					<div className="w-full h-32 bg-gray-100 rounded-xl relative overflow-hidden border border-gray-200 shadow-inner dark:bg-gray-800 dark:border-gray-700">
-						<div className="w-full h-full opacity-30" style={{ backgroundImage: 'linear-gradient(#ccc 1px, transparent 1px), linear-gradient(90deg, #ccc 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
-						<div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-							<div className="bg-black text-white p-2 text-xs rounded-md mb-1 px-3 shadow-md border border-gray-700 whitespace-nowrap">
-								{hoarding.location}
-							</div>
-							<div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-transparent border-t-black"></div>
-						</div>
+					{/* Real Map Preview */}
+					<div className="w-full h-40 bg-gray-100 rounded-xl relative overflow-hidden border border-gray-200 shadow-inner dark:bg-gray-800 dark:border-gray-700">
+						<GoogleMapWrapper 
+							hoardings={[hoarding]} 
+							center={hoarding.coordinates} 
+							zoom={15} 
+							disableUI={true} 
+							gestureHandling="none" 
+						/>
 					</div>
 				</div>
 
 				{/* Select Dates */}
 				<div className="mb-6">
 					<h2 className="text-lg font-bold mb-3">Select Dates</h2>
-					{/* Horizontal Calendar Mock */}
-					<div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar border-y border-gray-100 py-3 dark:border-gray-800">
-						{["16 July", "17 July", "18 July", "19 July", "20 July"].map((date, i) => (
-							<div key={i} className={`flex flex-col items-center justify-center border rounded-xl min-w-[60px] h-[70px] ${i === 0 ? "border-brand bg-brand/5 text-brand" : "border-gray-200 text-gray-400 dark:border-gray-800"}`}>
-								<span className="text-xs uppercase font-semibold">{date.split(" ")[1]}</span>
-								<span className="text-xl font-bold">{date.split(" ")[0]}</span>
-							</div>
-						))}
-					</div>
+					<SelectDates />
 				</div>
 			</div>
 		</div>
