@@ -38,7 +38,7 @@ export const HOARDINGS: HoardingType[] = [
 	{
 		id: "3",
 		title: "Urban Classic Billboard",
-		imageUrl: "https://images.unsplash.com/photo-1504328345606-1bbc869e3815?q=80&w=1600&auto=format&fit=crop",
+		imageUrl: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?q=80&w=1600&auto=format&fit=crop",
 		price: 60000,
 		location: "Sujata Chowk, M.G. Road",
 		coordinates: { lat: 23.351, lng: 85.326 },
@@ -59,7 +59,7 @@ export const HOARDINGS: HoardingType[] = [
 	{
 		id: "5",
 		title: "Ranchi Mall Facade",
-		imageUrl: "https://images.unsplash.com/photo-1563212036-7c9fa19020bd?q=80&w=1600&auto=format&fit=crop",
+		imageUrl: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=1600&auto=format&fit=crop",
 		price: 110000,
 		location: "Main Road Mall Plaza",
 		coordinates: { lat: 23.361, lng: 85.327 },
