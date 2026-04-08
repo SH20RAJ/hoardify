@@ -33,12 +33,17 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 			</head>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				<div className="mx-auto flex h-[100dvh] max-w-md flex-col overflow-hidden bg-background shadow-2xl sm:border-x sm:border-gray-200 dark:sm:border-gray-800 relative">
-					<main className="flex-1 overflow-y-auto pb-16 no-scrollbar relative w-full h-full">
-						{children}
-					</main>
-					<BottomNav />
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#ffffff]`}>
+				{/* Mobile-first container: full width on mobile, constrained on desktop */}
+				<div className="flex min-h-screen flex-col relative">
+					{/* Desktop: centered container with max-width */}
+					<div className="mx-auto w-full max-w-7xl flex min-h-screen flex-col relative">
+						<main className="flex-1 relative w-full overflow-hidden">
+							{children}
+						</main>
+						{/* Bottom nav only on mobile */}
+						<BottomNav />
+					</div>
 				</div>
 			</body>
 		</html>

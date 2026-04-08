@@ -27,7 +27,7 @@ export const HOARDINGS: HoardingType[] = [
 	{
 		id: "2",
 		title: "Highway Gantry Banner",
-		imageUrl: "https://images.unsplash.com/photo-1623945952611-64547bebb948?q=80&w=1600&auto=format&fit=crop",
+		imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
 		price: 85000,
 		location: "Ratu Road Junction, Ranchi",
 		coordinates: { lat: 23.364, lng: 85.320 },
@@ -38,7 +38,7 @@ export const HOARDINGS: HoardingType[] = [
 	{
 		id: "3",
 		title: "Urban Classic Billboard",
-		imageUrl: "https://images.unsplash.com/photo-1589578082987-9cb07aa3d014?q=80&w=1600&auto=format&fit=crop",
+		imageUrl: "https://images.unsplash.com/photo-1504328345606-1bbc869e3815?q=80&w=1600&auto=format&fit=crop",
 		price: 60000,
 		location: "Sujata Chowk, M.G. Road",
 		coordinates: { lat: 23.351, lng: 85.326 },
@@ -49,7 +49,7 @@ export const HOARDINGS: HoardingType[] = [
 	{
 		id: "4",
 		title: "Transit Bus Shelter Ad",
-		imageUrl: "https://images.unsplash.com/photo-1601332766627-2c1a63c457fa?q=80&w=1600&auto=format&fit=crop",
+		imageUrl: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1600&auto=format&fit=crop",
 		price: 25000,
 		location: "Kanke Road Stop, Ranchi",
 		coordinates: { lat: 23.385, lng: 85.318 },
