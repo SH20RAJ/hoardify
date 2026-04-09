@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BottomNav from "@/components/layout/BottomNav";
+import ErrorBoundaryProvider from "@/components/error-boundary-provider";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -39,7 +40,9 @@ export default function RootLayout({
 					{/* Desktop: centered container with max-width */}
 					<div className="mx-auto w-full max-w-7xl flex min-h-screen flex-col relative">
 						<main className="flex-1 relative w-full overflow-hidden">
-							{children}
+							<ErrorBoundaryProvider>
+								{children}
+							</ErrorBoundaryProvider>
 						</main>
 						{/* Bottom nav only on mobile */}
 						<BottomNav />

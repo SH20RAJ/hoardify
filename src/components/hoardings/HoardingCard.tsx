@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { formatCurrency } from "@/lib/utils";
 
 export type HoardingVariant = "large" | "compact" | "banner";
@@ -23,8 +26,10 @@ export default function HoardingCard({
 	views,
 	variant = "large",
 }: HoardingCardProps) {
+	const [hasError, setHasError] = useState(false);
+
 	const handleImageError = () => {
-		// Fallback handled by Next Image placeholder or could add state
+		setHasError(true);
 	};
 
 	if (variant === "compact") {
@@ -32,13 +37,20 @@ export default function HoardingCard({
 			<Link href={`/hoardings/${id}`} className="block flex-shrink-0 max-w-[260px] w-full snaps-center transition-transform active:scale-[0.98] hover:shadow-card hover:-translate-y-0.5">
 				<div className="card-surface flex flex-col overflow-hidden rounded-xl">
 					<div className="relative aspect-[4/3] w-full">
-						<Image 
-							src={imageUrl} 
-							alt={title} 
-							fill 
-							className="object-cover"
-							onError={handleImageError}
-						/>
+						{hasError ? (
+							<div className="w-full h-full bg-surface flex items-center justify-center">
+								<span className="text-text-secondary text-sm">Image unavailable</span>
+							</div>
+						) : (
+							<Image 
+								src={imageUrl} 
+								alt={title} 
+								fill 
+								className="object-cover"
+								onError={handleImageError}
+								unoptimized
+							/>
+						)}
 						{price && (
 							<div className="absolute bottom-2 left-2 rounded-lg bg-background/95 px-2.5 py-1.5 text-xs font-semibold text-foreground shadow-sm border border-border">
 								{formatCurrency(price)}
@@ -58,7 +70,13 @@ export default function HoardingCard({
 		return (
 			<Link href={`/hoardings/${id}`} className="block w-full transition-transform active:scale-[0.98] hover:shadow-hover">
 				<div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl card-surface">
-					<Image src={imageUrl} alt={title} fill className="object-cover" priority />
+					{hasError ? (
+						<div className="w-full h-full bg-surface flex items-center justify-center">
+							<span className="text-text-secondary text-sm">Image unavailable</span>
+						</div>
+					) : (
+						<Image src={imageUrl} alt={title} fill className="object-cover" priority unoptimized />
+					)}
 					<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
 					<div className="absolute bottom-4 left-4 text-white">
 						<h3 className="text-xl font-bold leading-tight drop-shadow-lg">{title}</h3>
@@ -72,13 +90,20 @@ export default function HoardingCard({
 	return (
 		<Link href={`/hoardings/${id}`} className="block flex-shrink-0 max-w-[320px] w-full transition-transform active:scale-[0.98] hover:shadow-hover hover:-translate-y-0.5">
 			<div className="card-surface group relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
-				<Image 
-					src={imageUrl} 
-					alt={title} 
-					fill 
-					className="object-cover transition-transform duration-300 group-hover:scale-105"
-					onError={handleImageError}
-				/>
+				{hasError ? (
+					<div className="w-full h-full bg-surface flex items-center justify-center">
+						<span className="text-text-secondary text-sm">Image unavailable</span>
+					</div>
+				) : (
+					<Image 
+						src={imageUrl} 
+						alt={title} 
+						fill 
+						className="object-cover transition-transform duration-300 group-hover:scale-105"
+						onError={handleImageError}
+						unoptimized
+					/>
+				)}
 				<div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
 				
 				{views && (

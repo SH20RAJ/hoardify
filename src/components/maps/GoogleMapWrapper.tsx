@@ -19,7 +19,18 @@ export default function GoogleMapWrapper({
 	disableUI = true,
 	gestureHandling = "auto",
 }: GoogleMapWrapperProps) {
-	const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "";
+	const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+	if (!apiKey) {
+		return (
+			<div className="w-full h-full flex items-center justify-center bg-surface">
+				<div className="text-center p-6">
+					<p className="text-text-secondary mb-2">Map unavailable</p>
+					<p className="text-sm text-text-disabled">Google Maps API key not configured</p>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<APIProvider apiKey={apiKey}>
