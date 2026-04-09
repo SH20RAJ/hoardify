@@ -10,12 +10,24 @@
 	--brand-hover: #e00b41;
 	--brand-light: #fff0f3;
 	
+	/* Premium Tiers */
+	--brand-luxe: #460479;
+	--brand-plus: #92174d;
+	
 	/* Text Colors */
 	--text-primary: #222222;
 	--text-secondary: #6a6a6a;
 	--text-disabled: rgba(0, 0, 0, 0.24);
-	--border-gray: #c1c1c1;
-	--light-surface: #f2f2f2;
+	--text-focused: #3f3f3f;
+	--text-legal: #428bff;
+	--text-link-disabled: #929292;
+	--border: #c1c1c1;
+	--surface: #f2f2f2;
+	--surface-hover: #e5e5e5;
+	
+	/* Error Colors */
+	--text-error-primary: #c13515;
+	--text-error-hover: #b32505;
 	
 	/* Shadows - 3 Layer System */
 	--shadow-card: rgba(0, 0, 0, 0.02) 0px 0px 0px 1px, rgba(0, 0, 0, 0.04) 0px 2px 6px, rgba(0, 0, 0, 0.1) 0px 4px 8px;

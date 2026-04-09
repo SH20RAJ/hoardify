@@ -18,7 +18,7 @@ export default function BottomNav() {
 	if (pathname.startsWith("/hoardings/")) return null;
 
 	return (
-		<nav className="md:hidden absolute bottom-0 w-full border-t border-gray-200 bg-white pb-safe pt-2 dark:border-gray-800 dark:bg-black z-50">
+		<nav className="md:hidden absolute bottom-0 w-full border-t border-border bg-background pb-safe pt-2 z-50" aria-label="Main navigation">
 			<div className="flex justify-around px-2 pb-2">
 				{navItems.map((item) => {
 					const Icon = item.icon;
@@ -29,10 +29,10 @@ export default function BottomNav() {
 							key={item.name}
 							href={item.href}
 							className={`flex w-full flex-col items-center justify-center gap-1 ${
-								isActive ? "text-[#ff385c]" : "text-gray-500 hover:text-gray-900 dark:hover:text-gray-300"
+								isActive ? "text-brand" : "text-text-secondary hover:text-foreground"
 							}`}
 						>
-							<Icon size={24} strokeWidth={isActive ? 2.5 : 2} className={isActive ? "text-[#ff385c]" : ""} />
+							<Icon size={24} strokeWidth={isActive ? 2.5 : 2} aria-hidden="true" />
 							<span className="text-[10px] font-medium">{item.name}</span>
 						</Link>
 					);
