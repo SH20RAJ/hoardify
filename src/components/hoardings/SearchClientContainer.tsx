@@ -1,12 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Search, SlidersHorizontal, Map as MapIcon, List as ListIcon, Sparkles, Send } from "lucide-react";
-import HoardingCard from "@/components/hoardings/HoardingCard";
-import HorizontalScrollList from "@/components/hoardings/HorizontalScrollList";
-import GoogleMapWrapper from "@/components/maps/GoogleMapWrapper";
-import Link from "next/link";
-import NavbarSync from "@/components/layout/NavbarSync";
 import { hoardings } from "@/db/schema";
 
 type DBHoarding = typeof hoardings.$inferSelect;

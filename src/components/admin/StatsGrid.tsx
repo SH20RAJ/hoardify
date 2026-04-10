@@ -1,4 +1,4 @@
-import { Megaphone, Users, Inbox, Calendar, LucideIcon } from "lucide-react";
+import { Megaphone, Users, Calendar, LucideIcon } from "lucide-react";
 
 interface StatItem {
 	label: string;

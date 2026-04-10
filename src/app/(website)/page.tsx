@@ -1,15 +1,11 @@
-import { Metadata } from "next";
-import { db } from "@/db";
-import { hoardings } from "@/db/schema";
-import { desc } from "drizzle-orm";
-import { Monitor, Smartphone, Video, Grid, Settings2, MapPin, ArrowRight, Sparkles } from "lucide-react";
+import { Monitor, Smartphone, Video, Grid, Settings2, Sparkles } from "lucide-react";
 import HoardingCard from "@/components/hoardings/HoardingCard";
 import HorizontalScrollList from "@/components/hoardings/HorizontalScrollList";
 import Link from "next/link";
 import NavbarSync from "@/components/layout/NavbarSync";
 import HoardingHero from "@/components/hoardings/HoardingHero";
 import MapBridge from "@/components/hoardings/MapBridge";
-import Pill from "@/components/ui/Pill";
+import ChannelCard from "@/components/hoardings/ChannelCard";
 
 import { getTrendingHoardings, getNearbyHoardings, getCategoryCounts } from "@/actions/hoardings";
 
@@ -30,40 +26,38 @@ export default async function ExplorePage() {
 			<HoardingHero />
 
 			{/* Strategy / Product Focus - NEW billion dollar section */}
-			<section className="mt-20 px-6">
-				<div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
+			<section className="mt-24 px-6">
+				<div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-20">
 					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/5 border border-brand/10 text-brand text-[10px] font-black uppercase tracking-widest mb-6">
-						<Sparkles size={12} fill="currentColor" /> Premium Context 7 Deployment
+						<Sparkles size={12} fill="currentColor" /> Intelligence V7.2
 					</div>
-					<h2 className="text-4xl md:text-5xl font-black tracking-tighter text-text-primary leading-[0.9] mb-6">
-						Data-Driven <br />
-						<span className="text-brand">Outdoor Intelligence.</span>
+					<h2 className="text-4xl md:text-6xl font-black tracking-tighter text-text-primary leading-[0.9] mb-8">
+						Strategic <br />
+						<span className="text-brand">OOH Intelligence.</span>
 					</h2>
-					<p className="text-sm font-medium text-text-secondary leading-relaxed">
-						Stop guessing where your audience lives. Hoardify uses traffic intelligence to surface the most impactful placements in Ranchi.
+					<p className="text-sm md:text-base font-medium text-text-secondary leading-relaxed max-w-lg">
+						Stop guessing where your audience lives. Hoardify uses localized traffic intelligence to surface the most impactful placements in the city.
 					</p>
 				</div>
 			</section>
 
 			{/* Categories: Minimalist Channel Switcher */}
-			<section className="overflow-hidden mb-20">
-				<div className="flex items-center justify-between px-6 mb-8">
+			<section className="overflow-hidden mb-32">
+				<div className="px-6 mb-12 flex items-end justify-between">
 					<div className="flex flex-col">
-						<h2 className="text-xl font-bold tracking-tight text-text-primary">Premium Channels</h2>
-						<p className="text-[10px] font-bold uppercase tracking-widest text-text-tertiary">Curated Inventory</p>
+						<h2 className="text-2xl font-black tracking-tighter text-text-primary uppercase italic">Premium Channels</h2>
+						<p className="text-[10px] font-black uppercase tracking-[0.2em] text-text-tertiary">Curated Network</p>
 					</div>
-					<Link href="/filters" className="h-10 w-10 flex items-center justify-center rounded-full bg-surface-sunken hover:bg-brand/5 group transition-all">
-						<ArrowRight size={18} className="text-text-tertiary group-hover:text-brand transition-colors" />
-					</Link>
+					<Link href="/filters" className="text-[10px] font-black uppercase tracking-widest text-brand border-b-2 border-brand/20 hover:border-brand transition-all pb-1">View Full Channel List</Link>
 				</div>
-				<HorizontalScrollList className="px-6 scroll-px-6">
-					<Pill variant="category" active icon={<Monitor size={18} />} label={`Lit Billboards (${counts.lit})`} className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
-					<Pill variant="category" icon={<Grid size={18} />} label={`Unipoles (${counts.unipole})`} className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
-					<Pill variant="category" icon={<Video size={18} />} label={`Digital OOH (${counts.digital})`} className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
-					<Pill variant="category" icon={<Smartphone size={18} />} label={`Transit (${counts.transit})`} className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
+				<HorizontalScrollList className="px-6 scroll-px-6 pb-6">
+					<ChannelCard active icon={<Monitor size={24} />} label="Lit Billboards" count={counts.lit} />
+					<ChannelCard icon={<Grid size={24} />} label="Unipoles" count={counts.unipole} />
+					<ChannelCard icon={<Video size={24} />} label="Digital OOH" count={counts.digital} />
+					<ChannelCard icon={<Smartphone size={24} />} label="Transit OOH" count={counts.transit} />
 				</HorizontalScrollList>
-
 			</section>
+
 
 			{/* Trending: Pulse Showcase */}
 			<section className="mt-12 mb-24">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronLeft, Search, Bookmark, Compass, Inbox, User } from "lucide-react";
 import { useNavbar } from "./NavbarContext";
+import ThemeToggle from "./ThemeToggle";
 
 export default function TopBar() {
 	const pathname = usePathname();
@@ -25,7 +26,7 @@ export default function TopBar() {
 	];
 
 	const renderNavbarFull = (isDesktopOnly: boolean) => (
-		<div className={`${isDesktopOnly ? "hidden md:flex" : "flex"} glass-effect mx-auto h-16 w-full max-w-7xl items-center justify-between rounded-2xl px-4 md:px-6 shadow-lg shadow-black/5`}>
+		<div className={`${isDesktopOnly ? "hidden md:flex" : "flex"} glass-effect mx-auto h-14 w-full max-w-7xl items-center justify-between rounded-full px-3 md:px-5 shadow-lg shadow-black/5`}>
 			{/* Left side: Logo & Back Button */}
 			<div className="flex items-center gap-4">
 				{showBack && (
@@ -35,14 +36,14 @@ export default function TopBar() {
 				)}
 				
 				<Link href="/" className="flex items-center gap-2 group">
-					<div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand font-bold text-white shadow-lg shadow-brand/20 transition-transform group-hover:scale-105">
+					<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand font-black text-white shadow-lg shadow-brand/20 transition-transform group-hover:scale-105 italic">
 						H
 					</div>
-					<div className="hidden md:flex flex-col">
-						<span className="text-lg font-bold tracking-tight text-text-primary">hoardify</span>
-						<span className="text-[10px] font-bold uppercase tracking-widest text-brand -mt-1 leading-none">Marketplace</span>
+					<div className="hidden lg:flex flex-col">
+						<span className="text-base font-black tracking-tighter text-text-primary uppercase italic">hoardify</span>
 					</div>
 				</Link>
+
 
 				{/* Custom Title (Mobile only or Desktop page-specific) */}
 				{!isLogo && title && (
@@ -88,6 +89,8 @@ export default function TopBar() {
 
 				{/* Right Side Actions */}
 				<div className="flex items-center gap-2">
+					<ThemeToggle />
+					
 					{rightAction && (
 						<div className="flex items-center">{rightAction}</div>
 					)}

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { Component, ErrorInfo, ReactNode } from "react";
+import Link from "next/link";
 
 interface ErrorBoundaryProps {
 	children: ReactNode;
@@ -47,7 +48,7 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
 						</div>
 						<h2 className="text-2xl font-bold text-foreground mb-2">Something went wrong</h2>
 						<p className="text-text-secondary mb-6">
-							We're sorry, but something unexpected happened. Our team has been notified.
+							We&apos;re sorry, but something unexpected happened. Our team has been notified.
 						</p>
 						<div className="space-y-3">
 							<button
@@ -57,12 +58,12 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
 							>
 								Reload Page
 							</button>
-							<a
+							<Link
 								href="/"
-								className="block w-full py-3 px-4 border border-border rounded-lg text-foreground hover:bg-surface transition-colors"
+								className="block w-full py-3 px-4 border border-border rounded-lg text-foreground hover:bg-surface transition-colors text-center"
 							>
 								Go to Homepage
-							</a>
+							</Link>
 						</div>
 					</div>
 				</div>

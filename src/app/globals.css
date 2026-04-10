@@ -74,21 +74,37 @@
 	--font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #000000;
-		--foreground: #ffffff;
-		--text-primary: #ffffff;
-		--text-secondary: #a1a1a1;
-		--text-tertiary: #717171;
-		--border-subtle: rgba(255, 255, 255, 0.1);
-		--border-strong: rgba(255, 255, 255, 0.2);
-		--surface-sunken: #111111;
-		--surface-raised: #0a0a0a;
-		--glass-bg: rgba(0, 0, 0, 0.7);
-		--glass-border: rgba(255, 255, 255, 0.1);
-	}
+:root {
+	--background: #ffffff;
+	--foreground: #111111;
+	--brand: #ff385c;
+	--brand-hover: #e00b41;
+	--brand-subtle: rgba(255, 56, 92, 0.08);
+	--text-primary: #111111;
+	--text-secondary: #666666;
+	--text-tertiary: #999999;
+	--border-subtle: rgba(0, 0, 0, 0.06);
+	--border-strong: rgba(0, 0, 0, 0.12);
+	--surface-sunken: #f8f8f8;
+	--surface-raised: #ffffff;
+	--glass-bg: rgba(255, 255, 255, 0.85);
+	--glass-border: rgba(255, 255, 255, 0.4);
 }
+
+.dark {
+	--background: #000000;
+	--foreground: #ffffff;
+	--text-primary: #ffffff;
+	--text-secondary: #a1a1a1;
+	--text-tertiary: #717171;
+	--border-subtle: rgba(255, 255, 255, 0.1);
+	--border-strong: rgba(255, 255, 255, 0.2);
+	--surface-sunken: #111111;
+	--surface-raised: #0a0a0a;
+	--glass-bg: rgba(0, 0, 0, 0.7);
+	--glass-border: rgba(255, 255, 255, 0.1);
+}
+
 
 body {
 	background: var(--background);

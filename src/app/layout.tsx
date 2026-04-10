@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import BottomNav from "@/components/layout/BottomNav";
 import ErrorBoundaryProvider from "@/components/error-boundary-provider";
+
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -26,6 +26,7 @@ export const metadata: Metadata = {
 
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackClientApp } from "@/stack/client";
+import { NavbarProvider } from "@/components/layout/NavbarContext";
 
 export default function RootLayout({
 	children,
@@ -36,28 +37,33 @@ export default function RootLayout({
 		<html lang="en">
 			<head>
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+				<script dangerouslySetInnerHTML={{
+					__html: `
+						(function() {
+							const savedTheme = localStorage.getItem('theme');
+							const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+							const theme = savedTheme || systemTheme;
+							if (theme === 'dark') {
+								document.documentElement.classList.add('dark');
+							} else {
+								document.documentElement.classList.remove('dark');
+							}
+						})()
+					`
+				}} />
 			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<StackProvider app={stackClientApp}>
 					<StackTheme>
-							<div className="flex min-h-screen flex-col relative bg-background">
-								
-
-								{/* Main Content */}
-								<div className="mx-auto w-full max-w-7xl flex-1 flex flex-col relative">
-									<main className="flex-1 relative w-full">
-										<ErrorBoundaryProvider>
-											{children}
-										</ErrorBoundaryProvider>
-									</main>
-								</div>
-
-								{/* Bottom nav only on mobile */}
-								<BottomNav />
-							</div>
+						<NavbarProvider>
+							<ErrorBoundaryProvider>
+								{children}
+							</ErrorBoundaryProvider>
+						</NavbarProvider>
 					</StackTheme>
 				</StackProvider>
 			</body>
+
 		</html>
 	);
 }
