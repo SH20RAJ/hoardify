@@ -43,7 +43,13 @@ export default function GoogleMapWrapper({
 				gestureHandling={gestureHandling}
 				disableDefaultUI={disableUI}
 				className="w-full h-full"
+				// 2026 Immersive View Controls
+				defaultTilt={45}
+				defaultHeading={0}
+				mapTypeId="roadmap"
+				renderingType="VECTOR"
 			>
+
 				{hoardings.map((hoarding) => (
 					<AdvancedMarker key={hoarding.id} position={hoarding.coordinates}>
 						<div className="flex flex-col items-center">

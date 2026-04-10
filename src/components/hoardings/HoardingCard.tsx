@@ -133,13 +133,20 @@ export default function HoardingCard({
 					)}
 				</div>
 				
-				<div className="absolute top-4 right-4 opacity-0 scale-50 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100">
-					<div className="bg-brand text-white p-2 rounded-full shadow-lg shadow-brand/30">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+				<div className="absolute top-4 right-4 flex flex-col items-end gap-2">
+					<div className="opacity-0 scale-50 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100">
+						<div className="bg-brand text-white p-2 rounded-full shadow-lg shadow-brand/30">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+						</div>
+					</div>
+					<div className="bg-brand/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-brand text-[8px] font-black uppercase tracking-tighter text-white shadow-xl flex items-center gap-1.5 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+						<div className="h-1 w-1 rounded-full bg-white animate-pulse" />
+						AI Insight: Prime Corporate Catchment
 					</div>
 				</div>
 			</div>
 		</Link>
 	);
 }
+
 
