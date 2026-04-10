@@ -17,18 +17,18 @@ export default function Pill({
 	className = "", 
 	...props 
 }: PillProps) {
-	const baseStyles = "inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-1.5 text-sm transition-colors whitespace-nowrap";
+	const baseStyles = "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-semibold transition-all duration-300 active:scale-95 whitespace-nowrap";
 	
 	const variants = {
 		outline: active
-			? "border-2 border-brand text-brand font-medium bg-brand/5"
-			: "border border-border text-text-secondary bg-background hover:bg-surface",
+			? "bg-brand text-white shadow-lg shadow-brand/20 border border-brand/20"
+			: "bg-surface-sunken text-text-secondary border border-border-subtle hover:border-border-strong hover:bg-zinc-100 dark:hover:bg-zinc-900",
 		solid: active
-			? "bg-brand text-white font-medium"
-			: "bg-surface text-foreground hover:bg-surface-hover",
+			? "bg-text-primary text-background shadow-md"
+			: "bg-surface-sunken text-text-secondary hover:bg-zinc-200 dark:hover:bg-zinc-800",
 		category: active
-			? "border-b-2 border-brand text-brand font-semibold rounded-none pb-2 px-1"
-			: "text-text-secondary font-medium hover:text-foreground rounded-none pb-2 px-1",
+			? "text-brand border-b-2 border-brand font-bold rounded-none pb-3 px-2 transition-transform scale-105"
+			: "text-text-tertiary font-bold hover:text-text-primary rounded-none pb-3 px-2 hover:-translate-y-0.5",
 	};
 
 	return (
@@ -37,8 +37,13 @@ export default function Pill({
 			className={`${baseStyles} ${variants[variant]} ${className}`} 
 			{...props}
 		>
-			{icon && <span className="flex-shrink-0">{icon}</span>}
-			<span>{label}</span>
+			{icon && (
+				<span className={`flex-shrink-0 transition-transform duration-300 ${active ? "scale-110" : "group-hover:scale-110"}`}>
+					{icon}
+				</span>
+			)}
+			<span className="tracking-tight">{label}</span>
 		</button>
 	);
 }
+

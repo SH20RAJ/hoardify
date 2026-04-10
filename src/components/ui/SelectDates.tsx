@@ -24,7 +24,7 @@ export default function SelectDates() {
 	const [selectedDate, setSelectedDate] = useState<string>(availableDates[0].fullDate);
 
 	return (
-		<div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar border-y border-border py-3">
+		<div className="flex gap-3 overflow-x-auto pb-4 no-scrollbar border-y border-border-subtle py-6">
 			{availableDates.map((date, i) => {
 				const isSelected = selectedDate === date.fullDate;
 				return (
@@ -33,16 +33,16 @@ export default function SelectDates() {
 						type="button"
 						onClick={() => setSelectedDate(date.fullDate)}
 						aria-label={`Select ${date.ariaLabel}`}
-						className={`flex flex-col items-center justify-center border rounded-xl min-w-[60px] h-[70px] transition-all active:scale-95 ${
+						className={`flex flex-col items-center justify-center rounded-2xl min-w-[64px] h-[80px] transition-all duration-300 active:scale-95 ${
 							isSelected
-								? "border-brand bg-brand/5 text-brand shadow-sm"
-								: "border-border text-text-secondary hover:border-brand/40"
+								? "bg-brand text-white shadow-lg shadow-brand/30 scale-105"
+								: "bg-surface-sunken text-text-tertiary hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-text-primary"
 						}`}
 					>
-						<span className={`text-xs uppercase font-semibold ${isSelected ? "text-brand" : ""}`}>
+						<span className={`text-[10px] font-black uppercase tracking-widest mb-1 ${isSelected ? "text-white/80" : ""}`}>
 							{date.month}
 						</span>
-						<span className={`text-xl font-bold ${isSelected ? "text-brand" : "text-foreground"}`}>
+						<span className={`text-2xl font-black tracking-tighter ${isSelected ? "text-white" : "text-text-primary"}`}>
 							{date.day}
 						</span>
 					</button>
@@ -51,3 +51,4 @@ export default function SelectDates() {
 		</div>
 	);
 }
+
