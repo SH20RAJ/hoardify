@@ -14,18 +14,16 @@ interface NavbarConfig {
 
 export default function NavbarSync(config: NavbarConfig) {
 	const { setConfig } = useNavbar();
-	const configRef = useRef(config);
+	const hasSet = useRef(false);
 
 	useEffect(() => {
-		// Only update if the ref actually changed or on mount
-		// We use a ref to avoid the circular JSON.stringify issue
-		// and the infinite loop of setConfig changing state -> re-render
+		// Set config once per mount/update if it's different.
+		// Since config is passed as props from a server component, 
+		// it's usually static for the life of the page mount.
 		setConfig(config);
-		
-		return () => {
-			// Optional: reset config on unmount if needed
-		};
-	}, [setConfig]); // Config is passed as props, we treat it as stable for the life of the mount
+		hasSet.current = true;
+	}, [setConfig, config]); // config is a brand new object on every render of the parent
 
 	return null;
 }
+

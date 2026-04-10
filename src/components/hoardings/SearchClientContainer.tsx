@@ -15,11 +15,20 @@ interface SearchClientContainerProps {
 
 export default function SearchClientContainer({ hoardings }: SearchClientContainerProps) {
 	const [viewMode, setViewMode] = useState<"map" | "list">("map");
+	const [activeContext, setActiveContext] = useState<string>("All");
+
+	const contexts = [
+		{ label: "All", count: hoardings.length },
+		{ label: "High-Traffic", count: 12 },
+		{ label: "Retail Focus", count: 8 },
+		{ label: "Corporate Hubs", count: 5 },
+		{ label: "Transit", count: 4 },
+	];
 
 	return (
 		<>
 			<NavbarSync 
-				title="Search Results"
+				title="Explore Placement Contexts"
 				showBack
 				isLogo={false}
 				rightAction={
@@ -32,7 +41,26 @@ export default function SearchClientContainer({ hoardings }: SearchClientContain
 				}
 			/>
 
-			<div className="relative flex h-[calc(100vh-80px)] md:h-[calc(100vh-100px)] flex-col overflow-hidden bg-background">
+			{/* Search Context Bar (NEW Context 7 Style) */}
+			<div className="bg-white border-b border-border-subtle px-4 py-3 flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth">
+				{contexts.map((ctx) => (
+					<button
+						key={ctx.label}
+						onClick={() => setActiveContext(ctx.label)}
+						className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${
+							activeContext === ctx.label 
+								? "bg-brand text-white shadow-lg shadow-brand/20" 
+								: "bg-surface-sunken text-text-tertiary border border-transparent hover:border-brand/20"
+						}`}
+					>
+						{ctx.label}
+						<span className={`opacity-50 ${activeContext === ctx.label ? "text-white" : "text-text-tertiary"}`}>{ctx.count}</span>
+					</button>
+				))}
+			</div>
+
+			<div className="relative flex h-[calc(100vh-128px)] md:h-[calc(100vh-148px)] flex-col overflow-hidden bg-background">
+
 				{/* Desktop Layout: Side-by-side */}
 				<div className="hidden md:flex flex-1 w-full overflow-hidden">
 					{/* Sidebar results */}

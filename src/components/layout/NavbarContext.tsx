@@ -1,7 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import React, { createContext, useContext, useState, useCallback, useMemo } from "react";
 
 interface NavbarConfig {
 	title?: string | React.ReactNode;
@@ -29,27 +28,32 @@ const NavbarContext = createContext<NavbarContextType | undefined>(undefined);
 
 export function NavbarProvider({ children }: { children: React.ReactNode }) {
 	const [config, setConfigState] = useState<NavbarConfig>(defaultConfig);
-	const pathname = usePathname();
 
-	// Reset config on route change to prevent stale headers
-	useEffect(() => {
+	const setConfig = useCallback((newConfig: NavbarConfig) => {
+		setConfigState((prev) => {
+			// Deep simple compare to avoid redundant updates
+			if (JSON.stringify(prev) === JSON.stringify(newConfig)) return prev;
+			return { ...prev, ...newConfig };
+		});
+	}, []);
+
+	const resetConfig = useCallback(() => {
 		setConfigState(defaultConfig);
-	}, [pathname]);
+	}, []);
 
-	const setConfig = (newConfig: NavbarConfig) => {
-		setConfigState((prev) => ({ ...prev, ...newConfig }));
-	};
-
-	const resetConfig = () => {
-		setConfigState(defaultConfig);
-	};
+	const value = useMemo(() => ({
+		config,
+		setConfig,
+		resetConfig
+	}), [config, setConfig, resetConfig]);
 
 	return (
-		<NavbarContext.Provider value={{ config, setConfig, resetConfig }}>
+		<NavbarContext.Provider value={value}>
 			{children}
 		</NavbarContext.Provider>
 	);
 }
+
 
 export function useNavbar() {
 	const context = useContext(NavbarContext);

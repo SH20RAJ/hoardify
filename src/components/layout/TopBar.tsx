@@ -24,9 +24,6 @@ export default function TopBar() {
 		{ name: "Profile", href: "/profile", icon: User },
 	];
 
-	// On mobile, hide navbar on search and detail pages to allow immersive experience
-	const isImmersivePage = pathname.startsWith("/hoardings/") || pathname.startsWith("/search");
-	
 	const renderNavbarFull = (isDesktopOnly: boolean) => (
 		<div className={`${isDesktopOnly ? "hidden md:flex" : "flex"} glass-effect mx-auto h-16 w-full max-w-7xl items-center justify-between rounded-2xl px-4 md:px-6 shadow-lg shadow-black/5`}>
 			{/* Left side: Logo & Back Button */}
@@ -107,19 +104,10 @@ export default function TopBar() {
 		</div>
 	);
 
-	if (isImmersivePage) {
-		return (
-			<div className="md:block hidden">
-				<nav className="sticky top-0 z-50 w-full px-4 pt-4 pb-2">
-					{renderNavbarFull(true)}
-				</nav>
-			</div>
-		);
-	}
-
 	return (
 		<nav className="sticky top-0 z-50 w-full px-4 pt-4 pb-2">
 			{renderNavbarFull(false)}
 		</nav>
 	);
+
 }
