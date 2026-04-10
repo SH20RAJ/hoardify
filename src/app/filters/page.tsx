@@ -1,15 +1,24 @@
-import TopBar from "@/components/layout/TopBar";
+"use client";
+
 import Pill from "@/components/ui/Pill";
 import { Eye, SunMedium, CloudLightning } from "lucide-react";
+import { useNavbar } from "@/components/layout/NavbarContext";
+import { useEffect } from "react";
 
 export default function FiltersPage() {
+	const { setConfig } = useNavbar();
+
+	useEffect(() => {
+		setConfig({
+			title: "Filters",
+			showBack: true,
+			isLogo: false,
+			rightAction: <button className="text-sm font-bold text-brand hover:opacity-80 transition-opacity">Clear all</button>
+		});
+	}, [setConfig]);
+
 	return (
-		<div className="flex flex-col min-h-screen bg-white dark:bg-black pb-20">
-			<TopBar 
-				title="Filters" 
-				showBack 
-				rightAction={<button className="text-sm font-medium text-gray-500">Clear all</button>} 
-			/>
+		<div className="flex flex-col min-h-screen bg-background pb-32">
 
 			<div className="px-5 py-4 flex flex-col gap-8">
 				{/* Type of board */}

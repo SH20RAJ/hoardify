@@ -1,26 +1,30 @@
-import { Search, Monitor, Smartphone, Video, Grid, Settings2, MapPin, ArrowRight } from "lucide-react";
-import TopBar from "@/components/layout/TopBar";
+"use client";
+
+import { Monitor, Smartphone, Video, Grid, Settings2, MapPin, ArrowRight } from "lucide-react";
 import HoardingCard from "@/components/hoardings/HoardingCard";
 import HorizontalScrollList from "@/components/hoardings/HorizontalScrollList";
 import Pill from "@/components/ui/Pill";
 import Link from "next/link";
 import { HOARDINGS } from "@/lib/mock-data";
 
+import { useNavbar } from "@/components/layout/NavbarContext";
+import { useEffect } from "react";
+
 export default function ExplorePage() {
 	const mostViewed = HOARDINGS.slice(0, 3);
 	const nearby = HOARDINGS.slice(3, 6);
+	const { setConfig } = useNavbar();
+
+	useEffect(() => {
+		setConfig({
+			isLogo: true,
+			title: "Discovery",
+			rightAction: null // Handled by global default or desktop nav
+		});
+	}, [setConfig]);
 
 	return (
 		<div className="flex flex-col pb-32">
-			<TopBar 
-				isLogo 
-				title="Discovery"
-				rightAction={
-					<Link href="/search" className="flex h-10 w-10 items-center justify-center rounded-full bg-text-primary shadow-lg shadow-black/20 transition-all active:scale-90">
-						<Search size={18} className="text-background" />
-					</Link>
-				} 
-			/>
 
 			{/* Hero / Promo Section */}
 			<section className="mt-6 px-4">

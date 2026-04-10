@@ -24,6 +24,9 @@ export const metadata: Metadata = {
 	},
 };
 
+import TopBar from "@/components/layout/TopBar";
+import { NavbarProvider } from "@/components/layout/NavbarContext";
+
 export default function RootLayout({
 	children,
 }: Readonly<{
@@ -34,21 +37,27 @@ export default function RootLayout({
 			<head>
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 			</head>
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#ffffff]`}>
-				{/* Mobile-first container: full width on mobile, constrained on desktop */}
-				<div className="flex min-h-screen flex-col relative">
-					{/* Desktop: centered container with max-width */}
-					<div className="mx-auto w-full max-w-7xl flex min-h-screen flex-col relative">
-						<main className="flex-1 relative w-full overflow-hidden">
-							<ErrorBoundaryProvider>
-								{children}
-							</ErrorBoundaryProvider>
-						</main>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+				<NavbarProvider>
+					<div className="flex min-h-screen flex-col relative bg-background">
+						{/* Global Navbar */}
+						<TopBar />
+						
+						{/* Main Content */}
+						<div className="mx-auto w-full max-w-7xl flex-1 flex flex-col relative">
+							<main className="flex-1 relative w-full">
+								<ErrorBoundaryProvider>
+									{children}
+								</ErrorBoundaryProvider>
+							</main>
+						</div>
+
 						{/* Bottom nav only on mobile */}
 						<BottomNav />
 					</div>
-				</div>
+				</NavbarProvider>
 			</body>
 		</html>
 	);
 }
+

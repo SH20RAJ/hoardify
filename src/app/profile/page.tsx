@@ -1,10 +1,21 @@
-import TopBar from "@/components/layout/TopBar";
+"use client";
+
 import { User, Settings, FileText, ChevronRight } from "lucide-react";
+import { useNavbar } from "@/components/layout/NavbarContext";
+import { useEffect } from "react";
 
 export default function ProfilePage() {
+	const { setConfig } = useNavbar();
+
+	useEffect(() => {
+		setConfig({
+			title: "Profile",
+			isLogo: false
+		});
+	}, [setConfig]);
+
 	return (
-		<div className="flex flex-col min-h-screen pb-24 dark:bg-black bg-gray-50">
-			<TopBar title="Profile" />
+		<div className="flex flex-col min-h-screen pb-32 bg-background">
 			
 			<div className="px-4 mt-6">
 				{/* Avatar / Identity */}

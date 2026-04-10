@@ -1,11 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import { Compass, MapPinOff } from "lucide-react";
-import TopBar from "@/components/layout/TopBar";
+import { useNavbar } from "@/components/layout/NavbarContext";
+import { useEffect } from "react";
 
 export default function NotFound() {
+	const { setConfig } = useNavbar();
+
+	useEffect(() => {
+		setConfig({
+			isLogo: true,
+			showBack: true
+		});
+	}, [setConfig]);
+
 	return (
-		<div className="flex flex-col min-h-screen bg-gray-50 dark:bg-black">
-			<TopBar isLogo />
+		<div className="flex flex-col min-h-screen bg-background pb-32">
 			<div className="flex flex-1 flex-col items-center justify-center p-6 text-center px-8">
 				<div className="bg-brand/10 p-6 rounded-full mb-6">
 					<MapPinOff size={64} className="text-brand" strokeWidth={1.5} />

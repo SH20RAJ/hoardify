@@ -1,14 +1,24 @@
-import TopBar from "@/components/layout/TopBar";
+"use client";
+
 import HoardingCard from "@/components/hoardings/HoardingCard";
 import { HOARDINGS } from "@/lib/mock-data";
 import { Heart } from "lucide-react";
+import { useNavbar } from "@/components/layout/NavbarContext";
+import { useEffect } from "react";
 
 export default function SavedPage() {
 	const savedHoardings = HOARDINGS.slice(0, 2);
+	const { setConfig } = useNavbar();
+
+	useEffect(() => {
+		setConfig({
+			title: "Saved Hoardings",
+			isLogo: false
+		});
+	}, [setConfig]);
 
 	return (
-		<div className="flex flex-col min-h-screen pb-24 dark:bg-black">
-			<TopBar title="Saved Hoardings" />
+		<div className="flex flex-col min-h-screen pb-32 bg-background">
 			<div className="px-4 mt-4">
 				{savedHoardings.length > 0 ? (
 					<div className="flex flex-col gap-4">
