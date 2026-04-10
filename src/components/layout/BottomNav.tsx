@@ -18,8 +18,11 @@ export default function BottomNav() {
 	if (pathname.startsWith("/hoardings/")) return null;
 
 	return (
-		<nav className="md:hidden absolute bottom-0 w-full border-t border-border bg-background pb-safe pt-2 z-50" aria-label="Main navigation">
-			<div className="flex justify-around px-2 pb-2">
+		<nav
+			className="fixed inset-x-0 bottom-0 z-50 border-t border-[#00000012] bg-white/95 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1 backdrop-blur md:hidden"
+			aria-label="Main navigation"
+		>
+			<div className="mx-auto flex w-full max-w-2xl items-center justify-around px-2">
 				{navItems.map((item) => {
 					const Icon = item.icon;
 					const isActive = pathname === item.href;
@@ -28,12 +31,12 @@ export default function BottomNav() {
 						<Link
 							key={item.name}
 							href={item.href}
-							className={`flex w-full flex-col items-center justify-center gap-1 ${
-								isActive ? "text-brand" : "text-text-secondary hover:text-foreground"
+							className={`flex min-h-14 w-full flex-col items-center justify-center gap-1 rounded-xl transition ${
+								isActive ? "text-[#ff385c]" : "text-[#787878] hover:text-[#1f1f1f]"
 							}`}
 						>
-							<Icon size={24} strokeWidth={isActive ? 2.5 : 2} aria-hidden="true" />
-							<span className="text-[10px] font-medium">{item.name}</span>
+							<Icon size={20} strokeWidth={isActive ? 2.5 : 2} aria-hidden="true" />
+							<span className="text-[11px] font-medium leading-none">{item.name}</span>
 						</Link>
 					);
 				})}

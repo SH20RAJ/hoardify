@@ -51,8 +51,8 @@
 	--color-brand-light: var(--brand-light);
 	--color-text-primary: var(--text-primary);
 	--color-text-secondary: var(--text-secondary);
-	--color-border: var(--border-gray);
-	--color-surface: var(--light-surface);
+	--color-border: var(--border);
+	--color-surface: var(--surface);
 	--shadow-card: var(--shadow-card);
 	--shadow-hover: var(--shadow-hover);
 	--radius-md: var(--radius-md);
@@ -69,7 +69,7 @@
 		--foreground: #ededed;
 		--text-primary: #ededed;
 		--text-secondary: #9a9a9a;
-		--light-surface: #1a1a1a;
+		--surface: #1a1a1a;
 		--brand-light: rgba(255, 56, 92, 0.1);
 	}
 }
@@ -145,4 +145,23 @@ h1, h2, h3, h4, h5, h6 {
 	&::-webkit-scrollbar {
 		display: none;
 	}
+}
+
+
+.btn-circle-modern {
+	display: inline-flex;
+	height: 2.75rem;
+	width: 2.75rem;
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px;
+	border: 1px solid #00000014;
+	background: #ffffff;
+	box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+	transition: all 0.2s ease;
+}
+
+.btn-circle-modern:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
 }
