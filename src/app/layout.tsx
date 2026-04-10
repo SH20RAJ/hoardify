@@ -26,6 +26,8 @@ export const metadata: Metadata = {
 
 import TopBar from "@/components/layout/TopBar";
 import { NavbarProvider } from "@/components/layout/NavbarContext";
+import { StackProvider, StackTheme } from "@stackframe/stack";
+import { stackClientApp } from "@/stack/client";
 
 export default function RootLayout({
 	children,
@@ -38,24 +40,28 @@ export default function RootLayout({
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				<NavbarProvider>
-					<div className="flex min-h-screen flex-col relative bg-background">
-						{/* Global Navbar */}
-						<TopBar />
-						
-						{/* Main Content */}
-						<div className="mx-auto w-full max-w-7xl flex-1 flex flex-col relative">
-							<main className="flex-1 relative w-full">
-								<ErrorBoundaryProvider>
-									{children}
-								</ErrorBoundaryProvider>
-							</main>
-						</div>
+				<StackProvider app={stackClientApp}>
+					<StackTheme>
+						<NavbarProvider>
+							<div className="flex min-h-screen flex-col relative bg-background">
+								{/* Global Navbar */}
+								<TopBar />
 
-						{/* Bottom nav only on mobile */}
-						<BottomNav />
-					</div>
-				</NavbarProvider>
+								{/* Main Content */}
+								<div className="mx-auto w-full max-w-7xl flex-1 flex flex-col relative">
+									<main className="flex-1 relative w-full">
+										<ErrorBoundaryProvider>
+											{children}
+										</ErrorBoundaryProvider>
+									</main>
+								</div>
+
+								{/* Bottom nav only on mobile */}
+								<BottomNav />
+							</div>
+						</NavbarProvider>
+					</StackTheme>
+				</StackProvider>
 			</body>
 		</html>
 	);
