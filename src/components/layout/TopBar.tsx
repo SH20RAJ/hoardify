@@ -51,13 +51,13 @@ export default function TopBar() {
 			</div>
 
 			{/* Middle: Desktop Search Bar */}
-			<div className="hidden md:flex flex-1 max-w-md mx-8">
+			<div className="hidden lg:flex flex-1 max-w-md mx-8">
 				<div className="relative w-full group">
-					<Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-tertiary transition-colors group-hover:text-brand" size={18} />
+					<Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-tertiary transition-colors group-hover:text-brand" size={16} />
 					<input 
 						type="text" 
 						placeholder="Search for billboards anywhere..." 
-						className="w-full h-11 bg-surface-sunken rounded-xl pl-10 pr-4 text-sm font-medium border border-transparent focus:border-brand/30 focus:bg-white transition-all outline-none"
+						className="w-full h-11 bg-surface-sunken rounded-2xl pl-11 pr-4 text-sm font-medium border border-transparent focus:border-brand/30 focus:bg-white transition-all outline-none shadow-sm"
 					/>
 				</div>
 			</div>
@@ -86,14 +86,16 @@ export default function TopBar() {
 					})}
 				</div>
 
-				{/* Mobile/Global Right Action */}
-				{rightAction ? (
-					<div className="flex items-center">{rightAction}</div>
-				) : (
+				{/* Right Side Actions */}
+				<div className="flex items-center gap-2">
+					{rightAction && (
+						<div className="flex items-center">{rightAction}</div>
+					)}
+					
 					<Link href="/search" className="md:hidden flex h-10 w-10 items-center justify-center rounded-full bg-text-primary shadow-lg shadow-black/20 transition-all active:scale-90">
 						<Search size={18} className="text-background" />
 					</Link>
-				)}
+				</div>
 				
 				<div className="hidden md:flex items-center border-l border-border-subtle pl-6 ml-2">
 					<Link href="/search" className="btn-brand !px-6 text-xs !py-3">
