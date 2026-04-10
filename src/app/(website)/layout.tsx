@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import BottomNav from "@/components/layout/BottomNav";
 import ErrorBoundaryProvider from "@/components/error-boundary-provider";
 
@@ -24,6 +23,8 @@ export const metadata: Metadata = {
 	},
 };
 
+import TopBar from "@/components/layout/TopBar";
+import { NavbarProvider } from "@/components/layout/NavbarContext";
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackClientApp } from "@/stack/client";
 
@@ -40,8 +41,10 @@ export default function RootLayout({
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<StackProvider app={stackClientApp}>
 					<StackTheme>
+						<NavbarProvider>
 							<div className="flex min-h-screen flex-col relative bg-background">
-								
+								{/* Global Navbar */}
+								<TopBar />
 
 								{/* Main Content */}
 								<div className="mx-auto w-full max-w-7xl flex-1 flex flex-col relative">
@@ -55,6 +58,7 @@ export default function RootLayout({
 								{/* Bottom nav only on mobile */}
 								<BottomNav />
 							</div>
+						</NavbarProvider>
 					</StackTheme>
 				</StackProvider>
 			</body>

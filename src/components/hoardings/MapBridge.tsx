@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin, Grid } from "lucide-react";
+import { MapPin, Grid, ArrowRight } from "lucide-react";
 
 export default function MapBridge() {
 	return (
@@ -9,13 +9,15 @@ export default function MapBridge() {
 					<div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand text-white shadow-xl shadow-brand/30 mb-6">
 						<MapPin size={24} />
 					</div>
-					<h3 className="text-2xl font-black tracking-tight text-text-primary mb-2">Visual Planning</h3>
-					<p className="text-sm font-medium text-text-secondary mb-8 max-w-[200px]">
-						Use our interactive map to plan your city-wide coverage effortlessly.
+					<h3 className="text-3xl font-black tracking-tight text-text-primary mb-2">Visual Planning</h3>
+					<p className="text-sm font-medium text-text-secondary mb-8 max-w-[280px]">
+						Use our interactive map to plan your city-wide coverage and optimize your reach effortlessly.
 					</p>
-					<Link href="/search" className="btn-primary w-full inline-flex items-center justify-center">
-						Open Intelligence Map
+					<Link href="/search" className="btn-action btn-primary w-fit inline-flex items-center gap-3 group/btn">
+						<span>Open Intelligence Map</span>
+						<ArrowRight size={18} className="transition-transform group-hover/btn:translate-x-1" />
 					</Link>
+
 				</div>
 				
 				{/* Decorative Map Pattern or Mesh */}

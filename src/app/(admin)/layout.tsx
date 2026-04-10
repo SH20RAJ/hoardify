@@ -1,7 +1,7 @@
 import { stackServerApp } from "@/stack/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Megaphone, Inbox, Settings, LogOut } from "lucide-react";
+import { LayoutDashboard, Megaphone, Inbox, Settings, LogOut, Users } from "lucide-react";
 
 export default async function AdminLayout({
 	children,

@@ -86,7 +86,7 @@ export default function HoardingCard({
 					<div className="absolute bottom-4 left-5 right-5 text-white">
 						<div className="flex items-center justify-between gap-4">
 							<h3 className="text-lg font-bold leading-tight tracking-tight drop-shadow-lg">{title}</h3>
-							<div className="shrink-0 rounded-full bg-brand px-3 py-1 text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-brand/40">
+							<div className="shrink-0 rounded-full bg-surface-raised/90 backdrop-blur-md px-3 py-1 text-[10px] font-black uppercase tracking-widest text-brand border border-brand/20 shadow-lg">
 								Featured
 							</div>
 						</div>
@@ -140,9 +140,9 @@ export default function HoardingCard({
 							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
 						</div>
 					</div>
-					<div className="bg-brand/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-brand text-[8px] font-black uppercase tracking-tighter text-white shadow-xl flex items-center gap-1.5 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-						<div className="h-1 w-1 rounded-full bg-white animate-pulse" />
-						AI Insight: Prime Corporate Catchment
+					<div className="bg-surface-raised/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-border-subtle text-[9px] font-black uppercase tracking-widest text-text-primary shadow-xl flex items-center gap-2 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
+						<div className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse" />
+						Prime Audience Catchment
 					</div>
 				</div>
 			</div>

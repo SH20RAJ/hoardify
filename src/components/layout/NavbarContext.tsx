@@ -31,11 +31,19 @@ export function NavbarProvider({ children }: { children: React.ReactNode }) {
 
 	const setConfig = useCallback((newConfig: NavbarConfig) => {
 		setConfigState((prev) => {
-			// Deep simple compare to avoid redundant updates
-			if (JSON.stringify(prev) === JSON.stringify(newConfig)) return prev;
+			// Skip update if values are identical (safe for ReactNodes)
+			const isDifferent = 
+				(newConfig.title !== undefined && newConfig.title !== prev.title) ||
+				(newConfig.showBack !== undefined && newConfig.showBack !== prev.showBack) ||
+				(newConfig.backHref !== undefined && newConfig.backHref !== prev.backHref) ||
+				(newConfig.rightAction !== undefined && newConfig.rightAction !== prev.rightAction) ||
+				(newConfig.isLogo !== undefined && newConfig.isLogo !== prev.isLogo);
+
+			if (!isDifferent) return prev;
 			return { ...prev, ...newConfig };
 		});
 	}, []);
+
 
 	const resetConfig = useCallback(() => {
 		setConfigState(defaultConfig);
