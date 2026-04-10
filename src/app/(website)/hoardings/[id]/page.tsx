@@ -100,7 +100,8 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 						</section>
 
 						{/* Audience Intelligence Component */}
-						<AudienceInsights />
+						<AudienceInsights views={hoarding.views} />
+
 
 						{/* Location Details Section */}
 						<section>

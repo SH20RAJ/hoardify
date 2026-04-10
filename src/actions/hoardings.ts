@@ -24,3 +24,19 @@ export async function getNearbyHoardings(limit = 4) {
 	// For now just random subset since we don't have geo-queries yet
 	return await db.select().from(hoardings).limit(limit);
 }
+
+export async function getCategoryCounts() {
+	// A more complex implementation would use a join or group by if categories were a separate column
+	// Since features are JSONB, we can use JSONB containment or just count the specific status/types
+	
+	// For now, let's just return counts based on features if applicable, or total
+	const all = await db.select().from(hoardings);
+	
+	return {
+		lit: all.filter(h => h.features.includes("LED Integrated") || h.features.includes("High-Traffic")).length,
+		unipole: all.length, // Placeholder logic
+		digital: 0,
+		transit: 0
+	};
+}
+

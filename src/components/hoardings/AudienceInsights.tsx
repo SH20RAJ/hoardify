@@ -1,12 +1,17 @@
 import { Users, Eye, TrendingUp, Clock } from "lucide-react";
 
-export default function AudienceInsights() {
+interface AudienceInsightsProps {
+	views?: string | null;
+}
+
+export default function AudienceInsights({ views }: AudienceInsightsProps) {
 	const insights = [
-		{ label: "Weekly Reach", value: "250K+", icon: Users, color: "text-blue-500", bg: "bg-blue-50" },
-		{ label: "Daily Views", value: "35K+", icon: Eye, color: "text-brand", bg: "bg-brand/5" },
+		{ label: "Weekly Reach", value: views ? `${parseInt(views) * 7}K+` : "250K+", icon: Users, color: "text-blue-500", bg: "bg-blue-50" },
+		{ label: "Daily Views", value: views ? `${views}K+` : "35K+", icon: Eye, color: "text-brand", bg: "bg-brand/5" },
 		{ label: "Peak Time", value: "5PM - 9PM", icon: Clock, color: "text-amber-500", bg: "bg-amber-50" },
 		{ label: "Growth", value: "+12%", icon: TrendingUp, color: "text-green-500", bg: "bg-green-50" },
 	];
+
 
 	return (
 		<div className="mt-8">

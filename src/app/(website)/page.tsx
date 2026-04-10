@@ -11,17 +11,16 @@ import HoardingHero from "@/components/hoardings/HoardingHero";
 import MapBridge from "@/components/hoardings/MapBridge";
 import Pill from "@/components/ui/Pill";
 
-export const metadata: Metadata = {
-	title: "Hoardify | The Operating System for Outdoor Advertising",
-	description: "Discover, analyze and book premium high-traffic billboards. The most transparent outdoor advertising platform.",
-};
+import { getTrendingHoardings, getNearbyHoardings, getCategoryCounts } from "@/actions/hoardings";
 
 export default async function ExplorePage() {
-	// Fetch real-time data from PostgreSQL via Drizzle
-	const [trending, nearby] = await Promise.all([
-		db.select().from(hoardings).orderBy(desc(hoardings.createdAt)).limit(6),
-		db.select().from(hoardings).limit(4)
+	// Fetch real-time data from PostgreSQL via Server Actions
+	const [trending, nearby, counts] = await Promise.all([
+		getTrendingHoardings(6),
+		getNearbyHoardings(4),
+		getCategoryCounts()
 	]);
+
 
 	return (
 		<div className="flex flex-col min-h-screen pb-32 bg-background selection:bg-brand/30">
@@ -58,11 +57,12 @@ export default async function ExplorePage() {
 					</Link>
 				</div>
 				<HorizontalScrollList className="px-6 scroll-px-6">
-					<Pill variant="category" active icon={<Monitor size={18} />} label="Lit Billboards" className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
-					<Pill variant="category" icon={<Grid size={18} />} label="Unipoles" className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
-					<Pill variant="category" icon={<Video size={18} />} label="Digital OOH" className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
-					<Pill variant="category" icon={<Smartphone size={18} />} label="Transit" className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
+					<Pill variant="category" active icon={<Monitor size={18} />} label={`Lit Billboards (${counts.lit})`} className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
+					<Pill variant="category" icon={<Grid size={18} />} label={`Unipoles (${counts.unipole})`} className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
+					<Pill variant="category" icon={<Video size={18} />} label={`Digital OOH (${counts.digital})`} className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
+					<Pill variant="category" icon={<Smartphone size={18} />} label={`Transit (${counts.transit})`} className="flex-col !gap-2 !py-6 !px-8 text-[9px] font-black uppercase tracking-widest border-2" />
 				</HorizontalScrollList>
+
 			</section>
 
 			{/* Trending: Pulse Showcase */}

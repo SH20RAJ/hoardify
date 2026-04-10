@@ -27,8 +27,10 @@ export default async function AdminLayout({
 		{ name: "Dashboard", href: "/admin", icon: LayoutDashboard },
 		{ name: "Inventory", href: "/admin/hoardings", icon: Megaphone },
 		{ name: "Enquiries", href: "/admin/enquiries", icon: Inbox },
+		{ name: "Users", href: "/admin/users", icon: Users },
 		{ name: "Settings", href: "/admin/settings", icon: Settings },
 	];
+
 
 	return (
 		<div className="flex h-screen bg-surface-sunken">

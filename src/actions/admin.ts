@@ -1,8 +1,6 @@
-"use server";
-
 import { db } from "@/db";
-import { bookings, hoardings } from "@/db/schema";
-import { desc } from "drizzle-orm";
+import { bookings, hoardings, users, enquiries } from "@/db/schema";
+import { desc, eq, sql } from "drizzle-orm";
 
 export async function getRecentBookings(limit = 10) {
 	return await db.query.bookings.findMany({
@@ -15,17 +13,40 @@ export async function getRecentBookings(limit = 10) {
 	});
 }
 
+export async function getUsers() {
+	return await db.select().from(users).orderBy(desc(users.createdAt));
+}
+
+export async function getEnquiries() {
+	return await db.query.enquiries.findMany({
+		orderBy: [desc(enquiries.createdAt)],
+		with: {
+			hoarding: true,
+		}
+	});
+}
+
+export async function updateUserRole(userId: string, role: "Admin" | "Customer" | "Owner") {
+	return await db.update(users).set({ role }).where(eq(users.id, userId));
+}
+
+export async function updateEnquiryStatus(enquiryId: number, status: "New" | "Contacted" | "Closed") {
+	return await db.update(enquiries).set({ status }).where(eq(enquiries.id, enquiryId));
+}
+
 export async function getAdminMetrics() {
-	// In a real app, these would be physical aggregates
-	// db.select({ count: count() }).from(hoardings)
-	
-	const allHoardings = await db.select().from(hoardings);
-	const allBookings = await db.select().from(bookings);
+	const [hCount, bCount, uCount, eCount] = await Promise.all([
+		db.select({ count: sql<number>`count(*)` }).from(hoardings),
+		db.select({ count: sql<number>`count(*)` }).from(bookings),
+		db.select({ count: sql<number>`count(*)` }).from(users),
+		db.select({ count: sql<number>`count(*)` }).from(enquiries),
+	]);
 	
 	return {
-		totalPlacements: allHoardings.length,
-		activeBookings: allBookings.length,
-		totalReach: "1.2M", // Placeholder for complex calculated metric
-		newEnquiries: 12,   // Placeholder
+		totalPlacements: Number(hCount[0].count),
+		activeBookings: Number(bCount[0].count),
+		totalUsers: Number(uCount[0].count),
+		newEnquiries: Number(eCount[0].count),
+		totalReach: "1.2M", // This remains a complex calculated metric
 	};
 }
