@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import HoardingCard from "@/components/hoardings/HoardingCard";
-import { HOARDINGS } from "@/lib/mock-data";
+import { getTrendingHoardings } from "@/actions/hoardings";
 import { Heart } from "lucide-react";
 import NavbarSync from "@/components/layout/NavbarSync";
 
@@ -9,8 +9,9 @@ export const metadata: Metadata = {
 	description: "View and manage your saved hoardings and billboards for future campaigns.",
 };
 
-export default function SavedPage() {
-	const savedHoardings = HOARDINGS.slice(0, 2);
+export default async function SavedPage() {
+	const savedHoardings = await getTrendingHoardings(2);
+
 
 	return (
 		<div className="flex flex-col min-h-screen pb-32 bg-background">

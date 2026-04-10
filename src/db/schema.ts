@@ -1,4 +1,5 @@
 import { pgTable, text, serial, integer, decimal, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 
 export const users = pgTable("users", {
 	id: text("id").primaryKey(), // Matches Stack Auth User ID
@@ -9,6 +10,10 @@ export const users = pgTable("users", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
+
+export const usersRelations = relations(users, ({ many }) => ({
+	bookings: many(bookings),
+}));
 
 export const hoardings = pgTable("hoardings", {
 	id: serial("id").primaryKey(),
@@ -24,6 +29,11 @@ export const hoardings = pgTable("hoardings", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const hoardingsRelations = relations(hoardings, ({ many }) => ({
+	bookings: many(bookings),
+	enquiries: many(enquiries),
+}));
+
 export const enquiries = pgTable("enquiries", {
 	id: serial("id").primaryKey(),
 	hoardingId: integer("hoarding_id").references(() => hoardings.id),
@@ -35,6 +45,13 @@ export const enquiries = pgTable("enquiries", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const enquiriesRelations = relations(enquiries, ({ one }) => ({
+	hoarding: one(hoardings, {
+		fields: [enquiries.hoardingId],
+		references: [hoardings.id],
+	}),
+}));
+
 export const bookings = pgTable("bookings", {
 	id: serial("id").primaryKey(),
 	hoardingId: integer("hoarding_id").references(() => hoardings.id),
@@ -45,4 +62,17 @@ export const bookings = pgTable("bookings", {
 	status: text("status", { enum: ["Pending", "Confirmed", "Cancelled"] }).default("Pending").notNull(),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export const bookingsRelations = relations(bookings, ({ one }) => ({
+	user: one(users, {
+		fields: [bookings.userId],
+		references: [users.id],
+	}),
+	hoarding: one(hoardings, {
+		fields: [bookings.hoardingId],
+		references: [hoardings.id],
+	}),
+}));
+
+
 

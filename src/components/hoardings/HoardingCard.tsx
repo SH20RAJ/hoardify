@@ -8,14 +8,15 @@ import { formatCurrency } from "@/lib/utils";
 export type HoardingVariant = "large" | "compact" | "banner";
 
 interface HoardingCardProps {
-	id: string;
+	id: string | number;
 	title: string;
 	imageUrl: string;
 	price?: number;
 	location?: string;
-	views?: string;
+	views?: string | null;
 	variant?: HoardingVariant;
 }
+
 
 export default function HoardingCard({
 	id,

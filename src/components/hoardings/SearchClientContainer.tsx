@@ -7,10 +7,12 @@ import HorizontalScrollList from "@/components/hoardings/HorizontalScrollList";
 import GoogleMapWrapper from "@/components/maps/GoogleMapWrapper";
 import Link from "next/link";
 import NavbarSync from "@/components/layout/NavbarSync";
-import { HoardingType } from "@/lib/mock-data";
+import { hoardings } from "@/db/schema";
+
+type DBHoarding = typeof hoardings.$inferSelect;
 
 interface SearchClientContainerProps {
-	hoardings: HoardingType[];
+	hoardings: DBHoarding[];
 }
 
 export default function SearchClientContainer({ hoardings }: SearchClientContainerProps) {
@@ -56,7 +58,7 @@ export default function SearchClientContainer({ hoardings }: SearchClientContain
 					className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap border-2 ${
 						isAIChatOpen 
 							? "bg-text-primary text-background border-text-primary" 
-							: "bg-surface-sunken text-brand border-brand/20 animate-pulse hover:bg-brand/5"
+							: "bg-surface-sunken text-brand border-brand/20 hover:bg-brand/5"
 					}`}
 				>
 					<Sparkles size={12} fill="currentColor" />

@@ -1,16 +1,19 @@
 "use client";
 
 import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
-import { HoardingType } from "@/lib/mock-data";
+import { hoardings } from "@/db/schema";
 import { formatCurrency } from "@/lib/utils";
 
+type DBHoarding = typeof hoardings.$inferSelect;
+
 interface GoogleMapWrapperProps {
-	hoardings?: HoardingType[];
+	hoardings?: DBHoarding[];
 	center?: { lat: number; lng: number };
 	zoom?: number;
 	disableUI?: boolean;
 	gestureHandling?: "cooperative" | "greedy" | "none" | "auto";
 }
+
 
 export default function GoogleMapWrapper({
 	hoardings = [],
@@ -51,7 +54,13 @@ export default function GoogleMapWrapper({
 			>
 
 				{hoardings.map((hoarding) => (
-					<AdvancedMarker key={hoarding.id} position={hoarding.coordinates}>
+					<AdvancedMarker 
+						key={hoarding.id} 
+						position={{ 
+							lat: parseFloat(hoarding.lat), 
+							lng: parseFloat(hoarding.lng) 
+						}}
+					>
 						<div className="flex flex-col items-center">
 							<div className="bg-brand text-white px-2 py-1 rounded-md text-xs font-bold shadow-lg border border-white whitespace-nowrap">
 								{formatCurrency(hoarding.price)}
@@ -60,6 +69,7 @@ export default function GoogleMapWrapper({
 						</div>
 					</AdvancedMarker>
 				))}
+
 			</Map>
 		</APIProvider>
 	);

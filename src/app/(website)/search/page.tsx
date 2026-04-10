@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { HOARDINGS } from "@/lib/mock-data";
+import { getHoardings } from "@/actions/hoardings";
 import SearchClientContainer from "@/components/hoardings/SearchClientContainer";
 
 export const metadata: Metadata = {
@@ -7,6 +7,9 @@ export const metadata: Metadata = {
 	description: "Browse available billboards on our interactive map. Find high-traffic locations for your next outdoor campaign.",
 };
 
-export default function SearchMapPage() {
-	return <SearchClientContainer hoardings={HOARDINGS} />;
+export default async function SearchMapPage() {
+	// Fetch physical data from PostgreSQL action
+	const allHoardings = await getHoardings();
+	return <SearchClientContainer hoardings={allHoardings} />;
 }
+

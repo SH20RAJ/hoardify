@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Share2, Heart, MapPin, Calendar, ShieldCheck, ArrowRight } from "lucide-react";
 import SelectDates from "@/components/ui/SelectDates";
 import GoogleMapWrapper from "@/components/maps/GoogleMapWrapper";
-import { HOARDINGS } from "@/lib/mock-data";
+import { getHoardingById, getHoardings } from "@/actions/hoardings";
 import { notFound } from "next/navigation";
 import BookingCard from "@/components/hoardings/BookingCard";
 import NavbarSync from "@/components/layout/NavbarSync";
@@ -11,22 +11,15 @@ import AudienceInsights from "@/components/hoardings/AudienceInsights";
 import HoardingCard from "@/components/hoardings/HoardingCard";
 import HorizontalScrollList from "@/components/hoardings/HorizontalScrollList";
 
-// Mock data fetcher
-async function getHoarding(id: string) {
-	const hoarding = HOARDINGS.find((h) => h.id === id);
-	if (!hoarding) return null;
-	return hoarding;
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
 	const p = await params;
-	const hoarding = await getHoarding(p.id);
+	const hoarding = await getHoardingById(p.id);
 	
 	if (!hoarding) return { title: "Not Found" };
 
 	return {
 		title: `${hoarding.title} at ${hoarding.location} | Hoardify`,
-		description: `Rent this premium billboard at ${hoarding.location}. ${hoarding.features.join(", ")}.`,
+		description: `Rent this premium billboard at ${hoarding.location}.`,
 		openGraph: {
 			images: [{ url: hoarding.imageUrl }],
 		}
@@ -35,11 +28,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function HoardingDetailPage({ params }: { params: Promise<{ id: string }> }) {
 	const p = await params;
-	const hoarding = await getHoarding(p.id);
+	const hoarding = await getHoardingById(p.id);
 
 	if (!hoarding) return notFound();
 	
-	const relatedHoardings = HOARDINGS.filter(h => h.id !== hoarding.id).slice(0, 4);
+	const all = await getHoardings();
+	const relatedHoardings = all.filter(h => h.id !== hoarding.id).slice(0, 4);
+
 
 	return (
 		<div className="flex flex-col min-h-screen bg-background pb-32">
@@ -118,10 +113,14 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 							<div className="w-full h-96 bg-surface-sunken rounded-[2.5rem] relative overflow-hidden border border-border-subtle shadow-inner group">
 								<GoogleMapWrapper 
 									hoardings={[hoarding]} 
-									center={hoarding.coordinates} 
+									center={{
+										lat: parseFloat(hoarding.lat),
+										lng: parseFloat(hoarding.lng)
+									}} 
 									zoom={15} 
 									disableUI={false} 
 								/>
+
 								<div className="absolute top-6 left-6 pointer-events-none">
 									<div className="glass-effect px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest text-text-primary shadow-lg">
 										Intersection View
