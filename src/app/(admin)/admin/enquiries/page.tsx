@@ -2,6 +2,8 @@ import { getEnquiries } from "@/actions/admin";
 import { Inbox, Phone, Mail, MapPin, Search, CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 
+export const runtime = "edge";
+
 export default async function AdminEnquiriesPage() {
 	const enquiries = await getEnquiries();
 
