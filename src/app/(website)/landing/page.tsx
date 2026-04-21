@@ -3,7 +3,6 @@ import LandingHero from "@/components/landing/LandingHero";
 import AdvantageSection from "@/components/landing/AdvantageSection";
 import ValueProps from "@/components/landing/ValueProps";
 import ProcessWorkflow from "@/components/landing/ProcessWorkflow";
-import StatsBanner from "@/components/landing/StatsBanner";
 import FAQSection from "@/components/landing/FAQSection";
 import CTASection from "@/components/landing/CTASection";
 
@@ -14,8 +13,6 @@ export default function LandingPage() {
 
 			{/* Immersive Landing Sections */}
 			<LandingHero />
-			
-			<StatsBanner />
 			
 			<AdvantageSection />
 			

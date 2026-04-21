@@ -1,4 +1,3 @@
-// Static FAQ data extraction for render optimization
 const faqs = [
 	{
 		q: "How does Hoardify estimate impressions?",
@@ -20,30 +19,22 @@ const faqs = [
 
 export default function FAQSection() {
 	return (
-		<section className="py-32 bg-background border-t border-border-subtle/50">
-			<div className="container mx-auto px-6 max-w-4xl">
-				<div className="flex flex-col items-start mb-16">
-					<div className="text-brand text-[10px] font-black uppercase tracking-[0.4em] mb-4">Clarity</div>
-					<h2 className="text-3xl md:text-5xl font-black tracking-tighter text-text-primary uppercase italic">
-						Common <br className="md:hidden" /> Questions.
-					</h2>
-				</div>
+		<section className="py-24 bg-white border-t border-[#ebebeb]">
+			<div className="container mx-auto px-6 max-w-3xl">
+				<h2 className="text-3xl font-semibold text-[#222222] mb-12">
+					Common Questions
+				</h2>
 
-				<div className="divide-y divide-border-subtle">
+				<div className="space-y-8">
 					{faqs.map((faq, index) => (
-						<details key={index} className="group py-6 [&_summary::-webkit-details-marker]:hidden">
-							<summary className="flex cursor-pointer items-center justify-between font-black uppercase tracking-widest text-text-primary outline-none hover:text-brand transition-colors text-sm md:text-base">
+						<div key={index}>
+							<h3 className="text-lg font-semibold text-[#222222] mb-3">
 								{faq.q}
-								<span className="ml-6 flex h-6 w-6 items-center justify-center rounded-full bg-surface-sunken text-text-tertiary transition-transform duration-300 group-open:rotate-180 group-open:bg-brand/10 group-open:text-brand">
-									<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-									</svg>
-								</span>
-							</summary>
-							<div className="mt-4 text-sm font-medium text-text-secondary leading-relaxed pr-12 animate-fade-in">
+							</h3>
+							<p className="text-[#6a6a6a] leading-relaxed">
 								{faq.a}
-							</div>
-						</details>
+							</p>
+						</div>
 					))}
 				</div>
 			</div>

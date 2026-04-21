@@ -37,34 +37,27 @@ const features = [
 
 export default function ValueProps() {
 	return (
-		<section className="py-32 bg-surface-sunken">
+		<section className="py-24 bg-white">
 			<div className="container mx-auto px-6">
-				<div className="flex flex-col md:flex-row items-end justify-between mb-20">
-					<div className="max-w-2xl">
-						<div className="text-brand text-[10px] font-black uppercase tracking-[0.34em] mb-4">Precision Engineering</div>
-						<h2 className="text-4xl md:text-6xl font-black tracking-tighter text-text-primary uppercase italic">
-							Engineered for <br />
-							<span className="text-brand">Impact.</span>
-						</h2>
-					</div>
-					<p className="max-w-xs text-sm font-medium text-text-secondary leading-relaxed mt-8 md:mt-0">
+				<div className="max-w-2xl mb-16">
+					<h2 className="text-3xl font-semibold text-[#222222] mb-4">
+						Engineered for Impact.
+					</h2>
+					<p className="text-[#6a6a6a]">
 						We&apos;ve removed the friction from traditional OOH, replacing manual calls with digital intelligence.
 					</p>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
 					{features.map((feature, index) => (
-						<div 
-							key={index}
-							className="group p-10 rounded-[2.5rem] bg-background border border-border-subtle transition-all duration-500 hover:shadow-2xl hover:shadow-black/5 hover:-translate-y-2"
-						>
-							<div className="h-16 w-16 rounded-2xl bg-surface-sunken flex items-center justify-center text-text-secondary group-hover:bg-brand group-hover:text-white transition-colors duration-500 mb-8">
+						<div key={index} className="flex flex-col">
+							<div className="text-[#222222] mb-4">
 								{feature.icon}
 							</div>
-							<h3 className="text-xl font-black uppercase tracking-widest text-text-primary mb-4 italic">
+							<h3 className="text-lg font-semibold text-[#222222] mb-2">
 								{feature.title}
 							</h3>
-							<p className="text-sm font-medium text-text-tertiary leading-relaxed">
+							<p className="text-[#6a6a6a] text-sm leading-relaxed">
 								{feature.description}
 							</p>
 						</div>
