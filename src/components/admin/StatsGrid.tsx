@@ -4,7 +4,6 @@ interface StatItem {
 	label: string;
 	value: string | number;
 	icon: LucideIcon;
-	color: string;
 }
 
 interface StatsGridProps {
@@ -19,10 +18,10 @@ interface StatsGridProps {
 
 export default function StatsGrid({ stats }: StatsGridProps) {
 	const items: StatItem[] = [
-		{ label: "Total Placements", value: stats.totalPlacements, icon: Megaphone, color: "bg-blue-500" },
-		{ label: "Total Reach", value: stats.totalReach, icon: Users, color: "bg-brand" },
-		{ label: "Active Users", value: stats.totalUsers, icon: Users, color: "bg-green-500" },
-		{ label: "Active Bookings", value: stats.activeBookings, icon: Calendar, color: "bg-purple-500" },
+		{ label: "Placements", value: stats.totalPlacements, icon: Megaphone },
+		{ label: "Total Reach", value: stats.totalReach, icon: Users },
+		{ label: "Users", value: stats.totalUsers, icon: Users },
+		{ label: "Bookings", value: stats.activeBookings, icon: Calendar },
 	];
 
 	return (
@@ -30,14 +29,12 @@ export default function StatsGrid({ stats }: StatsGridProps) {
 			{items.map((stat, i) => {
 				const Icon = stat.icon;
 				return (
-					<div key={i} className="bg-white p-6 rounded-3xl border border-border-subtle shadow-sm flex items-center gap-4 hover:shadow-lg transition-all hover:-translate-y-1">
-						<div className={`h-12 w-12 rounded-2xl ${stat.color} flex items-center justify-center text-white shadow-lg`}>
-							<Icon size={24} />
+					<div key={i} className="bg-white p-6 rounded-2xl border border-[#ebebeb] shadow-sm flex flex-col gap-4">
+						<div className="flex items-center justify-between">
+							<span className="text-sm font-semibold text-[#717171]">{stat.label}</span>
+							<Icon size={20} className="text-[#222222]" />
 						</div>
-						<div>
-							<p className="text-xs font-bold uppercase tracking-widest text-text-tertiary">{stat.label}</p>
-							<p className="text-2xl font-black text-text-primary">{stat.value}</p>
-						</div>
+						<p className="text-3xl font-bold text-[#222222]">{stat.value}</p>
 					</div>
 				);
 			})}

@@ -24,65 +24,65 @@ interface ActivityPulseProps {
 
 export default function ActivityPulse({ bookings }: ActivityPulseProps) {
 	return (
-		<div className="bg-white rounded-[2.5rem] border border-border-subtle shadow-sm overflow-hidden">
-			<div className="p-8 border-b border-border-subtle flex items-center justify-between bg-surface-sunken/30">
+		<div className="bg-white rounded-2xl border border-[#ebebeb] shadow-sm overflow-hidden">
+			<div className="p-6 border-b border-[#ebebeb] flex items-center justify-between">
 				<div>
-					<h3 className="font-black text-lg tracking-tight">Active Booking Pulse</h3>
-					<p className="text-[10px] font-bold uppercase tracking-widest text-brand mt-1">Real-time user sessions</p>
+					<h3 className="text-lg font-semibold text-[#222222]">Recent Bookings</h3>
+					<p className="text-sm text-[#717171]">Live inventory sessions</p>
 				</div>
-				<button className="text-xs font-bold text-text-tertiary uppercase tracking-widest hover:text-brand transition-colors">Audit All</button>
+				<button className="text-sm font-semibold text-[#222222] underline">View all</button>
 			</div>
 			
 			<div className="overflow-x-auto">
 				<table className="w-full text-left">
 					<thead>
-						<tr className="bg-surface-sunken/50">
-							<th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-text-tertiary">Customer</th>
-							<th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-text-tertiary">Placement</th>
-							<th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-text-tertiary">Duration</th>
-							<th className="px-8 py-4 text-[10px] font-black uppercase tracking-widest text-text-tertiary text-right">Value</th>
+						<tr className="bg-[#f7f7f7]">
+							<th className="px-6 py-3 text-xs font-semibold text-[#717171] uppercase tracking-wider">Customer</th>
+							<th className="px-6 py-3 text-xs font-semibold text-[#717171] uppercase tracking-wider">Placement</th>
+							<th className="px-6 py-3 text-xs font-semibold text-[#717171] uppercase tracking-wider">Value</th>
+							<th className="px-6 py-3 text-xs font-semibold text-[#717171] uppercase tracking-wider text-right">Status</th>
 						</tr>
 					</thead>
-					<tbody className="divide-y divide-border-subtle">
+					<tbody className="divide-y divide-[#ebebeb]">
 						{bookings.map((booking) => (
-							<tr key={booking.id} className="hover:bg-surface-sunken transition-colors group">
-								<td className="px-8 py-6">
+							<tr key={booking.id} className="hover:bg-[#f7f7f7] transition-colors">
+								<td className="px-6 py-4">
 									<div className="flex items-center gap-3">
-										<div className="h-8 w-8 rounded-full bg-surface-sunken flex items-center justify-center overflow-hidden border border-border-subtle relative">
+										<div className="h-8 w-8 rounded-full bg-[#f7f7f7] flex items-center justify-center overflow-hidden border border-[#dddddd] relative">
 											{booking.user.imageUrl ? (
 												<Image src={booking.user.imageUrl} alt="" fill className="object-cover" unoptimized />
 											) : (
-												<User size={14} className="text-text-tertiary" />
+												<User size={14} className="text-[#717171]" />
 											)}
 										</div>
 										<div className="flex flex-col">
-											<span className="font-bold text-sm text-text-primary capitalize">{booking.user.name || "Anonymous User"}</span>
-											<span className="text-[10px] text-text-tertiary">{booking.user.email}</span>
+											<span className="font-semibold text-sm text-[#222222]">{booking.user.name || "Anonymous User"}</span>
+											<span className="text-xs text-[#717171]">{booking.user.email}</span>
 										</div>
 									</div>
 								</td>
-								<td className="px-8 py-6">
+								<td className="px-6 py-4">
 									<div className="flex flex-col">
-										<span className="text-xs font-bold text-text-primary">{booking.hoarding?.title || "Unknown Hoarding"}</span>
-										<span className="text-[10px] text-text-tertiary">{booking.hoarding?.location}</span>
+										<span className="text-sm text-[#222222] font-medium">{booking.hoarding?.title || "Unknown Hoarding"}</span>
+										<span className="text-xs text-[#717171]">{booking.hoarding?.location}</span>
 									</div>
 								</td>
-								<td className="px-8 py-6">
-									<span className="text-[10px] font-black uppercase tracking-widest bg-brand/5 text-brand px-2 py-1 rounded-md border border-brand/10">
-										{new Date(booking.startDate).toLocaleDateString()} - {new Date(booking.endDate).toLocaleDateString()}
-									</span>
+								<td className="px-6 py-4">
+									<span className="text-sm font-semibold text-[#222222]">{formatCurrency(booking.pricePaid)}</span>
 								</td>
-								<td className="px-8 py-6 text-right">
-									<span className="font-black text-sm text-text-primary">{formatCurrency(booking.pricePaid)}</span>
+								<td className="px-6 py-4 text-right">
+									<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#e6f4ea] text-[#008a05]">
+										Confirmed
+									</span>
 								</td>
 							</tr>
 						))}
 						{bookings.length === 0 && (
 							<tr>
-								<td colSpan={4} className="px-8 py-20 text-center">
-									<div className="flex flex-col items-center gap-3 opacity-30">
-										<Calendar size={32} />
-										<p className="text-sm font-bold uppercase tracking-widest">No Active Bookings Yet</p>
+								<td colSpan={4} className="px-6 py-12 text-center">
+									<div className="flex flex-col items-center gap-2 text-[#717171]">
+										<Calendar size={24} />
+										<p className="text-sm">No active bookings found</p>
 									</div>
 								</td>
 							</tr>

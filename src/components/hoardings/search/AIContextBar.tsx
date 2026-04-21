@@ -30,52 +30,52 @@ export default function AIContextBar({
 	return (
 		<div className="relative">
 			{/* Context Bar */}
-			<div className="bg-white border-b border-border-subtle px-4 py-3 flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth">
+			<div className="bg-white border-b border-[#ebebeb] px-6 py-4 flex items-center gap-3 overflow-x-auto no-scrollbar scroll-smooth">
 				<button
 					onClick={() => setIsAIChatOpen(!isAIChatOpen)}
-					className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap border-2 ${
+					className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
 						isAIChatOpen 
-							? "bg-text-primary text-background border-text-primary" 
-							: "bg-surface-sunken text-brand border-brand/20 hover:bg-brand/5"
+							? "bg-[#222222] text-white border-[#222222]" 
+							: "bg-white text-[#ff385c] border-[#ff385c] hover:bg-[#fff8f6]"
 					}`}
 				>
-					<Sparkles size={12} fill="currentColor" />
+					<Sparkles size={14} fill="currentColor" />
 					Ask Hoardify
 				</button>
 				
-				<div className="h-6 w-[1px] bg-border-subtle mx-1" />
+				<div className="h-6 w-[1px] bg-[#ebebeb] mx-1" />
 
 				{contexts.map((ctx) => (
 					<button
 						key={ctx.label}
 						onClick={() => setActiveContext(ctx.label)}
-						className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${
+						className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
 							activeContext === ctx.label 
-								? "bg-brand text-white shadow-lg shadow-brand/20" 
-								: "bg-surface-sunken text-text-tertiary border border-transparent hover:border-brand/20"
+								? "bg-[#222222] text-white" 
+								: "bg-white text-[#717171] border border-[#dddddd] hover:border-[#222222] hover:text-[#222222]"
 						}`}
 					>
 						{ctx.label}
-						<span className={`opacity-50 ${activeContext === ctx.label ? "text-white" : "text-text-tertiary"}`}>{ctx.count}</span>
+						<span className={`text-[10px] ${activeContext === ctx.label ? "text-white/60" : "text-[#b0b0b0]"}`}>{ctx.count}</span>
 					</button>
 				))}
 			</div>
 
 			{/* AI Overlay */}
 			{isAIChatOpen && (
-				<div className="absolute top-16 left-4 right-4 z-[60] md:left-6 md:w-[400px]">
-					<div className="glass-effect p-4 border-2 border-brand/30 shadow-2xl rounded-[2rem] animate-in slide-in-from-top-4 duration-300">
-						<div className="flex items-center gap-2 mb-4">
-							<div className="h-8 w-8 rounded-full bg-brand flex items-center justify-center text-white">
-								<Sparkles size={14} fill="currentColor" />
+				<div className="absolute top-18 left-4 right-4 z-[60] md:left-6 md:w-[400px]">
+					<div className="bg-white p-6 border border-[#ebebeb] shadow-[0_12px_24px_rgba(0,0,0,0.12)] rounded-2xl">
+						<div className="flex items-center gap-3 mb-4">
+							<div className="h-10 w-10 rounded-full bg-[#ff385c] flex items-center justify-center text-white">
+								<Sparkles size={18} fill="currentColor" />
 							</div>
 							<div>
-								<h3 className="text-xs font-black uppercase tracking-widest text-text-primary">Gemini Search Context</h3>
-								<p className="text-[10px] font-medium text-text-tertiary">Real-time localized intelligence active</p>
+								<h3 className="text-sm font-semibold text-[#222222]">AI Intelligence</h3>
+								<p className="text-xs text-[#717171]">Powered by Gemini</p>
 							</div>
 						</div>
 						
-						<div className="bg-surface-sunken p-3 rounded-2xl mb-4 text-xs font-medium text-text-secondary leading-relaxed border border-border-subtle">
+						<div className="bg-[#f7f7f7] p-4 rounded-xl mb-4 text-sm text-[#222222] leading-relaxed italic">
 							&quot;Find me a high-traffic spot near Ranchi Main Road that would be visible to morning commuters...&quot;
 						</div>
 
@@ -85,9 +85,9 @@ export default function AIContextBar({
 								value={aiQuery}
 								onChange={(e) => setAiQuery(e.target.value)}
 								placeholder="Describe your target audience..." 
-								className="w-full h-12 bg-white rounded-xl pl-4 pr-12 text-sm font-medium border border-border-subtle focus:border-brand outline-none transition-all"
+								className="w-full h-12 bg-white rounded-lg pl-4 pr-12 text-sm text-[#222222] border border-[#dddddd] focus:border-[#222222] outline-none transition-all"
 							/>
-							<button className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-brand text-white rounded-lg flex items-center justify-center transition-transform active:scale-95">
+							<button className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-[#ff385c] text-white rounded-md flex items-center justify-center transition-all hover:bg-[#e00b41] active:scale-95">
 								<Send size={14} />
 							</button>
 						</div>

@@ -1,5 +1,5 @@
 import { formatCurrency } from "@/lib/utils";
-import { Zap, ShieldCheck } from "lucide-react";
+import { Star } from "lucide-react";
 
 interface BookingCardProps {
 	price: number;
@@ -7,54 +7,56 @@ interface BookingCardProps {
 
 export default function BookingCard({ price }: BookingCardProps) {
 	return (
-		<div className="card-premium p-6 border-brand/20 bg-white shadow-2xl shadow-brand/5 relative overflow-hidden">
-			{/* Accent Gradient */}
-			<div className="absolute top-0 right-0 h-32 w-32 bg-brand/5 blur-3xl -z-10" />
-			
-			<div className="flex items-center justify-between mb-8">
-				<div className="flex flex-col">
-					<div className="flex items-center gap-1.5 mb-1">
-						<span className="text-[10px] font-black uppercase tracking-widest text-text-tertiary">Rental Price</span>
-						<div className="h-1 w-1 rounded-full bg-brand animate-pulse" />
+		<div className="bg-white p-6 border border-[#dddddd] rounded-2xl shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+			<div className="flex items-center justify-between mb-6">
+				<div>
+					<span className="text-2xl font-bold text-[#222222]">{formatCurrency(price)}</span>
+					<span className="text-[#6a6a6a] text-base font-normal"> / month</span>
+				</div>
+				<div className="flex items-center gap-1">
+					<Star size={14} fill="currentColor" className="text-[#222222]" />
+					<span className="text-sm font-semibold text-[#222222]">4.9</span>
+					<span className="text-sm text-[#717171] underline">(12 inquiries)</span>
+				</div>
+			</div>
+
+			<div className="border border-[#b0b0b0] rounded-xl overflow-hidden mb-6">
+				<div className="grid grid-cols-2 border-b border-[#b0b0b0]">
+					<div className="p-3 border-r border-[#b0b0b0]">
+						<div className="text-[10px] font-bold uppercase text-[#222222]">Start Date</div>
+						<div className="text-sm text-[#717171]">Select date</div>
 					</div>
-					<span className="text-4xl font-black tracking-tighter text-text-primary">{formatCurrency(price)}</span>
+					<div className="p-3">
+						<div className="text-[10px] font-bold uppercase text-[#222222]">End Date</div>
+						<div className="text-sm text-[#717171]">Select date</div>
+					</div>
 				</div>
-				<div className="text-right">
-					<span className="text-[10px] font-black uppercase tracking-widest text-text-tertiary mb-1">Duration</span>
-					<span className="block text-sm font-bold text-brand bg-brand/5 px-3 py-1 rounded-full">Per Month</span>
-				</div>
-			</div>
-
-			<div className="flex flex-col gap-3 mb-8">
-				<div className="flex items-center gap-3 text-sm font-bold text-text-secondary bg-surface-sunken p-3 rounded-xl border border-border-subtle">
-					<Zap size={16} className="text-brand" fill="currentColor" />
-					<span>Instant Inquiry Response</span>
-				</div>
-				<div className="flex items-center gap-3 text-sm font-bold text-text-secondary bg-surface-sunken p-3 rounded-xl border border-border-subtle">
-					<ShieldCheck size={16} className="text-green-500" />
-					<span>Price Guarantee Protection</span>
+				<div className="p-3">
+					<div className="text-[10px] font-bold uppercase text-[#222222]">Campaign Size</div>
+					<div className="text-sm text-[#717171]">1 Billboard</div>
 				</div>
 			</div>
 
-			<button className="btn-brand w-full !py-5 text-sm shadow-xl shadow-brand/20 group hover:scale-[1.02] active:scale-95 transition-all">
-				Start Booking Process
-				<span className="block text-[10px] opacity-70 font-normal mt-1 uppercase tracking-widest">No Commitment yet</span>
+			<button className="w-full bg-[#ff385c] text-white py-3.5 rounded-lg font-bold text-lg hover:bg-[#e00b41] transition-colors mb-4">
+				Check Availability
 			</button>
 			
-			{/* Social Proof */}
-			<div className="mt-6 pt-6 border-t border-border-subtle flex items-center justify-center gap-2">
-				<div className="flex -space-x-2">
-					{[1, 2, 3].map(i => (
-						<div key={i} className="h-6 w-6 rounded-full border-2 border-white bg-zinc-200 flex items-center justify-center overflow-hidden">
-							<div className="h-full w-full bg-gradient-to-br from-zinc-300 to-zinc-500" />
-						</div>
-					))}
+			<p className="text-center text-sm text-[#717171] mb-6">You won&apos;t be charged yet</p>
+
+			<div className="space-y-4">
+				<div className="flex justify-between text-base text-[#222222]">
+					<span className="underline italic">Rental fee (1 month)</span>
+					<span>{formatCurrency(price)}</span>
 				</div>
-				<span className="text-[10px] font-bold text-text-tertiary uppercase tracking-wider">
-					12 Brands inquired this week
-				</span>
+				<div className="flex justify-between text-base text-[#222222]">
+					<span className="underline italic">Printing & Installation</span>
+					<span>₹ 0</span>
+				</div>
+				<div className="pt-4 border-t border-[#dddddd] flex justify-between text-lg font-bold text-[#222222]">
+					<span>Total before taxes</span>
+					<span>{formatCurrency(price)}</span>
+				</div>
 			</div>
 		</div>
 	);
 }
-

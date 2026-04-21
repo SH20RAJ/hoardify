@@ -11,8 +11,7 @@ export default function SearchHeader({ viewMode, onViewModeChange }: SearchHeade
 		<NavbarSync 
 			title={
 				<div className="flex items-center gap-2">
-					<span>Explore Contexts</span>
-					<div className="bg-brand/10 text-brand text-[10px] px-2 py-0.5 rounded-full font-black uppercase tracking-tighter">AI Active</div>
+					<span className="font-semibold text-base">Explore inventory</span>
 				</div>
 			}
 			showBack
@@ -20,9 +19,9 @@ export default function SearchHeader({ viewMode, onViewModeChange }: SearchHeade
 			rightAction={
 				<button 
 					onClick={() => onViewModeChange(viewMode === "map" ? "list" : "map")}
-					className="flex items-center gap-2 bg-text-primary text-background px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all active:scale-95"
+					className="flex items-center gap-2 bg-white border border-[#dddddd] text-[#222222] px-4 py-2 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition-shadow active:scale-95"
 				>
-					{viewMode === "map" ? <><ListIcon size={14} /> List View</> : <><MapIcon size={14} /> Map View</>}
+					{viewMode === "map" ? <><ListIcon size={16} /> List</> : <><MapIcon size={16} /> Map</>}
 				</button>
 			}
 		/>
