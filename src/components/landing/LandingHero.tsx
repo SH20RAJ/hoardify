@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Sparkles, ShieldCheck, Zap, Globe } from "lucide-react";
 
 export default function LandingHero() {
@@ -69,9 +70,11 @@ export default function LandingHero() {
 			<div className="mt-24 px-6 relative max-w-6xl mx-auto">
 				<div className="relative rounded-[3rem] overflow-hidden border border-border-subtle shadow-2xl shadow-black/20 group">
 					<div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-					<img 
+					<Image 
 						src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" 
 						alt="Hoardify Intelligence Dashboard" 
+						width={2070}
+						height={887}
 						className="w-full aspect-[21/9] object-cover transition-transform duration-[3000ms] group-hover:scale-110"
 					/>
 					

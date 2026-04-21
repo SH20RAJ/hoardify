@@ -1,6 +1,7 @@
 import { stackServerApp } from "@/stack/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { LayoutDashboard, Megaphone, Inbox, Settings, LogOut, Users, ExternalLink } from "lucide-react";
 import PasscodeGate from "@/components/admin/PasscodeGate";
 import ThemeToggle from "@/components/layout/ThemeToggle";
@@ -96,7 +97,7 @@ export default async function AdminLayout({
 								</div>
 								<div className="h-12 w-12 rounded-2xl bg-surface-sunken border border-border-subtle overflow-hidden shadow-lg transform hover:scale-105 transition-transform cursor-pointer">
 									{user.profileImageUrl ? (
-										<img src={user.profileImageUrl} alt="Admin" className="w-full h-full object-cover" />
+										<Image src={user.profileImageUrl} alt="Admin" width={48} height={48} className="w-full h-full object-cover" unoptimized />
 									) : (
 										<div className="w-full h-full flex items-center justify-center bg-brand/10 text-brand font-black">
 											{user.primaryEmail?.[0].toUpperCase()}
