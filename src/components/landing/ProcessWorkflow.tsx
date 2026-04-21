@@ -2,29 +2,31 @@
 
 import { Search, BarChart4, Rocket } from "lucide-react";
 
-export default function ProcessWorkflow() {
-	const steps = [
-		{
-			icon: <Search size={32} />,
-			number: "01",
-			title: "Discover",
-			description: "Search through Ranchi&apos;s verified premium inventory on our interactive intelligence map."
-		},
-		{
-			icon: <BarChart4 size={32} />,
-			number: "02",
-			title: "Evaluate",
-			description: "Analyze traffic scores, impressions, and ROI potential for your selected placements."
-		},
-		{
-			icon: <Rocket size={32} />,
-			number: "03",
-			title: "Launch",
-			description: "Confirm your booking and let our team handle design, printing, and professional installation."
-		}
-	];
+// Static data extraction for render optimization
+const steps = [
+	{
+		icon: <Search size={32} />,
+		number: "01",
+		title: "Discover",
+		description: "Search through Ranchi's verified premium inventory on our interactive intelligence map."
+	},
+	{
+		icon: <BarChart4 size={32} />,
+		number: "02",
+		title: "Evaluate",
+		description: "Analyze traffic scores, impressions, and ROI potential for your selected placements."
+	},
+	{
+		icon: <Rocket size={32} />,
+		number: "03",
+		title: "Launch",
+		description: "Confirm your booking and let our team handle design, printing, and professional installation."
+	}
+];
 
+export default function ProcessWorkflow() {
 	return (
+
 		<section className="py-32 bg-background relative overflow-hidden">
 			<div className="container mx-auto px-6">
 				<div className="flex flex-col items-center text-center mb-24">

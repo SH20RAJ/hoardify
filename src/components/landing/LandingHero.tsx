@@ -6,12 +6,12 @@ import { ArrowRight, Sparkles, ShieldCheck, Zap, Globe } from "lucide-react";
 export default function LandingHero() {
 	return (
 		<section className="relative pt-20 pb-32 overflow-hidden bg-background">
-			{/* Immersive Background */}
+			{/* Uber Minimal Background */}
 			<div className="absolute inset-0 pointer-events-none">
-				<div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_20%,rgba(255,56,92,0.15),transparent_50%)]" />
-				<div className="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_80%,rgba(37,99,235,0.1),transparent_50%)]" />
-				<div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] mix-blend-overlay" />
+				<div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_20%,rgba(255,56,92,0.08),transparent_50%)]" />
+				<div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
 			</div>
+
 
 			<div className="container relative z-10 mx-auto px-6">
 				<div className="flex flex-col items-center text-center max-w-4xl mx-auto">
