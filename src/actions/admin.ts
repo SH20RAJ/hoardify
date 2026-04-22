@@ -1,6 +1,9 @@
+"use server";
+
 import { db } from "@/db";
 import { bookings, hoardings, users, enquiries } from "@/db/schema";
 import { desc, eq, sql } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export async function getRecentBookings(limit = 10) {
 	return await db.query.bookings.findMany({
@@ -27,11 +30,15 @@ export async function getEnquiries() {
 }
 
 export async function updateUserRole(userId: string, role: "Admin" | "Customer" | "Owner") {
-	return await db.update(users).set({ role }).where(eq(users.id, userId));
+	await db.update(users).set({ role }).where(eq(users.id, userId));
+	revalidatePath("/admin/users");
+	return { success: true };
 }
 
 export async function updateEnquiryStatus(enquiryId: number, status: "New" | "Contacted" | "Closed") {
-	return await db.update(enquiries).set({ status }).where(eq(enquiries.id, enquiryId));
+	await db.update(enquiries).set({ status }).where(eq(enquiries.id, enquiryId));
+	revalidatePath("/admin/enquiries");
+	return { success: true };
 }
 
 export async function getAdminMetrics() {
