@@ -61,7 +61,7 @@ export default async function ExplorePage() {
 				</div>
 				<HorizontalScrollList className="px-6 scroll-px-6 gap-8">
 					{trending.map(hoarding => (
-						<HoardingCard key={hoarding.id} {...hoarding} />
+						<HoardingCard key={hoarding.id} id={hoarding.id} title={hoarding.title} imageUrl={hoarding.imageUrl} images={hoarding.images} price={hoarding.price} location={hoarding.location} views={hoarding.views} />
 					))}
 				</HorizontalScrollList>
 			</section>
@@ -80,7 +80,7 @@ export default async function ExplorePage() {
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 					{nearby.map(hoarding => (
-						<HoardingCard key={hoarding.id} {...hoarding} variant="banner" />
+						<HoardingCard key={hoarding.id} id={hoarding.id} title={hoarding.title} imageUrl={hoarding.imageUrl} images={hoarding.images} price={hoarding.price} location={hoarding.location} views={hoarding.views} variant="banner" />
 					))}
 				</div>
 			</section>

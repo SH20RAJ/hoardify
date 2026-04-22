@@ -58,7 +58,7 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 					{/* Left Column: Details */}
 					<div className="w-full lg:w-[60%]">
 						<section className="mb-10">
-							<HeroImage src={hoarding.imageUrl} alt={hoarding.title} id={hoarding.id} />
+							<HeroImage src={hoarding.imageUrl} alt={hoarding.title} id={hoarding.id} images={hoarding.images} videoUrl={hoarding.videoUrl} />
 						</section>
 
 						<section className="border-b border-[#ebebeb] pb-10">
@@ -134,7 +134,7 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 					</div>
 					<HorizontalScrollList className="px-0">
 						{relatedHoardings.map(h => (
-							<HoardingCard key={h.id} {...h} />
+							<HoardingCard key={h.id} id={h.id} title={h.title} imageUrl={h.imageUrl} images={h.images} price={h.price} location={h.location} views={h.views} />
 						))}
 					</HorizontalScrollList>
 				</section>
