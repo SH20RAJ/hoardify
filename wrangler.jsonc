@@ -32,10 +32,16 @@
 			"service": "hoardify"
 		}
 	],
+	"upload_source_maps": true,
 	"observability": {
-		"enabled": true
+		"logs": {
+			"enabled": true,
+			"invocation_logs": true
+		},
+		"traces": {
+			"enabled": false
+		}
 	},
-	"upload_source_maps": true
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
@@ -53,5 +59,10 @@
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
 	 */
-	// "vars": {  "MY_VARIABLE": "production_value" }
+	"vars": {
+		"NEXTJS_ENV": "production",
+		"NEXT_PUBLIC_STACK_PROJECT_ID": "b90c9610-12df-4a1a-afae-0561691f37cc",
+		"NEXT_PUBLIC_STACK_PUBLISHABLE_CLIENT_KEY": "pck_dj6f5jyqbfvkfkqxbgm099jfyf7ecy7b6m7k69y8b5vhg",
+		"GOOGLE_MAPS_API_KEY": "AIzaSyCfP3hhYQj09osM63W3sKCjGF_F-77aXts"
+	}
 }
