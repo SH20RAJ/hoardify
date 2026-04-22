@@ -1,5 +1,5 @@
 import { db } from "./index";
-import { hoardings, enquiries, messages } from "./schema";
+import { hoardings, enquiries, messages, users } from "./schema";
 
 const BILLBOARD_IMAGES = [
 	"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
@@ -16,7 +16,6 @@ const BILLBOARD_IMAGES = [
 	"https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=800&q=80",
 ];
 
-// Extra photos per hoarding (3-5 angles/views)
 const EXTRA_IMAGES_POOL = [
 	"https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=800&q=80",
 	"https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80",
@@ -196,6 +195,21 @@ async function seed() {
 	await db.delete(messages);
 	await db.delete(enquiries);
 	await db.delete(hoardings);
+	await db.delete(users);
+
+	// Insert sample users
+	console.log("  Inserting sample users...");
+	const sampleUsers = [
+		{ id: "user_1", email: "rahul@example.com", name: "Rahul Sharma", role: "Customer" as const, imageUrl: "https://i.pravatar.cc/150?u=user_1" },
+		{ id: "user_2", email: "admin@hoardify.com", name: "Hoardify Admin", role: "Admin" as const, imageUrl: "https://i.pravatar.cc/150?u=user_2" },
+		{ id: "user_3", email: "priya.g@agency.com", name: "Priya Gupta", role: "Owner" as const, imageUrl: "https://i.pravatar.cc/150?u=user_3" },
+		{ id: "user_4", email: "amit@startup.io", name: "Amit Kumar", role: "Customer" as const, imageUrl: "https://i.pravatar.cc/150?u=user_4" },
+		{ id: "user_5", email: "vikram@media.co", name: "Vikram Singh", role: "Admin" as const, imageUrl: "https://i.pravatar.cc/150?u=user_5" },
+	];
+	for (const u of sampleUsers) {
+		await db.insert(users).values(u);
+	}
+	console.log(`  ✓ ${sampleUsers.length} users inserted\n`);
 
 	// Insert hoardings with multi-image data
 	console.log("  Inserting hoardings...");
@@ -214,11 +228,11 @@ async function seed() {
 	// Insert enquiries with various statuses
 	console.log("  Inserting enquiries...");
 	const enquiryData = [
-		{ hoardingId: insertedHoardings[0].id, name: "Rahul Sharma", phone: "+91 9876543210", email: "rahul@example.com", message: "Interested in a 3-month campaign for our new product launch.", status: "New" as const },
-		{ hoardingId: insertedHoardings[1].id, name: "Priya Gupta", phone: "+91 9988776655", email: "priya.g@agency.com", message: "Can we get a custom size for this LED wall? Need 20x10 ft.", status: "Contacted" as const },
-		{ hoardingId: insertedHoardings[2].id, name: "Amit Kumar", phone: "+91 8765432109", email: "amit@startup.io", message: "Looking for a 6-month booking with installment options.", status: "New" as const },
+		{ hoardingId: insertedHoardings[0].id, name: "Rahul Sharma", phone: "+91 9876543210", email: "rahul@example.com", message: "Interested in a 3-month campaign for our new product launch.", status: "New" as const, userId: "user_1" },
+		{ hoardingId: insertedHoardings[1].id, name: "Priya Gupta", phone: "+91 9988776655", email: "priya.g@agency.com", message: "Can we get a custom size for this LED wall? Need 20x10 ft.", status: "Contacted" as const, userId: "user_3" },
+		{ hoardingId: insertedHoardings[2].id, name: "Amit Kumar", phone: "+91 8765432109", email: "amit@startup.io", message: "Looking for a 6-month booking with installment options.", status: "New" as const, userId: "user_4" },
 		{ hoardingId: insertedHoardings[4].id, name: "Sneha Patel", phone: "+91 7654321098", email: "sneha@brand.com", message: "Is there digital scheduling available? We need 4 different creatives rotating.", status: "Closed" as const },
-		{ hoardingId: insertedHoardings[8].id, name: "Vikram Singh", phone: "+91 9123456789", email: "vikram@media.co", message: "Premium spot — need pricing for annual contract.", status: "Contacted" as const },
+		{ hoardingId: insertedHoardings[8].id, name: "Vikram Singh", phone: "+91 9123456789", email: "vikram@media.co", message: "Premium spot — need pricing for annual contract.", status: "Contacted" as const, userId: "user_5" },
 	];
 
 	const insertedEnquiries = [];
