@@ -1,9 +1,9 @@
 import { stackServerApp } from "@/stack/server";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { LayoutDashboard, Megaphone, Inbox, Settings, LogOut, Users, ExternalLink } from "lucide-react";
 import PasscodeGate from "@/components/admin/PasscodeGate";
+import { isAdminUnlocked } from "@/actions/admin_auth";
 
 export default async function AdminLayout({
 	children,
@@ -11,10 +11,7 @@ export default async function AdminLayout({
 	children: React.ReactNode;
 }) {
 	const user = await stackServerApp.getUser();
-
-	if (!user) {
-		return redirect(stackServerApp.urls.signIn);
-	}
+	const unlocked = await isAdminUnlocked();
 
 	const navItems = [
 		{ name: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -25,7 +22,7 @@ export default async function AdminLayout({
 	];
 
 	return (
-		<PasscodeGate>
+		<PasscodeGate initialUnlocked={unlocked}>
 			<div className="flex h-screen bg-white">
 				{/* Minimal Admin Sidebar */}
 				<aside className="w-64 bg-white border-r border-[#ebebeb] flex flex-col">
@@ -60,13 +57,15 @@ export default async function AdminLayout({
 					</nav>
 
 					<div className="p-4 border-t border-[#ebebeb]">
-						<Link 
-							href={stackServerApp.urls.signOut}
-							className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-[#ff385c] hover:bg-[#fff8f6] transition-colors"
-						>
-							<LogOut size={18} />
-							Sign Out
-						</Link>
+						<form action="/api/admin/logout" method="POST">
+							<button 
+								type="submit"
+								className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-[#ff385c] hover:bg-[#fff8f6] transition-colors"
+							>
+								<LogOut size={18} />
+								Exit Admin
+							</button>
+						</form>
 					</div>
 				</aside>
 
@@ -77,15 +76,15 @@ export default async function AdminLayout({
 						
 						<div className="flex items-center gap-4">
 							<div className="flex flex-col items-end">
-								<span className="text-xs font-semibold text-[#222222]">{user.primaryEmail?.split('@')[0]}</span>
-								<span className="text-[10px] text-[#717171]">Administrator</span>
+								<span className="text-xs font-semibold text-[#222222]">{user?.primaryEmail?.split('@')[0] || "Administrator"}</span>
+								<span className="text-[10px] text-[#717171]">System Master</span>
 							</div>
 							<div className="h-8 w-8 rounded-full bg-[#f7f7f7] border border-[#dddddd] overflow-hidden">
-								{user.profileImageUrl ? (
+								{user?.profileImageUrl ? (
 									<Image src={user.profileImageUrl} alt="Admin" width={32} height={32} className="w-full h-full object-cover" unoptimized />
 								) : (
 									<div className="w-full h-full flex items-center justify-center text-[#ff385c] font-bold text-xs">
-										{user.primaryEmail?.[0].toUpperCase()}
+										{user?.primaryEmail?.[0].toUpperCase() || "A"}
 									</div>
 								)}
 							</div>

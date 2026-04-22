@@ -26,10 +26,10 @@ export default function HoardingCard({
 	location,
 	variant = "large",
 }: HoardingCardProps) {
-	const [hasError, setHasError] = useState(false);
+	const [imgSrc, setImgSrc] = useState(imageUrl);
 
 	const handleImageError = () => {
-		setHasError(true);
+		setImgSrc(`https://picsum.photos/seed/${id}/800/600`);
 	};
 
 	if (variant === "compact") {
@@ -37,20 +37,14 @@ export default function HoardingCard({
 			<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-60 group">
 				<div className="flex flex-col gap-3">
 					<div className="relative aspect-square w-full overflow-hidden rounded-xl border border-[#ebebeb]">
-						{hasError ? (
-							<div className="w-full h-full bg-[#f7f7f7] flex items-center justify-center">
-								<span className="text-[#929292] text-[10px] font-bold uppercase tracking-wider">No Image</span>
-							</div>
-						) : (
-							<Image 
-								src={imageUrl} 
-								alt={title} 
-								fill 
-								className="object-cover"
-								onError={handleImageError}
-								unoptimized
-							/>
-						)}
+						<Image 
+							src={imgSrc || `https://picsum.photos/seed/${id}/800/600`} 
+							alt={title} 
+							fill 
+							className="object-cover"
+							onError={handleImageError}
+							unoptimized
+						/>
 					</div>
 					<div>
 						<h3 className="text-sm font-semibold text-[#222222] line-clamp-1">{title}</h3>
@@ -76,13 +70,15 @@ export default function HoardingCard({
 			<Link href={`/hoardings/${id}`} className="block w-full group">
 				<div className="flex flex-col gap-4">
 					<div className="relative aspect-[21/9] w-full overflow-hidden rounded-2xl border border-[#ebebeb] shadow-sm group-hover:shadow-md transition-shadow">
-						{hasError ? (
-							<div className="w-full h-full bg-[#f7f7f7] flex items-center justify-center">
-								<span className="text-[#929292] text-xs font-bold uppercase tracking-widest">Image Unavailable</span>
-							</div>
-						) : (
-							<Image src={imageUrl} alt={title} fill className="object-cover" priority unoptimized />
-						)}
+						<Image 
+							src={imgSrc || `https://picsum.photos/seed/${id}/1200/600`} 
+							alt={title} 
+							fill 
+							className="object-cover" 
+							priority 
+							unoptimized 
+							onError={handleImageError}
+						/>
 					</div>
 					<div className="px-1">
 						<div className="flex justify-between items-start gap-4">
@@ -108,20 +104,14 @@ export default function HoardingCard({
 		<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-[300px] group">
 			<div className="flex flex-col gap-4">
 				<div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-[#ebebeb] shadow-sm group-hover:shadow-md transition-shadow">
-					{hasError ? (
-						<div className="w-full h-full bg-[#f7f7f7] flex items-center justify-center">
-							<span className="text-[#929292] text-[10px] font-bold uppercase tracking-wider">No Image</span>
-						</div>
-					) : (
-						<Image 
-							src={imageUrl} 
-							alt={title} 
-							fill 
-							className="object-cover"
-							onError={handleImageError}
-							unoptimized
-						/>
-					)}
+					<Image 
+						src={imgSrc || `https://picsum.photos/seed/${id}/800/1000`} 
+						alt={title} 
+						fill 
+						className="object-cover"
+						onError={handleImageError}
+						unoptimized
+					/>
 				</div>
 				
 				<div className="px-1">

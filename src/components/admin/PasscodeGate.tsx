@@ -2,29 +2,32 @@
 
 import { useState, useEffect } from "react";
 import { Lock, ShieldCheck, ArrowRight } from "lucide-react";
+import { validateAdminPasscode } from "@/actions/admin_auth";
 
-export default function PasscodeGate({ children }: { children: React.ReactNode }) {
-	const [isUnlocked, setIsUnlocked] = useState(false);
+export default function PasscodeGate({ children, initialUnlocked }: { children: React.ReactNode, initialUnlocked: boolean }) {
+	const [isUnlocked, setIsUnlocked] = useState(initialUnlocked);
 	const [passcode, setPasscode] = useState("");
 	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
-		const unlocked = sessionStorage.getItem("admin_unlocked") === "true";
-		if (unlocked) setIsUnlocked(true);
 		setMounted(true);
 	}, []);
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		if (passcode === "17092006") {
+		setLoading(true);
+		setError(false);
+		
+		const res = await validateAdminPasscode(passcode);
+		if (res.success) {
 			setIsUnlocked(true);
-			sessionStorage.setItem("admin_unlocked", "true");
-			setError(false);
 		} else {
 			setError(true);
 			setPasscode("");
 		}
+		setLoading(false);
 	};
 
 	if (!mounted) return null;
@@ -32,21 +35,15 @@ export default function PasscodeGate({ children }: { children: React.ReactNode }
 	if (isUnlocked) return <>{children}</>;
 
 	return (
-		<div className="fixed inset-0 z-[100] flex items-center justify-center bg-zinc-950 px-6">
-			{/* Mesh Background for gate */}
-			<div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
-				<div className="absolute -top-1/4 -right-1/4 w-3/4 aspect-square bg-brand/20 blur-[150px] rounded-full" />
-				<div className="absolute -bottom-1/4 -left-1/4 w-3/4 aspect-square bg-blue-600/10 blur-[150px] rounded-full" />
-			</div>
-
+		<div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#f7f7f7] px-6">
 			<div className="relative w-full max-w-md">
 				<div className="flex flex-col items-center text-center mb-10">
-					<div className="h-16 w-16 rounded-3xl bg-brand/10 border border-brand/20 flex items-center justify-center mb-6 text-brand shadow-2xl shadow-brand/10">
-						<Lock className="animate-pulse" size={32} />
+					<div className="h-16 w-16 rounded-2xl bg-[#ff385c]/10 border border-[#ff385c]/20 flex items-center justify-center mb-6 text-[#ff385c] shadow-xl">
+						<Lock className={loading ? "animate-spin" : "animate-pulse"} size={32} />
 					</div>
-					<h1 className="text-3xl font-black tracking-tighter text-white mb-2 uppercase italic">Admin Security</h1>
-					<p className="text-sm font-medium text-zinc-500 uppercase tracking-widest leading-relaxed">
-						Restricted Access Area <br /> Enter Security Passcode
+					<h1 className="text-3xl font-bold tracking-tight text-[#222222] mb-2">Admin Access</h1>
+					<p className="text-sm font-medium text-[#717171] uppercase tracking-widest">
+						Enter security passcode to continue
 					</p>
 				</div>
 
@@ -56,14 +53,15 @@ export default function PasscodeGate({ children }: { children: React.ReactNode }
 							type="password"
 							value={passcode}
 							onChange={(e) => setPasscode(e.target.value)}
-							placeholder="Enter 8-digit code..."
+							placeholder="••••••••"
 							autoFocus
-							className={`w-full h-16 bg-white/5 border-2 rounded-[2rem] px-8 text-center text-2xl font-black tracking-[0.5em] text-white focus:outline-none transition-all ${
-								error ? "border-red-500/50 shake" : "border-white/10 focus:border-brand/50 group-hover:border-white/20"
+							disabled={loading}
+							className={`w-full h-16 bg-white border-2 rounded-xl px-8 text-center text-2xl font-bold tracking-[0.5em] text-[#222222] focus:outline-none transition-all ${
+								error ? "border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.2)]" : "border-[#dddddd] focus:border-[#222222]"
 							}`}
 						/>
 						{error && (
-							<p className="absolute -bottom-6 left-0 right-0 text-center text-[10px] font-black uppercase tracking-widest text-red-500 animate-bounce">
+							<p className="absolute -bottom-6 left-0 right-0 text-center text-xs font-semibold text-red-500">
 								Invalid Authentication Code
 							</p>
 						)}
@@ -71,29 +69,18 @@ export default function PasscodeGate({ children }: { children: React.ReactNode }
 
 					<button
 						type="submit"
-						className="w-full h-16 bg-brand hover:bg-brand-hover text-white rounded-[2rem] font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-95 shadow-2xl shadow-brand/30"
+						disabled={loading}
+						className="w-full h-16 bg-[#222222] text-white rounded-xl font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-3 transition-all hover:bg-black active:scale-95 disabled:opacity-70"
 					>
-						Confirm Identity <ArrowRight size={18} />
+						{loading ? "Verifying..." : "Confirm Identity"} <ArrowRight size={18} />
 					</button>
 				</form>
 
-				<div className="mt-12 flex items-center justify-center gap-2 opacity-30">
-					<ShieldCheck size={14} className="text-white" />
-					<span className="text-[9px] font-black uppercase tracking-[0.3em] text-white">Hoardify Intelligence Secure Node</span>
+				<div className="mt-12 flex items-center justify-center gap-2 opacity-50">
+					<ShieldCheck size={14} className="text-[#717171]" />
+					<span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#717171]">Hoardify Secure Node</span>
 				</div>
 			</div>
-
-			<style jsx>{`
-				.shake {
-					animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-				}
-				@keyframes shake {
-					10%, 90% { transform: translate3d(-1px, 0, 0); }
-					20%, 80% { transform: translate3d(2px, 0, 0); }
-					30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-					40%, 60% { transform: translate3d(4px, 0, 0); }
-				}
-			`}</style>
 		</div>
 	);
 }

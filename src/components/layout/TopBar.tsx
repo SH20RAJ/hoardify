@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ChevronLeft, Search, Bookmark, Compass, Inbox, User } from "lucide-react";
+import { ChevronLeft, Search, Bookmark, Compass, Inbox, User as UserIcon } from "lucide-react";
 import { useNavbar } from "./NavbarContext";
+import { stackClientApp } from "@/stack/client";
 
 export default function TopBar() {
 	const pathname = usePathname();
 	const { config } = useNavbar();
+	const user = stackClientApp.useUser();
 	
 	const {
 		showBack = false,
@@ -18,7 +21,7 @@ export default function TopBar() {
 		{ name: "Explore", href: "/", icon: Compass },
 		{ name: "Saved", href: "/saved", icon: Bookmark },
 		{ name: "Inbox", href: "/inbox", icon: Inbox },
-		{ name: "Profile", href: "/profile", icon: User },
+		{ name: "Profile", href: "/profile", icon: UserIcon },
 	];
 
 	return (
@@ -71,14 +74,29 @@ export default function TopBar() {
 						})}
 					</div>
 					
-					<Link href="/profile" className="flex items-center gap-2 p-2 border border-[#dddddd] rounded-full hover:shadow-[0_2px_4px_rgba(0,0,0,0.18)] transition-shadow">
-						<div className="text-[#6a6a6a] ml-1">
-							<User size={20} />
+					{user ? (
+						<div className="flex items-center gap-4">
+							<Link href="/profile" className="flex items-center gap-2 p-2 border border-[#dddddd] rounded-full hover:shadow-[0_2px_4px_rgba(0,0,0,0.18)] transition-shadow">
+								<div className="text-[#6a6a6a] ml-1">
+									<UserIcon size={20} />
+								</div>
+								{user.profileImageUrl ? (
+									<Image src={user.profileImageUrl} alt="User" width={32} height={32} className="w-8 h-8 rounded-full object-cover" unoptimized />
+								) : (
+									<div className="w-8 h-8 rounded-full bg-[#717171] flex items-center justify-center text-white text-xs font-bold">
+										{user.primaryEmail?.[0].toUpperCase()}
+									</div>
+								)}
+							</Link>
 						</div>
-						<div className="w-8 h-8 rounded-full bg-[#717171] flex items-center justify-center text-white text-xs font-bold">
-							A
-						</div>
-					</Link>
+					) : (
+						<Link 
+							href={stackClientApp.urls.signIn}
+							className="px-6 py-2 rounded-full bg-[#ff385c] text-white font-bold text-sm hover:bg-[#e00b41] transition-colors"
+						>
+							Log In
+						</Link>
+					)}
 				</div>
 			</div>
 		</nav>

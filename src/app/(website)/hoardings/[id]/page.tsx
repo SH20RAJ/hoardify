@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import { Share2, Heart, MapPin, ShieldCheck, ArrowRight } from "lucide-react";
 import GoogleMapWrapper from "@/components/maps/GoogleMapWrapper";
 import { getHoardingById, getHoardings } from "@/actions/hoardings";
@@ -9,6 +8,7 @@ import NavbarSync from "@/components/layout/NavbarSync";
 import AudienceInsights from "@/components/hoardings/AudienceInsights";
 import HoardingCard from "@/components/hoardings/HoardingCard";
 import HorizontalScrollList from "@/components/hoardings/HorizontalScrollList";
+import HeroImage from "@/components/hoardings/HeroImage";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
 	const p = await params;
@@ -58,9 +58,7 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 					{/* Left Column: Details */}
 					<div className="w-full lg:w-[60%]">
 						<section className="mb-10">
-							<div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#ebebeb]">
-								<Image src={hoarding.imageUrl} alt={hoarding.title} fill className="object-cover" priority unoptimized />
-							</div>
+							<HeroImage src={hoarding.imageUrl} alt={hoarding.title} id={hoarding.id} />
 						</section>
 
 						<section className="border-b border-[#ebebeb] pb-10">
@@ -103,11 +101,11 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 						</section>
 					</div>
 
-					{/* Right Column: Sticky Booking Card */}
+					{/* Right Column: Sticky Booking Card & Calendar */}
 					<div className="w-full lg:w-[40%]">
 						<div className="lg:sticky lg:top-32">
-							<BookingCard price={hoarding.price} />
-							
+							<BookingCard price={hoarding.price} hoardingId={hoarding.id} />
+
 							<div className="mt-8 flex items-center justify-center gap-2 p-6 rounded-2xl bg-[#f7f7f7] border border-[#ebebeb]">
 								<div className="h-2 w-2 rounded-full bg-[#008a05]" />
 								<p className="text-sm font-semibold text-[#222222]">

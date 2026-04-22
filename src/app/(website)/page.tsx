@@ -6,10 +6,17 @@ import NavbarSync from "@/components/layout/NavbarSync";
 import HoardingHero from "@/components/hoardings/HoardingHero";
 import MapBridge from "@/components/hoardings/MapBridge";
 import ChannelCard from "@/components/hoardings/ChannelCard";
+import { stackServerApp } from "@/stack/server";
+import { redirect } from "next/navigation";
 
 import { getTrendingHoardings, getNearbyHoardings, getCategoryCounts } from "@/actions/hoardings";
 
 export default async function ExplorePage() {
+	const user = await stackServerApp.getUser();
+	if (!user) {
+		return redirect("/landing");
+	}
+
 	// Fetch real-time data from PostgreSQL via Server Actions
 	const [trending, nearby, counts] = await Promise.all([
 		getTrendingHoardings(6),

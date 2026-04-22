@@ -1,4 +1,4 @@
-import { BrainCircuit, Eye, Map, TrendingUp } from "lucide-react";
+import { Eye, Map, TrendingUp } from "lucide-react";
 
 export default function IntelligenceSection() {
 	return (
