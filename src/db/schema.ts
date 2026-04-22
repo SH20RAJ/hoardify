@@ -19,6 +19,8 @@ export const hoardings = pgTable("hoardings", {
 	id: serial("id").primaryKey(),
 	title: text("title").notNull(),
 	imageUrl: text("image_url").notNull(),
+	images: jsonb("images").$type<string[]>().default([]).notNull(),
+	videoUrl: text("video_url"),
 	price: integer("price").notNull(),
 	location: text("location").notNull(),
 	lat: decimal("lat", { precision: 10, scale: 7 }).notNull(),
@@ -37,6 +39,7 @@ export const hoardingsRelations = relations(hoardings, ({ many }) => ({
 export const enquiries = pgTable("enquiries", {
 	id: serial("id").primaryKey(),
 	hoardingId: integer("hoarding_id").references(() => hoardings.id),
+	userId: text("user_id"),
 	name: text("name").notNull(),
 	phone: text("phone").notNull(),
 	email: text("email").notNull(),
@@ -45,10 +48,27 @@ export const enquiries = pgTable("enquiries", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const enquiriesRelations = relations(enquiries, ({ one }) => ({
+export const enquiriesRelations = relations(enquiries, ({ one, many }) => ({
 	hoarding: one(hoardings, {
 		fields: [enquiries.hoardingId],
 		references: [hoardings.id],
+	}),
+	messages: many(messages),
+}));
+
+export const messages = pgTable("messages", {
+	id: serial("id").primaryKey(),
+	enquiryId: integer("enquiry_id").references(() => enquiries.id).notNull(),
+	senderRole: text("sender_role", { enum: ["customer", "admin"] }).notNull(),
+	senderName: text("sender_name").notNull(),
+	content: text("content").notNull(),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const messagesRelations = relations(messages, ({ one }) => ({
+	enquiry: one(enquiries, {
+		fields: [messages.enquiryId],
+		references: [enquiries.id],
 	}),
 }));
 
@@ -73,6 +93,3 @@ export const bookingsRelations = relations(bookings, ({ one }) => ({
 		references: [hoardings.id],
 	}),
 }));
-
-
-
