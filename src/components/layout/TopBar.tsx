@@ -42,12 +42,12 @@ export default function TopBar() {
 
 				{/* Middle: Search bar (simplified) */}
 				<div className="hidden md:flex flex-1 max-w-sm mx-8">
-					<div className="flex items-center w-full h-12 border border-[#dddddd] rounded-full px-4 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.18)] transition-shadow cursor-pointer">
+					<Link href="/search" className="flex items-center w-full h-12 border border-[#dddddd] rounded-full px-4 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.18)] transition-shadow cursor-pointer">
 						<span className="text-sm font-medium text-[#222222] flex-1">Start your campaign...</span>
 						<div className="bg-[#ff385c] p-2 rounded-full text-white">
 							<Search size={16} />
 						</div>
-					</div>
+					</Link>
 				</div>
 
 				{/* Right: Nav items */}
