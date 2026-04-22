@@ -12,7 +12,12 @@ import { redirect } from "next/navigation";
 import { getTrendingHoardings, getNearbyHoardings, getCategoryCounts } from "@/actions/hoardings";
 
 export default async function ExplorePage() {
-	const user = await stackServerApp.getUser();
+	let user = null;
+	try {
+		user = await stackServerApp.getUser();
+	} catch {
+		// Auth service unavailable — redirect to landing
+	}
 	if (!user) {
 		return redirect("/landing");
 	}

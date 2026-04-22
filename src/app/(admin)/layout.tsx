@@ -10,7 +10,12 @@ export default async function AdminLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const user = await stackServerApp.getUser();
+	let user = null;
+	try {
+		user = await stackServerApp.getUser();
+	} catch {
+		// Auth service unavailable
+	}
 	const unlocked = await isAdminUnlocked();
 
 	const navItems = [
