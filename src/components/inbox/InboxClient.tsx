@@ -135,7 +135,10 @@ export default function InboxClient({ conversations, userName, userEmail }: Prop
 										: "bg-[#f7f7f7] text-[#222222] rounded-bl-md border border-[#ebebeb]"
 								}`}>
 									{msg.senderRole === "admin" && (
-										<p className="text-[10px] font-bold text-[#ff385c] mb-1">{msg.senderName}</p>
+										<div className="flex items-center gap-1.5 mb-1">
+											<span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded bg-purple-50 text-purple-600">Admin</span>
+											<span className="text-[10px] font-bold text-[#222222]">{msg.senderName}</span>
+										</div>
 									)}
 									<p className="text-sm">{msg.content}</p>
 									<p className={`text-[10px] mt-1 ${msg.senderRole === "customer" ? "text-white/50" : "text-[#b0b0b0]"}`}>

@@ -1,7 +1,7 @@
 import { getEnquiries } from "@/actions/admin";
 import { Inbox, Phone, Mail, MapPin, Search, CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
-import { UpdateEnquiryButton } from "@/components/admin/EnquiryActions";
+import { UpdateEnquiryButton, ReplyButton } from "@/components/admin/EnquiryActions";
 
 export default async function AdminEnquiriesPage() {
 	const enquiries = await getEnquiries();
@@ -81,7 +81,8 @@ export default async function AdminEnquiriesPage() {
 											{enquiry.status}
 										</div>
 									</td>
-									<td className="px-6 py-5 text-right">
+									<td className="px-6 py-5 text-right flex items-center justify-end gap-3">
+										<ReplyButton id={enquiry.id} />
 										<UpdateEnquiryButton id={enquiry.id} currentStatus={enquiry.status} />
 									</td>
 								</tr>

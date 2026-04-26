@@ -3,9 +3,22 @@
 import { useState } from "react";
 import { updateEnquiryStatus } from "@/actions/admin";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { MessageSquare, Loader2 } from "lucide-react";
+import Link from "next/link";
 
 const STAGES = ["New", "Contacted", "Closed"] as const;
+
+export function ReplyButton({ id }: { id: number }) {
+	return (
+		<Link 
+			href={`/admin/enquiries/${id}`}
+			className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#222222] text-white text-[10px] font-bold uppercase tracking-wider hover:bg-black transition-colors"
+		>
+			<MessageSquare size={12} />
+			Reply
+		</Link>
+	);
+}
 
 export function UpdateEnquiryButton({ id, currentStatus }: { id: number; currentStatus: string }) {
 	const [open, setOpen] = useState(false);

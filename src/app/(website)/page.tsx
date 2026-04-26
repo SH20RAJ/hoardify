@@ -8,6 +8,7 @@ import MapBridge from "@/components/hoardings/MapBridge";
 import ChannelCard from "@/components/hoardings/ChannelCard";
 import { stackServerApp } from "@/stack/server";
 import { redirect } from "next/navigation";
+import { syncUserToDb } from "@/actions/user_sync";
 
 import { getTrendingHoardings, getNearbyHoardings, getCategoryCounts } from "@/actions/hoardings";
 
@@ -21,6 +22,14 @@ export default async function ExplorePage() {
 	if (!user) {
 		return redirect("/landing");
 	}
+
+	// Sync user to local DB on every visit
+	await syncUserToDb({
+		id: user.id,
+		primaryEmail: user.primaryEmail,
+		displayName: user.displayName,
+		profileImageUrl: user.profileImageUrl,
+	});
 
 	// Fetch real-time data from PostgreSQL via Server Actions
 	const [trending, nearby, counts] = await Promise.all([

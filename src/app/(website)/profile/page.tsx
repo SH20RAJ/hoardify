@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { User, Settings, FileText, ChevronRight, HelpCircle, Shield, BookOpen, Calendar, MapPin } from "lucide-react";
+import { User, Settings, FileText, ChevronRight, HelpCircle, Shield, BookOpen, Calendar, MapPin, ShieldCheck, LayoutDashboard } from "lucide-react";
 import NavbarSync from "@/components/layout/NavbarSync";
 import SignOutButton from "@/components/profile/SignOutButton";
 import { stackServerApp } from "@/stack/server";
@@ -9,6 +9,7 @@ import { eq, desc } from "drizzle-orm";
 import Image from "next/image";
 import Link from "next/link";
 import { formatCurrency } from "@/lib/utils";
+import { syncUserToDb } from "@/actions/user_sync";
 
 export const metadata: Metadata = {
 	title: "Profile | Hoardify",
@@ -21,6 +22,18 @@ export default async function ProfilePage() {
 		user = await stackServerApp.getUser();
 	} catch {
 		// Auth unavailable
+	}
+
+	// Sync user to DB
+	let userRole = "Customer";
+	if (user) {
+		const syncResult = await syncUserToDb({
+			id: user.id,
+			primaryEmail: user.primaryEmail,
+			displayName: user.displayName,
+			profileImageUrl: user.profileImageUrl,
+		});
+		userRole = syncResult.role;
 	}
 
 	// Fetch user's bookings if authenticated
@@ -57,6 +70,8 @@ export default async function ProfilePage() {
 							<div>
 								<h1 className="text-3xl font-bold text-[#222222]">{user.displayName || "User"}</h1>
 								<p className="text-base text-[#717171] mt-1">{user.primaryEmail}</p>
+								{userRole === "Admin" && <span className="inline-flex items-center gap-1 mt-2 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-purple-50 text-purple-600"><ShieldCheck size={10} /> Admin</span>}
+								{userRole === "Owner" && <span className="inline-flex items-center gap-1 mt-2 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-50 text-blue-600">Owner</span>}
 							</div>
 							<div className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#ebebeb] relative bg-[#f7f7f7]">
 								{user.profileImageUrl ? (
@@ -142,6 +157,21 @@ export default async function ProfilePage() {
 						</div>
 
 						{/* Support */}
+
+						{userRole === "Admin" && (
+							<div className="mt-10 space-y-6">
+								<h3 className="text-xl font-semibold text-[#222222]">Management</h3>
+								<div className="divide-y divide-[#ebebeb]">
+									<Link href="/admin" className="flex items-center justify-between w-full py-4 group">
+										<div className="flex items-center gap-4 text-[#222222]">
+											<LayoutDashboard size={22} className="text-[#ff385c]" />
+											<span className="text-base font-bold">Admin Management Suite</span>
+										</div>
+										<ChevronRight size={20} className="text-[#b0b0b0]" />
+									</Link>
+								</div>
+							</div>
+						)}
 						<div className="mt-10 space-y-6">
 							<h3 className="text-xl font-semibold text-[#222222]">Support</h3>
 							<div className="divide-y divide-[#ebebeb]">
