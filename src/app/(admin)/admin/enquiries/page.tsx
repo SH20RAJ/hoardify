@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getEnquiries } from "@/actions/admin";
 import { Inbox, Phone, Mail, MapPin, Search, CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
