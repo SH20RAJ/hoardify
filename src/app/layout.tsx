@@ -37,20 +37,12 @@ export default function RootLayout({
 		<html lang="en">
 			<head>
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-				<script dangerouslySetInnerHTML={{
-					__html: `
-						(function() {
-							const savedTheme = localStorage.getItem('theme');
-							const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-							const theme = savedTheme || systemTheme;
-							if (theme === 'dark') {
-								document.documentElement.classList.add('dark');
-							} else {
-								document.documentElement.classList.remove('dark');
-							}
-						})()
-					`
-				}} />
+				<script
+					id="theme-init"
+					dangerouslySetInnerHTML={{
+						__html: `(function(){try{var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}})()`
+					}}
+				/>
 			</head>
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<StackProvider app={stackClientApp}>

@@ -6,36 +6,43 @@ import { eq, desc } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 export async function getConversationsByEmail(email: string) {
-	// Fetch enquiries for this user's email, with hoarding info
-	const userEnquiries = await db.query.enquiries.findMany({
-		where: eq(enquiries.email, email),
-		with: {
-			hoarding: true,
-			messages: {
-				orderBy: [desc(messages.createdAt)],
-				limit: 1, // Just the last message for preview
+	try {
+		const userEnquiries = await db.query.enquiries.findMany({
+			where: eq(enquiries.email, email),
+			with: {
+				hoarding: true,
+				messages: {
+					orderBy: [desc(messages.createdAt)],
+					limit: 1,
+				},
 			},
-		},
-		orderBy: [desc(enquiries.createdAt)],
-	});
-
-	return userEnquiries;
+			orderBy: [desc(enquiries.createdAt)],
+		});
+		return userEnquiries;
+	} catch (error) {
+		console.error("Failed to fetch conversations by email:", error);
+		return [];
+	}
 }
 
 export async function getConversationsByUserId(userId: string) {
-	const userEnquiries = await db.query.enquiries.findMany({
-		where: eq(enquiries.userId, userId),
-		with: {
-			hoarding: true,
-			messages: {
-				orderBy: [desc(messages.createdAt)],
-				limit: 1,
+	try {
+		const userEnquiries = await db.query.enquiries.findMany({
+			where: eq(enquiries.userId, userId),
+			with: {
+				hoarding: true,
+				messages: {
+					orderBy: [desc(messages.createdAt)],
+					limit: 1,
+				},
 			},
-		},
-		orderBy: [desc(enquiries.createdAt)],
-	});
-
-	return userEnquiries;
+			orderBy: [desc(enquiries.createdAt)],
+		});
+		return userEnquiries;
+	} catch (error) {
+		console.error("Failed to fetch conversations by user ID:", error);
+		return [];
+	}
 }
 
 export async function getMessages(enquiryId: number) {

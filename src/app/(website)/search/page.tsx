@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Metadata } from "next";
 import { getHoardings } from "@/actions/hoardings";
 import SearchClientContainer from "@/components/hoardings/SearchClientContainer";

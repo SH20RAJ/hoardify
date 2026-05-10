@@ -22,15 +22,14 @@ export default function GoogleMapWrapper({
 	disableUI = true,
 	gestureHandling = "auto",
 }: GoogleMapWrapperProps) {
-	// Use the key provided by the user in .env
-	const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "AIzaSyCfP3hhYQj09osM63W3sKCjGF_F-77aXts";
+	const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
 	if (!apiKey) {
 		return (
-			<div className="w-full h-full flex items-center justify-center bg-surface-sunken">
-				<div className="text-center p-6 glass-effect rounded-[2rem] border border-border-subtle">
-					<p className="text-text-secondary font-bold mb-2">Map Engine Offline</p>
-					<p className="text-[10px] uppercase font-black tracking-widest text-text-tertiary">API Configuration Required</p>
+			<div className="w-full h-full flex items-center justify-center bg-[#f7f7f7]">
+				<div className="text-center p-6 rounded-[2rem] border border-[#ebebeb]">
+					<p className="text-[#222222] font-bold mb-2">Map Engine Offline</p>
+					<p className="text-[10px] uppercase font-black tracking-widest text-[#717171]">API Configuration Required</p>
 				</div>
 			</div>
 		);

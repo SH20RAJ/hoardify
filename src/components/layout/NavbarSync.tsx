@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useNavbar } from "./NavbarContext";
 import React from "react";
 
@@ -14,15 +14,19 @@ interface NavbarConfig {
 
 export default function NavbarSync(config: NavbarConfig) {
 	const { setConfig } = useNavbar();
-	const hasSet = useRef(false);
+	const configRef = useRef<NavbarConfig | null>(null);
+
+	const applyConfig = useCallback(() => {
+		setConfig(config);
+	}, [setConfig, config]);
 
 	useEffect(() => {
-		// Set config once per mount/update if it's different.
-		// Since config is passed as props from a server component, 
-		// it's usually static for the life of the page mount.
-		setConfig(config);
-		hasSet.current = true;
-	}, [setConfig, config]); // config is a brand new object on every render of the parent
+		const configStr = JSON.stringify(config);
+		if (configStr !== JSON.stringify(configRef.current)) {
+			configRef.current = config;
+			applyConfig();
+		}
+	}, [applyConfig, config]);
 
 	return null;
 }

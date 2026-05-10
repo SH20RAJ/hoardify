@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import HoardingCard from "@/components/hoardings/HoardingCard";
 import { getTrendingHoardings } from "@/actions/hoardings";
 import NavbarSync from "@/components/layout/NavbarSync";
+import Link from "next/link";
 
 export const metadata: Metadata = {
 	title: "Saved | Hoardify",
@@ -29,7 +30,7 @@ export default async function SavedPage() {
 						<p className="text-base text-[#717171] max-w-[320px] mb-8">
 							As you browse, tap the heart icon to save your favorite placements to a wishlist.
 						</p>
-						<button className="px-8 py-3 bg-[#222222] text-white rounded-lg font-bold">Start exploring</button>
+						<button onClick={() => window.location.href = '/'} className="px-8 py-3 bg-[#222222] text-white rounded-lg font-bold hover:bg-black transition-colors">Start exploring</button>
 					</div>
 				)}
 			</div>
