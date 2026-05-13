@@ -17,19 +17,18 @@ export default async function ExplorePage() {
 	try {
 		user = await stackServerApp.getUser();
 	} catch {
-		// Auth service unavailable — redirect to landing
-	}
-	if (!user) {
-		return redirect("/landing");
+		// Auth service unavailable
 	}
 
-	// Sync user to local DB on every visit
-	await syncUserToDb({
-		id: user.id,
-		primaryEmail: user.primaryEmail,
-		displayName: user.displayName,
-		profileImageUrl: user.profileImageUrl,
-	});
+	if (user) {
+		// Sync user to local DB on every visit if authenticated
+		await syncUserToDb({
+			id: user.id,
+			primaryEmail: user.primaryEmail,
+			displayName: user.displayName,
+			profileImageUrl: user.profileImageUrl,
+		});
+	}
 
 	// Fetch real-time data from PostgreSQL via Server Actions
 	const [trending, nearby, counts] = await Promise.all([

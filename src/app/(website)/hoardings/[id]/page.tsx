@@ -74,6 +74,24 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 						<section className="py-10 border-b border-[#ebebeb]">
 							<h3 className="text-2xl font-semibold text-[#222222] mb-6">What this place offers</h3>
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+								{hoarding.category && (
+									<div className="flex items-center gap-4 text-[#222222]">
+										<ShieldCheck size={24} className="text-[#717171]" />
+										<span className="text-base">Type: {hoarding.category}</span>
+									</div>
+								)}
+								{hoarding.lighting && (
+									<div className="flex items-center gap-4 text-[#222222]">
+										<ShieldCheck size={24} className="text-[#717171]" />
+										<span className="text-base">Lighting: {hoarding.lighting}</span>
+									</div>
+								)}
+								{hoarding.dimensions && (
+									<div className="flex items-center gap-4 text-[#222222]">
+										<ShieldCheck size={24} className="text-[#717171]" />
+										<span className="text-base">Size: {hoarding.dimensions}</span>
+									</div>
+								)}
 								{hoarding.features.map((feature, i) => (
 									<div key={i} className="flex items-center gap-4 text-[#222222]">
 										<ShieldCheck size={24} className="text-[#717171]" />
@@ -83,7 +101,30 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 							</div>
 						</section>
 
-						<AudienceInsights views={hoarding.views} />
+						{hoarding.description && (
+							<section className="py-10 border-b border-[#ebebeb]">
+								<h3 className="text-2xl font-semibold text-[#222222] mb-6">About this placement</h3>
+								<p className="text-[#222222] leading-relaxed whitespace-pre-wrap">
+									{hoarding.description}
+								</p>
+							</section>
+						)}
+
+						<section className="py-10 border-b border-[#ebebeb]">
+							<h3 className="text-2xl font-semibold text-[#222222] mb-6">Reach & Impact</h3>
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+								<div className="p-6 rounded-2xl bg-[#f7f7f7] border border-[#ebebeb]">
+									<p className="text-sm text-[#717171] font-semibold uppercase tracking-wider mb-1">Estimated Reach</p>
+									<p className="text-3xl font-bold text-[#222222]">{hoarding.trafficCount ? hoarding.trafficCount.toLocaleString() : "50,000+"}</p>
+									<p className="text-xs text-[#717171] mt-1">Monthly impressions (local data)</p>
+								</div>
+								<div className="p-6 rounded-2xl bg-[#f7f7f7] border border-[#ebebeb]">
+									<p className="text-sm text-[#717171] font-semibold uppercase tracking-wider mb-1">Audience View</p>
+									<p className="text-3xl font-bold text-[#222222]">{hoarding.views || "100%"}</p>
+									<p className="text-xs text-[#717171] mt-1">Direct line-of-sight visibility</p>
+								</div>
+							</div>
+						</section>
 
 						<section className="py-10">
 							<h3 className="text-2xl font-semibold text-[#222222] mb-6">Where you&apos;ll be seen</h3>

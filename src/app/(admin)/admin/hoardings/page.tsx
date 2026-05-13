@@ -4,7 +4,7 @@ import { Plus, Search, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { formatCurrency } from "@/lib/utils";
-import { EditHoardingButton, DeleteHoardingButton } from "@/components/admin/HoardingActions";
+import { EditHoardingButton, DeleteHoardingButton, CreateHoardingButton } from "@/components/admin/HoardingActions";
 import { desc } from "drizzle-orm";
 
 export default async function AdminHoardingsPage() {
@@ -17,10 +17,7 @@ export default async function AdminHoardingsPage() {
 					<h2 className="text-2xl font-bold text-[#222222]">Inventory Management</h2>
 					<p className="text-sm text-[#717171] mt-1">Total Placements: {allHoardings.length}</p>
 				</div>
-				<button className="px-6 py-3 bg-[#222222] text-white rounded-xl text-sm font-bold hover:bg-black transition-colors flex items-center gap-2">
-					<Plus size={18} />
-					<span>Add New</span>
-				</button>
+				<CreateHoardingButton />
 			</div>
 
 			<div className="bg-white rounded-2xl border border-[#ebebeb] shadow-sm overflow-hidden">
@@ -88,6 +85,11 @@ export default async function AdminHoardingsPage() {
 												status: hoarding.status,
 												imageUrl: hoarding.imageUrl,
 												views: hoarding.views,
+												description: hoarding.description,
+												dimensions: hoarding.dimensions,
+												category: hoarding.category,
+												lighting: hoarding.lighting,
+												trafficCount: hoarding.trafficCount,
 											}} />
 											<DeleteHoardingButton id={hoarding.id} title={hoarding.title} />
 										</div>

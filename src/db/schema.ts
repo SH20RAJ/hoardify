@@ -28,6 +28,11 @@ export const hoardings = pgTable("hoardings", {
 	views: text("views"),
 	status: text("status", { enum: ["For Rent", "Booked", "Maintenance"] }).default("For Rent").notNull(),
 	features: jsonb("features").$type<string[]>().default([]).notNull(),
+	description: text("description"),
+	dimensions: text("dimensions"),
+	category: text("category"),
+	lighting: text("lighting"),
+	trafficCount: integer("traffic_count"),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

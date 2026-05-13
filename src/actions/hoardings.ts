@@ -64,6 +64,11 @@ export async function updateHoarding(
 		features?: string[];
 		lat?: string;
 		lng?: string;
+		description?: string;
+		dimensions?: string;
+		category?: string;
+		lighting?: string;
+		trafficCount?: number;
 	}
 ) {
 	await db.update(hoardings).set(data).where(eq(hoardings.id, id));
@@ -90,6 +95,11 @@ export async function createHoarding(data: {
 	views?: string;
 	status?: "For Rent" | "Booked" | "Maintenance";
 	features?: string[];
+	description?: string;
+	dimensions?: string;
+	category?: string;
+	lighting?: string;
+	trafficCount?: number;
 }) {
 	await db.insert(hoardings).values({
 		...data,

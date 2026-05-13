@@ -21,12 +21,9 @@ export default function NavbarSync(config: NavbarConfig) {
 	}, [setConfig, config]);
 
 	useEffect(() => {
-		const configStr = JSON.stringify(config);
-		if (configStr !== JSON.stringify(configRef.current)) {
-			configRef.current = config;
-			applyConfig();
-		}
-	}, [applyConfig, config]);
+		// Only sync if config has changed in a way that matters (handled by setConfig's internal check)
+		applyConfig();
+	}, [applyConfig]);
 
 	return null;
 }
