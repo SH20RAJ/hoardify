@@ -17,10 +17,32 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
 	title: "Hoardify | Outdoor Advertising Marketplace",
 	description: "Book hoardings (billboards) like you book hotels. The Google Ads of the offline world.",
+	manifest: "/manifest.json",
+	themeColor: "#ff385c",
+	viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+	appleWebApp: {
+		capable: true,
+		statusBarStyle: "default",
+		title: "Hoardify",
+	},
 	openGraph: {
 		title: "Hoardify | Discovery & Booking",
 		description: "Discover, compare, and book hoardings with transparency and analytics.",
 		type: "website",
+		images: [
+			{
+				url: "/og-image.png",
+				width: 1200,
+				height: 630,
+				alt: "Hoardify - Outdoor Advertising Marketplace",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Hoardify | Outdoor Advertising Marketplace",
+		description: "Book hoardings (billboards) like you book hotels.",
+		images: ["/og-image.png"],
 	},
 };
 
@@ -36,7 +58,15 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<head>
+				<link rel="preconnect" href="https://maps.googleapis.com" />
+				<link rel="preconnect" href="https://maps.gstatic.com" />
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+				<link rel="apple-touch-icon" href="/icon-192.png" />
+				<meta name="mobile-web-app-capable" content="yes" />
+				<meta name="apple-mobile-web-app-capable" content="yes" />
+				<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 				<script
 					id="theme-init"
 					dangerouslySetInnerHTML={{
@@ -54,6 +84,17 @@ export default function RootLayout({
 						</NavbarProvider>
 					</StackTheme>
 				</StackProvider>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							if ('serviceWorker' in navigator) {
+								window.addEventListener('load', function() {
+									navigator.serviceWorker.register('/sw.js');
+								});
+							}
+						`
+					}}
+				/>
 			</body>
 
 		</html>
