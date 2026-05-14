@@ -175,7 +175,7 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 					</div>
 					<HorizontalScrollList className="px-0">
 						{relatedHoardings.map(h => (
-							<HoardingCard key={h.id} id={h.id} title={h.title} imageUrl={h.imageUrl} images={h.images} price={h.price} location={h.location} views={h.views} />
+							<HoardingCard key={h.id} id={h.id} title={h.title} imageUrl={h.imageUrl} images={h.images} price={h.price} location={h.location} views={h.views} lat={h.lat} lng={h.lng} />
 						))}
 					</HorizontalScrollList>
 				</section>

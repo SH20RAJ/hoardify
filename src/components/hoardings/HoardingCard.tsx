@@ -17,6 +17,8 @@ interface HoardingCardProps {
 	location?: string;
 	views?: string | null;
 	variant?: HoardingVariant;
+	lat?: string | number;
+	lng?: string | number;
 }
 
 export default function HoardingCard({
@@ -27,6 +29,8 @@ export default function HoardingCard({
 	price,
 	location,
 	variant = "large",
+	lat,
+	lng,
 }: HoardingCardProps) {
 	const allImages = [imageUrl, ...images].filter(Boolean);
 	const [currentIndex, setCurrentIndex] = useState(0);
@@ -97,6 +101,18 @@ export default function HoardingCard({
 								{formatCurrency(price)} <span className="font-normal text-[#6a6a6a]">/ mo</span>
 							</p>
 						)}
+						{lat && lng && (
+							<button 
+								onClick={(e) => {
+									e.preventDefault();
+									e.stopPropagation();
+									window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`, '_blank');
+								}}
+								className="mt-2 w-full py-1.5 rounded-lg border border-[#ebebeb] text-[10px] font-bold uppercase tracking-widest text-[#222222] hover:bg-[#f7f7f7] transition-colors"
+							>
+								See in 3D
+							</button>
+						)}
 					</div>
 				</div>
 			</Link>
@@ -146,6 +162,18 @@ export default function HoardingCard({
 								</div>
 							)}
 						</div>
+						{lat && lng && (
+							<button 
+								onClick={(e) => {
+									e.preventDefault();
+									e.stopPropagation();
+									window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`, '_blank');
+								}}
+								className="mt-4 w-full py-2.5 rounded-xl border border-[#ebebeb] text-xs font-bold uppercase tracking-widest text-[#222222] hover:bg-[#f7f7f7] transition-colors"
+							>
+								View Immersive 3D Experience
+							</button>
+						)}
 					</div>
 				</div>
 			</Link>
@@ -196,6 +224,18 @@ export default function HoardingCard({
 						<p className="mt-2 text-base font-bold text-[#222222]">
 							{formatCurrency(price)} <span className="font-normal text-[#6a6a6a]">/ month</span>
 						</p>
+					)}
+					{lat && lng && (
+						<button 
+							onClick={(e) => {
+								e.preventDefault();
+								e.stopPropagation();
+								window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`, '_blank');
+							}}
+							className="mt-4 w-full py-2.5 rounded-xl border border-[#ebebeb] text-xs font-bold uppercase tracking-widest text-[#222222] hover:bg-[#f7f7f7] transition-colors"
+						>
+							See in 3D
+						</button>
 					)}
 				</div>
 			</div>

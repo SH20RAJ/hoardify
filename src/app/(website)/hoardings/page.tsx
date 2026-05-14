@@ -41,6 +41,8 @@ export default async function HoardingsListPage() {
 								price={hoarding.price} 
 								location={hoarding.location} 
 								views={hoarding.views} 
+								lat={hoarding.lat}
+								lng={hoarding.lng}
 							/>
 						))}
 					</div>
