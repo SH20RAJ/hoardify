@@ -6,7 +6,7 @@ Hoardify is a platform that **digitizes outdoor advertising (OOH)** by allowing 
 
 ---
 
-- https://hoardify.shraj.workers.dev/
+- https://hoardify.in/
 
 
 ## 🌍 Problem
