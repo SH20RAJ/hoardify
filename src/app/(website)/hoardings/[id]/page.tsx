@@ -191,6 +191,100 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 					</HorizontalScrollList>
 				</section>
 			</div>
+
+			{/* Dynamic Structured Data / JSON-LD for Search Engines */}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify([
+						{
+							"@context": "https://schema.org",
+							"@type": "Product",
+							"name": hoarding.title,
+							"image": hoarding.imageUrl,
+							"description": hoarding.description || `Premium outdoor advertising billboard space located at ${hoarding.location}.`,
+							"sku": `HOARD-${hoarding.id}`,
+							"mpn": hoarding.id.toString(),
+							"brand": {
+								"@type": "Brand",
+								"name": "Hoardify"
+							},
+							"offers": {
+								"@type": "Offer",
+								"url": `https://hoardify.in/hoardings/${hoarding.id}`,
+								"priceCurrency": "INR",
+								"price": hoarding.price,
+								"priceValidUntil": "2027-12-31",
+								"itemCondition": "https://schema.org/NewCondition",
+								"availability": "https://schema.org/InStock",
+								"seller": {
+									"@type": "Organization",
+									"name": "Hoardify",
+									"url": "https://hoardify.in"
+								}
+							},
+							"additionalProperty": [
+								{
+									"@type": "PropertyValue",
+									"name": "Location",
+									"value": hoarding.location
+								},
+								{
+									"@type": "PropertyValue",
+									"name": "Media Type",
+									"value": hoarding.category || "Billboard"
+								},
+								{
+									"@type": "PropertyValue",
+									"name": "Lighting",
+									"value": hoarding.lighting || "Non-lit"
+								},
+								{
+									"@type": "PropertyValue",
+									"name": "Dimensions",
+									"value": hoarding.dimensions || "N/A"
+								},
+								{
+									"@type": "PropertyValue",
+									"name": "Latitude",
+									"value": hoarding.lat
+								},
+								{
+									"@type": "PropertyValue",
+									"name": "Longitude",
+									"value": hoarding.lng
+								},
+								{
+									"@type": "PropertyValue",
+									"name": "Monthly Traffic Estimate",
+									"value": hoarding.trafficCount ? hoarding.trafficCount.toString() : "50000"
+								}
+							]
+						},
+						{
+							"@context": "https://schema.org",
+							"@type": "LocalBusiness",
+							"name": hoarding.title,
+							"image": hoarding.imageUrl,
+							"priceRange": `₹${hoarding.price}`,
+							"telephone": "+91-0000000000",
+							"address": {
+								"@type": "PostalAddress",
+								"streetAddress": hoarding.location,
+								"addressLocality": "Ranchi",
+								"addressRegion": "Jharkhand",
+								"addressCountry": "IN"
+							},
+							"geo": {
+								"@type": "GeoCoordinates",
+								"latitude": parseFloat(hoarding.lat),
+								"longitude": parseFloat(hoarding.lng)
+							},
+							"url": `https://hoardify.in/hoardings/${hoarding.id}`
+						}
+					])
+				}}
+			/>
 		</div>
 	);
 }

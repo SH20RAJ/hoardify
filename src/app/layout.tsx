@@ -14,20 +14,32 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-	title: "Hoardify | Outdoor Advertising Marketplace",
-	description: "Book hoardings (billboards) like you book hotels. The Google Ads of the offline world.",
-	manifest: "/manifest.json",
+export const viewport = {
 	themeColor: "#ff385c",
-	viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+	width: "device-width",
+	initialScale: 1,
+	maximumScale: 1,
+};
+
+export const metadata: Metadata = {
+	metadataBase: new URL("https://hoardify.in"),
+	alternates: {
+		canonical: "/",
+	},
+	title: {
+		default: "Hoardify | Outdoor Advertising Marketplace",
+		template: "%s | Hoardify",
+	},
+	description: "Discover, compare, and book premium hoardings, billboards, and outdoor advertising spaces in Ranchi & across India with transparent pricing.",
+	manifest: "/manifest.json",
 	appleWebApp: {
 		capable: true,
 		statusBarStyle: "default",
 		title: "Hoardify",
 	},
 	openGraph: {
-		title: "Hoardify | Discovery & Booking",
-		description: "Discover, compare, and book hoardings with transparency and analytics.",
+		title: "Hoardify | Discover & Book Billboards Online",
+		description: "Discover, compare, and book premium hoardings and outdoor ads with transparent pricing and verification in Ranchi & across India.",
 		type: "website",
 		images: [
 			{
@@ -41,7 +53,7 @@ export const metadata: Metadata = {
 	twitter: {
 		card: "summary_large_image",
 		title: "Hoardify | Outdoor Advertising Marketplace",
-		description: "Book hoardings (billboards) like you book hotels.",
+		description: "Book hoardings (billboards) like you book hotels. The Google Ads of Ranchi's offline advertising.",
 		images: ["/og-image.png"],
 	},
 };

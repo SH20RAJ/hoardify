@@ -6,25 +6,34 @@ export default function HoardingHero() {
 		<section className="mt-8 px-6">
 			<div className="relative overflow-hidden rounded-2xl bg-[#f7f7f7] px-8 py-16 border border-[#ebebeb]">
 				<div className="relative z-10 max-w-2xl">
-					<h1 className="text-4xl md:text-6xl font-semibold leading-tight tracking-tight text-[#222222] mb-6">
-						Own the streets <br />
-						<span className="text-[#ff385c]">with Hoardify.</span>
+					<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-[#222222] mb-6">
+						Book Verified Hoardings &amp; Billboards Faster
 					</h1>
-					<p className="max-w-md text-lg text-[#6a6a6a] leading-relaxed mb-10">
-						Deploy your brand on Ranchi&apos;s most high-impact inventory. Precision-targeted and physically dominant.
+					<p className="max-w-xl text-lg text-[#6a6a6a] leading-relaxed mb-10">
+						Discover Ranchi&apos;s premium outdoor advertising spaces, compare locations, check availability, and launch high-impact campaigns without endless vendor calls.
 					</p>
 					
-					<div className="flex flex-col sm:flex-row gap-4">
+					<div className="flex flex-col sm:flex-row gap-4 mb-8">
 						<Link 
 							href="/search" 
-							className="px-8 py-3 rounded-lg bg-[#ff385c] text-white font-bold text-base flex items-center justify-center gap-2 transition-all hover:bg-[#e00b41]"
+							className="px-8 py-3.5 rounded-xl bg-[#ff385c] text-white font-bold text-base flex items-center justify-center gap-2 transition-all hover:bg-[#e00b41] hover:shadow-lg hover:shadow-red-100 hover:-translate-y-0.5 duration-200"
 						>
-							Explore Map <ArrowRight size={18} />
+							Explore Ad Spaces <ArrowRight size={18} />
 						</Link>
-						<div className="flex items-center gap-3 px-6 py-3 rounded-lg bg-white border border-[#dddddd]">
-							<div className="h-2 w-2 rounded-full bg-[#008a05]" />
-							<span className="text-sm font-semibold text-[#222222]">100% Verified Ranchi Inventory</span>
-						</div>
+						<Link
+							href="/profile"
+							className="px-8 py-3.5 rounded-xl bg-white border border-[#dddddd] text-[#222222] font-bold text-base flex items-center justify-center gap-2 hover:border-[#222222] transition-all hover:-translate-y-0.5 duration-200"
+						>
+							List Your Hoarding
+						</Link>
+					</div>
+
+					{/* Trust Strip */}
+					<div className="border-t border-[#ebebeb] pt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#717171] font-semibold">
+						<span className="flex items-center gap-1.5">✓ Verified locations</span>
+						<span className="flex items-center gap-1.5">✓ Transparent pricing</span>
+						<span className="flex items-center gap-1.5">✓ Campaign support</span>
+						<span className="flex items-center gap-1.5">✓ Built for Indian OOH advertising</span>
 					</div>
 				</div>
 

@@ -1,5 +1,6 @@
 import TopBar from "@/components/layout/TopBar";
 import BottomNav from "@/components/layout/BottomNav";
+import Footer from "@/components/layout/Footer";
 import React from "react";
 
 export default function WebsiteLayout({
@@ -17,6 +18,8 @@ export default function WebsiteLayout({
 				<main className="flex-1 relative w-full px-4 md:px-0">
 					{children}
 				</main>
+
+				<Footer />
 			</div>
 
 			{/* Mobile-only Bottom Navigation */}
