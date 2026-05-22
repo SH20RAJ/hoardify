@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Share2, Heart, MapPin, ShieldCheck, ArrowRight } from "lucide-react";
+import { Share2, Heart, MapPin, ShieldCheck, ArrowRight, Compass } from "lucide-react";
 import GoogleMapWrapper from "@/components/maps/GoogleMapWrapper";
 import { getHoardingById, getHoardings } from "@/actions/hoardings";
 import { notFound } from "next/navigation";
@@ -62,12 +62,23 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 						</section>
 
 						<section className="border-b border-[#ebebeb] pb-10">
-							<div className="flex flex-col">
-								<h1 className="text-3xl font-semibold text-[#222222] mb-2">{hoarding.title}</h1>
-								<div className="flex items-center gap-2 text-[#222222] font-normal">
-									<MapPin size={18} />
-									<span className="text-lg underline underline-offset-4 font-semibold">{hoarding.location}</span>
+							<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+								<div className="flex flex-col">
+									<h1 className="text-3xl font-semibold text-[#222222] mb-2">{hoarding.title}</h1>
+									<div className="flex items-center gap-2 text-[#222222] font-normal">
+										<MapPin size={18} />
+										<span className="text-lg underline underline-offset-4 font-semibold">{hoarding.location}</span>
+									</div>
 								</div>
+								<a
+									href={`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${hoarding.lat},${hoarding.lng}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#ebebeb] hover:bg-[#f7f7f7] text-xs font-bold uppercase tracking-widest text-[#222222] transition-all duration-200 shadow-sm hover:shadow shrink-0"
+								>
+									<Compass size={16} />
+									See in 3D
+								</a>
 							</div>
 						</section>
 
