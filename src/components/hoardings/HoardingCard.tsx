@@ -69,8 +69,8 @@ export default function HoardingCard({
 							alt={title}
 							fill
 							className="object-cover"
+							sizes="240px"
 							onError={() => handleImageError(currentIndex)}
-							unoptimized
 						/>
 						{hasMultiple && (
 							<>
@@ -130,7 +130,7 @@ export default function HoardingCard({
 							fill
 							className="object-cover"
 							priority
-							unoptimized
+							sizes="100vw"
 							onError={() => handleImageError(currentIndex)}
 						/>
 						{hasMultiple && (
