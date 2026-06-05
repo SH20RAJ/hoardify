@@ -2,8 +2,9 @@ import { stackServerApp } from "@/stack/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { LayoutDashboard, Megaphone, Inbox, Settings, LogOut, Users, ExternalLink, ShieldAlert } from "lucide-react";
+import { ShieldAlert } from "lucide-react";
 import { syncUserToDb, isUserAdmin } from "@/actions/user_sync";
+import AdminSidebar from "@/components/admin/AdminSidebar";
 
 export default async function AdminLayout({
 	children,
@@ -62,58 +63,9 @@ export default async function AdminLayout({
 		);
 	}
 
-	const navItems = [
-		{ name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-		{ name: "Inventory", href: "/admin/hoardings", icon: Megaphone },
-		{ name: "Enquiries", href: "/admin/enquiries", icon: Inbox },
-		{ name: "Users", href: "/admin/users", icon: Users },
-		{ name: "Settings", href: "/admin/settings", icon: Settings },
-	];
-
 	return (
 		<div className="flex h-screen bg-white">
-			{/* Minimal Admin Sidebar */}
-			<aside className="w-64 bg-white border-r border-[#ebebeb] flex flex-col">
-				<div className="p-6 border-b border-[#ebebeb]">
-					<Link href="/" className="flex items-center gap-2">
-						<div className="h-8 w-8 bg-[#ff385c] rounded-lg flex items-center justify-center text-white font-bold italic">H</div>
-						<span className="font-bold text-xl text-[#ff385c]">hoardify</span>
-					</Link>
-				</div>
-				
-				<nav className="flex-1 p-4 flex flex-col gap-1">
-					{navItems.map((item) => {
-						const Icon = item.icon;
-						return (
-							<Link 
-								key={item.href}
-								href={item.href}
-								className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-[#717171] hover:bg-[#f7f7f7] hover:text-[#222222] transition-colors"
-							>
-								<Icon size={18} />
-								{item.name}
-							</Link>
-						);
-					})}
-					
-					<div className="mt-6 pt-6 border-t border-[#ebebeb]">
-						<Link href="/" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-[#717171] hover:bg-[#f7f7f7] hover:text-[#222222] transition-colors">
-							<ExternalLink size={18} />
-							Public View
-						</Link>
-					</div>
-				</nav>
-
-				<div className="p-4 border-t border-[#ebebeb]">
-					<Link 
-						href="/handler/sign-out"
-						className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-[#ff385c] hover:bg-[#fff8f6] transition-colors"
-					>
-						<LogOut size={18} />
-						Sign Out
-					</Link>
-				</div>
-			</aside>
+			<AdminSidebar signOutUrl="/handler/sign-out" />
 
 			{/* Main Content Area */}
 			<main className="flex-1 overflow-y-auto flex flex-col bg-[#f7f7f7]">

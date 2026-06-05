@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import path from 'path';
 
 export default defineConfig({
   test: {
@@ -7,4 +8,10 @@ export default defineConfig({
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/test/**/*.test.ts'],
   },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 });
+
