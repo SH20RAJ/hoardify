@@ -15,8 +15,19 @@ export const usersRelations = relations(users, ({ many }) => ({
 	bookings: many(bookings),
 }));
 
+export const agencies = pgTable("agencies", {
+	id: serial("id").primaryKey(),
+	name: text("name").notNull(),
+	logoUrl: text("logo_url"),
+	email: text("email"),
+	phone: text("phone"),
+	address: text("address"),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const hoardings = pgTable("hoardings", {
 	id: serial("id").primaryKey(),
+	agencyId: integer("agency_id").references(() => agencies.id),
 	title: text("title").notNull(),
 	imageUrl: text("image_url").notNull(),
 	images: jsonb("images").$type<string[]>().default([]).notNull(),
@@ -36,9 +47,17 @@ export const hoardings = pgTable("hoardings", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const hoardingsRelations = relations(hoardings, ({ many }) => ({
+export const agenciesRelations = relations(agencies, ({ many }) => ({
+	hoardings: many(hoardings),
+}));
+
+export const hoardingsRelations = relations(hoardings, ({ one, many }) => ({
 	bookings: many(bookings),
 	enquiries: many(enquiries),
+	agency: one(agencies, {
+		fields: [hoardings.agencyId],
+		references: [agencies.id],
+	}),
 }));
 
 export const enquiries = pgTable("enquiries", {
