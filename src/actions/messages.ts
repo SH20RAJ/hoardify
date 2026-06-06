@@ -45,6 +45,33 @@ export async function getConversationsByUserId(userId: string) {
 	}
 }
 
+export async function getUserConversations(userId?: string, email?: string) {
+	if (!userId && !email) return [];
+	
+	try {
+		const result = await db.query.enquiries.findMany({
+			where: (table, { or, eq }) => {
+				const conditions = [];
+				if (userId) conditions.push(eq(table.userId, userId));
+				if (email) conditions.push(eq(table.email, email));
+				return or(...conditions);
+			},
+			with: {
+				hoarding: true,
+				messages: {
+					orderBy: [desc(messages.createdAt)],
+					limit: 1,
+				},
+			},
+			orderBy: [desc(enquiries.createdAt)],
+		});
+		return result;
+	} catch (error) {
+		console.error("Failed to fetch user conversations:", error);
+		return [];
+	}
+}
+
 export async function getMessages(enquiryId: number) {
 	return await db.query.messages.findMany({
 		where: eq(messages.enquiryId, enquiryId),
@@ -67,6 +94,7 @@ export async function sendMessage(enquiryId: number, content: string, senderRole
 
 	revalidatePath("/inbox");
 	revalidatePath("/admin/enquiries");
+	revalidatePath(`/admin/enquiries/${enquiryId}`);
 	return { success: true };
 }
 

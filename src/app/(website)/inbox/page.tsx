@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import NavbarSync from "@/components/layout/NavbarSync";
 import InboxClient from "@/components/inbox/InboxClient";
 import { stackServerApp } from "@/stack/server";
-import { getConversationsByEmail } from "@/actions/messages";
+import { getMessages, getUserConversations } from "@/actions/messages";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -39,14 +39,7 @@ export default async function InboxPage() {
 	}
 
 	// Fetch conversations for this user
-	let conversations: Awaited<ReturnType<typeof getConversationsByEmail>> = [];
-	try {
-		if (user.primaryEmail) {
-			conversations = await getConversationsByEmail(user.primaryEmail);
-		}
-	} catch {
-		// DB unavailable
-	}
+	const conversations = await getUserConversations(user.id, user.primaryEmail || undefined);
 
 	return (
 		<div className="flex flex-col min-h-screen pb-32 bg-white">

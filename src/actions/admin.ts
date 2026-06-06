@@ -38,6 +38,8 @@ export async function updateUserRole(userId: string, role: "Admin" | "Customer" 
 export async function updateEnquiryStatus(enquiryId: number, status: "New" | "Contacted" | "Closed") {
 	await db.update(enquiries).set({ status }).where(eq(enquiries.id, enquiryId));
 	revalidatePath("/admin/enquiries");
+	revalidatePath(`/admin/enquiries/${enquiryId}`);
+	revalidatePath("/inbox");
 	return { success: true };
 }
 
