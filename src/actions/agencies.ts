@@ -18,3 +18,8 @@ export async function updateAgency(id: number, data: any) {
   await db.update(agencies).set(data).where(eq(agencies.id, id));
   revalidatePath("/admin/agencies");
 }
+
+export async function deleteAgency(id: number) {
+  await db.delete(agencies).where(eq(agencies.id, id));
+  revalidatePath("/admin/agencies");
+}
