@@ -42,6 +42,7 @@ vi.mock('@/db/schema', () => ({
   enquiries: { id: {}, hoardingId: {}, userId: {}, name: {}, phone: {}, email: {}, message: {}, status: {}, createdAt: {} },
   messages: { id: {}, enquiryId: {}, senderRole: {}, senderName: {}, content: {}, createdAt: {} },
   bookings: { id: {}, hoardingId: {}, userId: {}, startDate: {}, endDate: {}, pricePaid: {}, status: {}, createdAt: {} },
+  agencies: { id: {}, name: {}, createdAt: {} },
   usersRelations: {},
   hoardingsRelations: {},
   enquiriesRelations: {},
@@ -454,6 +455,64 @@ describe('Admin Actions', () => {
       const result = await getEnquiries();
 
       expect(Array.isArray(result)).toBe(true);
+    });
+  });
+});
+
+describe('Agency Actions', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  describe('getAgencies', () => {
+    it('should return all agencies ordered by createdAt', async () => {
+      const mockAgencies = [
+        { id: 1, name: 'Agency A', createdAt: new Date() },
+        { id: 2, name: 'Agency B', createdAt: new Date() },
+      ];
+
+      chainableMock.select.mockReturnValue({
+        from: vi.fn().mockReturnValue({
+          orderBy: vi.fn().mockReturnValue(Promise.resolve(mockAgencies)),
+        }),
+      });
+
+      const { getAgencies } = await import('@/actions/agencies');
+      const result = await getAgencies();
+
+      expect(result).toEqual(mockAgencies);
+    });
+  });
+
+  describe('createAgency', () => {
+    it('should create agency and return the new agency', async () => {
+      const mockAgency = { id: 1, name: 'New Agency' };
+      chainableMock.insert.mockReturnValue({
+        values: vi.fn().mockReturnValue({
+          returning: vi.fn().mockResolvedValue([mockAgency]),
+        }),
+      });
+
+      const { createAgency } = await import('@/actions/agencies');
+      const result = await createAgency({ name: 'New Agency' });
+
+      expect(result).toEqual(mockAgency);
+      expect(chainableMock.insert).toHaveBeenCalled();
+    });
+  });
+
+  describe('updateAgency', () => {
+    it('should update agency data', async () => {
+      chainableMock.update.mockReturnValue({
+        set: vi.fn().mockReturnValue({
+          where: vi.fn().mockResolvedValue({ success: true }),
+        }),
+      });
+
+      const { updateAgency } = await import('@/actions/agencies');
+      await updateAgency(1, { name: 'Updated Agency' });
+
+      expect(chainableMock.update).toHaveBeenCalled();
     });
   });
 });
