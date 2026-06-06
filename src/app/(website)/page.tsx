@@ -3,7 +3,7 @@ import HoardingCard from "@/components/hoardings/HoardingCard";
 import HorizontalScrollList from "@/components/hoardings/HorizontalScrollList";
 import Link from "next/link";
 import NavbarSync from "@/components/layout/NavbarSync";
-import HoardingHero from "@/components/hoardings/HoardingHero";
+import AirbnbSearchBar from "@/components/home/AirbnbSearchBar";
 import MapBridge from "@/components/hoardings/MapBridge";
 import ChannelCard from "@/components/hoardings/ChannelCard";
 import { stackServerApp } from "@/stack/server";
@@ -41,22 +41,7 @@ export default async function ExplorePage() {
 		<div className="flex flex-col min-h-screen pb-32 bg-white">
 			<NavbarSync isLogo title="Explore" />
 
-			{/* Immersive Hero Section */}
-			<HoardingHero />
-
-			{/* Categories: Minimalist Channel Switcher */}
-			<section className="mt-20 overflow-hidden mb-24">
-				<div className="px-6 mb-10">
-					<h2 className="text-2xl font-bold text-[#222222]">Browse by channel</h2>
-					<p className="text-sm text-[#6a6a6a] mt-1">Curated inventory network in Ranchi</p>
-				</div>
-				<HorizontalScrollList className="px-6 scroll-px-6 pb-6">
-					<ChannelCard active icon={<Monitor size={24} />} label="Lit Billboards" count={counts.lit} />
-					<ChannelCard icon={<Grid size={24} />} label="Unipoles" count={counts.unipole} />
-					<ChannelCard icon={<Video size={24} />} label="Digital OOH" count={counts.digital} />
-					<ChannelCard icon={<Smartphone size={24} />} label="Transit OOH" count={counts.transit} />
-				</HorizontalScrollList>
-			</section>
+			<AirbnbSearchBar />
 
 			{/* Trending Showcase */}
 			<section className="mb-24">
