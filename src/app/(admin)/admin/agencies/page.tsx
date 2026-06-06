@@ -1,6 +1,6 @@
 import { getAgencies } from "@/actions/agencies";
 import { Building2, Mail, Phone, Calendar, Search, MapPin } from "lucide-react";
-import { CreateAgencyButton, EditAgencyButton } from "@/components/admin/AgencyActions";
+import { CreateAgencyButton, EditAgencyButton, DeleteAgencyButton } from "@/components/admin/AgencyActions";
 
 export default async function AdminAgenciesPage() {
 	const agencies = await getAgencies();
