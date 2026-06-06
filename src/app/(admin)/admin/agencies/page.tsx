@@ -1,6 +1,7 @@
 import { getAgencies } from "@/actions/agencies";
-import { Building2, Mail, Phone, Calendar, Search, MapPin } from "lucide-react";
+import { Building2, Mail, Phone, Calendar, Search, MapPin, Eye } from "lucide-react";
 import { CreateAgencyButton, EditAgencyButton, DeleteAgencyButton } from "@/components/admin/AgencyActions";
+import Link from "next/link";
 
 export default async function AdminAgenciesPage() {
 	const agencies = await getAgencies();
@@ -84,6 +85,13 @@ export default async function AdminAgenciesPage() {
 									</td>
 									<td className="px-6 py-5 text-right">
 										<div className="flex items-center justify-end gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+											<Link 
+												href={`/admin/agencies/${agency.id}`}
+												className="p-2 rounded-lg bg-[#f7f7f7] text-[#717171] hover:text-[#222222] transition-colors"
+												title="View Hoardings"
+											>
+												<Eye size={16} />
+											</Link>
 											<EditAgencyButton agency={agency} />
 											<DeleteAgencyButton id={agency.id} name={agency.name} />
 										</div>

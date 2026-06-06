@@ -2,10 +2,27 @@
 
 import { db } from "@/db";
 import { hoardings } from "@/db/schema";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, and, ilike } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
-export async function getHoardings() {
+export async function getHoardings(filters?: { location?: string; category?: string; agencyId?: number }) {
+	let query = db.select().from(hoardings);
+	
+	const conditions = [];
+	if (filters?.location) {
+		conditions.push(ilike(hoardings.location, `%${filters.location}%`));
+	}
+	if (filters?.category) {
+		conditions.push(eq(hoardings.category, filters.category));
+	}
+	if (filters?.agencyId) {
+		conditions.push(eq(hoardings.agencyId, filters.agencyId));
+	}
+
+	if (conditions.length > 0) {
+		return await db.select().from(hoardings).where(and(...conditions)).orderBy(desc(hoardings.createdAt));
+	}
+
 	return await db.select().from(hoardings).orderBy(desc(hoardings.createdAt));
 }
 

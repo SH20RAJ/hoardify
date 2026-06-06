@@ -14,6 +14,11 @@ export async function createAgency(data: any) {
   return res[0];
 }
 
+export async function getAgencyById(id: number) {
+  const result = await db.select().from(agencies).where(eq(agencies.id, id)).limit(1);
+  return result[0] || null;
+}
+
 export async function updateAgency(id: number, data: any) {
   await db.update(agencies).set(data).where(eq(agencies.id, id));
   revalidatePath("/admin/agencies");
