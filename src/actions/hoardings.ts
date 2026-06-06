@@ -86,6 +86,7 @@ export async function deleteHoarding(id: number) {
 }
 
 export async function createHoarding(data: {
+	agencyId?: number;
 	title: string;
 	imageUrl: string;
 	price: number;

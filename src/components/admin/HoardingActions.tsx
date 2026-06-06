@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Edit2, Trash2, X, Save, Loader2 } from "lucide-react";
 import { updateHoarding, deleteHoarding } from "@/actions/hoardings";
 import { useRouter } from "next/navigation";
-import { formatCurrency } from "@/lib/utils";
+import Link from "next/link";
 
 interface HoardingData {
 	id: number;
@@ -190,203 +190,14 @@ export function EditHoardingButton({ hoarding }: { hoarding: HoardingData }) {
 }
 
 export function CreateHoardingButton() {
-	const [open, setOpen] = useState(false);
-	const [loading, setLoading] = useState(false);
-	const [form, setForm] = useState({
-		title: "",
-		price: 0,
-		location: "",
-		status: "For Rent" as "For Rent" | "Booked" | "Maintenance",
-		imageUrl: "https://images.unsplash.com/photo-1541535650810-10d26f5c2ab3?q=80&w=2076&auto=format&fit=crop", // Default placeholder
-		lat: "23.3441",
-		lng: "85.3094",
-		description: "",
-		dimensions: "",
-		category: "",
-		lighting: "",
-		trafficCount: 0,
-		features: ["High Visibility", "Premium Location"],
-	});
-	const router = useRouter();
-
-	const handleSubmit = async () => {
-		if (!form.title || !form.location || !form.price) {
-			alert("Please fill in the required fields (Title, Location, Price)");
-			return;
-		}
-		setLoading(true);
-		try {
-			const { createHoarding } = await import("@/actions/hoardings");
-			await createHoarding(form);
-			setOpen(false);
-			setForm({
-				title: "",
-				price: 0,
-				location: "",
-				status: "For Rent",
-				imageUrl: "https://images.unsplash.com/photo-1541535650810-10d26f5c2ab3?q=80&w=2076&auto=format&fit=crop",
-				lat: "23.3441",
-				lng: "85.3094",
-				description: "",
-				dimensions: "",
-				category: "",
-				lighting: "",
-				trafficCount: 0,
-				features: ["High Visibility", "Premium Location"],
-			});
-			router.refresh();
-		} catch {
-			alert("Failed to create hoarding");
-		} finally {
-			setLoading(false);
-		}
-	};
-
 	return (
-		<>
-			<button 
-				onClick={() => setOpen(true)}
-				className="px-6 py-3 bg-[#222222] text-white rounded-xl text-sm font-bold hover:bg-black transition-colors flex items-center gap-2 shadow-sm"
-			>
-				<Edit2 size={18} className="rotate-45" />
-				<span>Add New Placement</span>
-			</button>
-
-			{open && (
-				<div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setOpen(false)}>
-					<div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl mx-4 p-8 overflow-y-auto max-h-[90vh]" onClick={e => e.stopPropagation()}>
-						<div className="flex items-center justify-between mb-8">
-							<h3 className="text-xl font-bold text-[#222222]">Create New Placement</h3>
-							<button onClick={() => setOpen(false)} className="p-2 rounded-lg hover:bg-[#f7f7f7]">
-								<X size={18} />
-							</button>
-						</div>
-
-						<div className="space-y-6">
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-								<div>
-									<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Title *</label>
-									<input
-										value={form.title}
-										onChange={e => setForm(p => ({ ...p, title: e.target.value }))}
-										className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
-										placeholder="e.g. Premium Unipole at Main Road"
-									/>
-								</div>
-								<div>
-									<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Location *</label>
-									<input
-										value={form.location}
-										onChange={e => setForm(p => ({ ...p, location: e.target.value }))}
-										className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
-										placeholder="e.g. Lalpur Chowk, Ranchi"
-									/>
-								</div>
-							</div>
-
-							<div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-								<div>
-									<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Price (₹/mo) *</label>
-									<input
-										type="number"
-										value={form.price}
-										onChange={e => setForm(p => ({ ...p, price: Number(e.target.value) }))}
-										className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
-									/>
-								</div>
-								<div>
-									<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Status</label>
-									<select
-										value={form.status}
-										onChange={e => setForm(p => ({ ...p, status: e.target.value as typeof form.status }))}
-										className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium bg-white transition-colors"
-									>
-										<option value="For Rent">For Rent</option>
-										<option value="Booked">Booked</option>
-										<option value="Maintenance">Maintenance</option>
-									</select>
-								</div>
-								<div>
-									<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Category</label>
-									<input
-										value={form.category}
-										onChange={e => setForm(p => ({ ...p, category: e.target.value }))}
-										className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
-										placeholder="e.g. Unipole"
-									/>
-								</div>
-							</div>
-
-							<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-								<div>
-									<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Dimensions</label>
-									<input
-										value={form.dimensions}
-										onChange={e => setForm(p => ({ ...p, dimensions: e.target.value }))}
-										className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
-										placeholder="e.g. 40ft x 20ft"
-									/>
-								</div>
-								<div>
-									<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Lighting</label>
-									<input
-										value={form.lighting}
-										onChange={e => setForm(p => ({ ...p, lighting: e.target.value }))}
-										className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
-										placeholder="e.g. Front-lit LED"
-									/>
-								</div>
-								<div>
-									<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Monthly Traffic</label>
-									<input
-										type="number"
-										value={form.trafficCount}
-										onChange={e => setForm(p => ({ ...p, trafficCount: Number(e.target.value) }))}
-										className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
-									/>
-								</div>
-							</div>
-
-							<div>
-								<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Image URL</label>
-								<input
-									value={form.imageUrl}
-									onChange={e => setForm(p => ({ ...p, imageUrl: e.target.value }))}
-									className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
-								/>
-							</div>
-
-							<div>
-								<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Description</label>
-								<textarea
-									value={form.description}
-									onChange={e => setForm(p => ({ ...p, description: e.target.value }))}
-									className="w-full min-h-[120px] p-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors resize-none"
-									placeholder="Describe the placement's advantages, visibility, and surrounding area..."
-								/>
-							</div>
-						</div>
-
-						<div className="flex gap-3 mt-10">
-							<button
-								onClick={() => setOpen(false)}
-								className="flex-1 h-12 rounded-xl border border-[#dddddd] text-sm font-bold text-[#222222] hover:bg-[#f7f7f7] transition-colors"
-							>
-								Cancel
-							</button>
-							<button
-								onClick={handleSubmit}
-								disabled={loading}
-								className="flex-1 h-12 rounded-xl bg-[#222222] text-white text-sm font-bold hover:bg-[#000000] transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
-							>
-								{loading ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
-								{loading ? "Creating..." : "Create Placement"}
-							</button>
-						</div>
-					</div>
-				</div>
-			)}
-		</>
+		<Link 
+			href="/admin/hoardings/new"
+			className="px-6 py-3 bg-[#222222] text-white rounded-xl text-sm font-bold hover:bg-black transition-colors flex items-center gap-2 shadow-sm"
+		>
+			<Edit2 size={18} className="rotate-45" />
+			<span>Add New Placement</span>
+		</Link>
 	);
 }
 
