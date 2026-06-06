@@ -21,7 +21,7 @@ async function ensureUserSynced(stackUser: { id: string; primaryEmail: string | 
 	}
 }
 
-export async function createBooking(hoardingId: number, price: number) {
+export async function createBooking(hoardingId: number, price: number, startDate: Date, endDate: Date) {
 	let user;
 	try {
 		user = await stackServerApp.getUser();
@@ -40,10 +40,6 @@ export async function createBooking(hoardingId: number, price: number) {
 		displayName: user.displayName,
 		profileImageUrl: user.profileImageUrl,
 	});
-
-	const startDate = new Date();
-	const endDate = new Date();
-	endDate.setMonth(endDate.getMonth() + 1); // Default 1 month
 
 	await db.insert(bookings).values({
 		hoardingId,

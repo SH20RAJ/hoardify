@@ -189,7 +189,7 @@ describe('Bookings Actions', () => {
       (stackServerApp.getUser as any).mockResolvedValue(null);
 
       const { createBooking } = await import('@/actions/bookings');
-      await expect(createBooking(1, 5000)).rejects.toThrow('You must be logged in to book a hoarding.');
+      await expect(createBooking(1, 5000, new Date(), new Date())).rejects.toThrow('You must be logged in to book a hoarding.');
     });
 
     it('should create booking for authenticated user', async () => {
@@ -213,7 +213,7 @@ describe('Bookings Actions', () => {
       });
 
       const { createBooking } = await import('@/actions/bookings');
-      const result = await createBooking(1, 5000);
+      const result = await createBooking(1, 5000, new Date(), new Date());
 
       expect(result).toEqual({ success: true });
     });

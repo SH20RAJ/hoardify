@@ -13,12 +13,31 @@ interface BookingCardProps {
 
 export default function BookingCard({ price, hoardingId }: BookingCardProps) {
 	const [loading, setLoading] = useState(false);
+	const [startDate, setStartDate] = useState(new Date().toISOString().split("T")[0]);
+	const [endDate, setEndDate] = useState(() => {
+		const d = new Date();
+		d.setMonth(d.getMonth() + 1);
+		return d.toISOString().split("T")[0];
+	});
 	const router = useRouter();
 
 	const handleBooking = async () => {
+		if (!startDate || !endDate) {
+			alert("Please select both start and end dates.");
+			return;
+		}
+		
+		const start = new Date(startDate);
+		const end = new Date(endDate);
+		
+		if (end <= start) {
+			alert("End date must be after start date.");
+			return;
+		}
+
 		setLoading(true);
 		try {
-			await createBooking(hoardingId, price);
+			await createBooking(hoardingId, price, start, end);
 			alert("Booking inquiry sent successfully!");
 			router.push("/profile");
 		} catch (error: unknown) {
@@ -49,12 +68,24 @@ export default function BookingCard({ price, hoardingId }: BookingCardProps) {
 			<div className="border border-[#b0b0b0] rounded-xl overflow-hidden mb-6">
 				<div className="grid grid-cols-2 border-b border-[#b0b0b0]">
 					<div className="p-3 border-r border-[#b0b0b0]">
-						<div className="text-[10px] font-bold uppercase text-[#222222]">Start Date</div>
-						<div className="text-sm text-[#717171]">Select date</div>
+						<label htmlFor="startDate" className="text-[10px] font-bold uppercase text-[#222222] block mb-0.5">Start Date</label>
+						<input 
+							type="date" 
+							id="startDate"
+							value={startDate}
+							onChange={(e) => setStartDate(e.target.value)}
+							className="text-sm text-[#222222] w-full bg-transparent focus:outline-none cursor-pointer" 
+						/>
 					</div>
 					<div className="p-3">
-						<div className="text-[10px] font-bold uppercase text-[#222222]">End Date</div>
-						<div className="text-sm text-[#717171]">Select date</div>
+						<label htmlFor="endDate" className="text-[10px] font-bold uppercase text-[#222222] block mb-0.5">End Date</label>
+						<input 
+							type="date" 
+							id="endDate"
+							value={endDate}
+							onChange={(e) => setEndDate(e.target.value)}
+							className="text-sm text-[#222222] w-full bg-transparent focus:outline-none cursor-pointer" 
+						/>
 					</div>
 				</div>
 				<div className="p-3">
