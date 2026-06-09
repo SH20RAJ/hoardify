@@ -86,6 +86,7 @@ export async function updateHoarding(
 		category?: string;
 		lighting?: string;
 		trafficCount?: number;
+		agencyId?: number | null;
 	}
 ) {
 	await db.update(hoardings).set(data).where(eq(hoardings.id, id));
