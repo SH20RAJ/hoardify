@@ -56,6 +56,13 @@ export const metadata: Metadata = {
 		description: "Book hoardings (billboards) like you book hotels. The Google Ads of Ranchi's offline advertising.",
 		images: ["/og-image.png"],
 	},
+	icons: [
+		{
+			rel: "icon",
+			url: "/new-logo.png",
+			type: "image/png",
+		}
+	],
 };
 
 import { StackProvider, StackTheme } from "@stackframe/stack";

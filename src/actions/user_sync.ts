@@ -16,16 +16,15 @@ export async function syncUserToDb(stackUser: {
 }) {
 	const email = stackUser.primaryEmail || "unknown@hoardify.com";
 	
+	const adminEmails = [
+		"shaswatraj3@gmail.com",
+		"subhamgiri033@gmail.com",
+	];
+	const isDefaultAdmin = adminEmails.includes(email.toLowerCase());
+
 	const existing = await db.select().from(users).where(eq(users.id, stackUser.id)).limit(1);
 	
 	if (existing.length === 0) {
-		// Determine role: default admin emails get Admin by default
-		const adminEmails = [
-			"shaswatraj3@gmail.com",
-			"subhamgiri033@gmail.com",
-		];
-		const isDefaultAdmin = adminEmails.includes(email.toLowerCase());
-		
 		await db.insert(users).values({
 			id: stackUser.id,
 			email,
@@ -38,14 +37,16 @@ export async function syncUserToDb(stackUser: {
 	}
 	
 	// Update existing user info (name/image may change)
+	// Also force Admin role if they are in the default list
 	await db.update(users).set({
 		name: stackUser.displayName,
 		imageUrl: stackUser.profileImageUrl,
 		email,
+		role: isDefaultAdmin ? "Admin" : existing[0].role,
 		updatedAt: new Date(),
 	}).where(eq(users.id, stackUser.id));
 	
-	return { created: false, role: existing[0].role as "Admin" | "Customer" | "Owner" };
+	return { created: false, role: isDefaultAdmin ? "Admin" as const : existing[0].role as "Admin" | "Customer" | "Owner" };
 }
 
 /**
