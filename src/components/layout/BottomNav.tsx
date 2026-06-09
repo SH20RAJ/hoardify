@@ -15,11 +15,12 @@ export default function BottomNav() {
 		{ name: "Profile", href: "/profile", icon: User },
 	];
 
+	// Hide on detail pages for more immersive look
 	if (pathname.startsWith("/hoardings/")) return null;
 
 	return (
-		<nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#ebebeb] px-4 pb-[env(safe-area-inset-bottom)]" aria-label="Main navigation">
-			<div className="flex justify-around items-center h-16">
+		<nav className="md:hidden fixed bottom-6 left-6 right-6 z-[60]" aria-label="Main navigation">
+			<div className="flex justify-around items-center h-16 bg-[#ffffff]/80 backdrop-blur-2xl border border-[#e5e5e5] rounded-full shadow-premium-lg px-2">
 				{navItems.map((item) => {
 					const Icon = item.icon;
 					const isActive = pathname === item.href;
@@ -28,12 +29,14 @@ export default function BottomNav() {
 						<Link
 							key={item.name}
 							href={item.href}
-							className={`flex flex-col items-center justify-center gap-1 flex-1 h-full transition-colors ${
-								isActive ? "text-[#082390]" : "text-[#717171]"
+							className={`flex flex-col items-center justify-center gap-1 flex-1 h-12 rounded-full transition-all active:scale-90 ${
+								isActive 
+									? "text-brand bg-brand/5 scale-110" 
+									: "text-text-tertiary hover:text-text-primary"
 							}`}
 						>
-							<Icon size={20} strokeWidth={isActive ? 2.5 : 2} aria-hidden="true" />
-							<span className={`text-[10px] ${isActive ? "font-semibold" : "font-medium"}`}>{item.name}</span>
+							<Icon size={18} strokeWidth={isActive ? 3 : 2} aria-hidden="true" className="transition-all" />
+							{isActive && <div className="h-1 w-1 rounded-full bg-brand" />}
 						</Link>
 					);
 				})}

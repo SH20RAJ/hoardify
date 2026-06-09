@@ -1,54 +1,43 @@
+"use client";
 
-
-export default function GlobalLoading() {
+export default function RootLoading() {
 	return (
-		<div className="flex flex-col min-h-screen bg-background pt-24 pb-32">
-			{/* Mock Floating TopBar */}
-			<div className="fixed top-0 left-0 w-full z-50 px-4 pt-4">
-				<div className="flex h-16 w-full items-center justify-between rounded-2xl glass-effect px-4 shadow-sm border border-glass-border">
-					<div className="flex items-center gap-2">
-						<div className="h-9 w-9 rounded-xl bg-surface-sunken animate-pulse" />
-						<div className="h-4 w-24 rounded bg-surface-sunken animate-pulse" />
+		<div className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-white gap-12">
+			{/* High-end Minimal Loader */}
+			<div className="relative">
+				<div className="h-24 w-24 border-[2px] border-brand/5 rounded-full" />
+				<div className="absolute top-0 h-24 w-24 border-[2px] border-brand border-t-transparent rounded-full animate-[spin_1.5s_cubic-bezier(0.16,1,0.3,1)_infinite]" />
+				
+				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+					<div className="h-10 w-10 bg-brand rounded-xl flex items-center justify-center text-white font-black italic shadow-premium-lg">
+						H
 					</div>
-					<div className="h-10 w-10 rounded-full bg-surface-sunken animate-pulse" />
 				</div>
 			</div>
-
-			<div className="px-6 space-y-12 animate-pulse">
-				{/* Hero Skeleton */}
-				<div className="h-48 w-full rounded-[2rem] bg-surface-sunken" />
-
-				{/* Categories Skeleton */}
-				<div>
-					<div className="h-6 w-32 bg-surface-sunken rounded-md mb-6"></div>
-					<div className="flex gap-4 overflow-hidden">
-						<div className="h-20 w-16 bg-surface-sunken rounded-2xl shrink-0" />
-						<div className="h-20 w-16 bg-surface-sunken rounded-2xl shrink-0" />
-						<div className="h-20 w-16 bg-surface-sunken rounded-2xl shrink-0" />
-						<div className="h-20 w-16 bg-surface-sunken rounded-2xl shrink-0" />
-						<div className="h-20 w-16 bg-surface-sunken rounded-2xl shrink-0" />
+			
+			<div className="flex flex-col items-center gap-4">
+				<div className="flex flex-col items-center">
+					<p className="text-[10px] font-black text-[#111111] tracking-[0.4em] uppercase mb-2">
+						Hoardify Systems
+					</p>
+					<div className="h-px w-32 bg-gradient-to-r from-transparent via-brand/20 to-transparent" />
+				</div>
+				
+				<div className="flex flex-col items-center gap-2">
+					<p className="text-[9px] text-text-tertiary font-bold uppercase tracking-widest animate-pulse">
+						Synchronizing Intelligence
+					</p>
+					<div className="flex items-center gap-1.5">
+						<span className="h-1 w-1 bg-brand rounded-full animate-[bounce_1s_infinite_0ms]" />
+						<span className="h-1 w-1 bg-brand rounded-full animate-[bounce_1s_infinite_200ms]" />
+						<span className="h-1 w-1 bg-brand rounded-full animate-[bounce_1s_infinite_400ms]" />
 					</div>
 				</div>
-
-				{/* Trending Skeleton */}
-				<div>
-					<div className="h-6 w-40 bg-surface-sunken rounded-md mb-6"></div>
-					<div className="flex gap-4 overflow-hidden">
-						<div className="h-64 w-52 bg-surface-sunken rounded-3xl shrink-0" />
-						<div className="h-64 w-52 bg-surface-sunken rounded-3xl shrink-0" />
-					</div>
-				</div>
-
-				{/* Nearby Skeleton */}
-				<div>
-					<div className="h-6 w-48 bg-surface-sunken rounded-md mb-6"></div>
-					<div className="space-y-6">
-						<div className="h-40 w-full bg-surface-sunken rounded-2xl" />
-						<div className="h-40 w-full bg-surface-sunken rounded-2xl" />
-					</div>
-				</div>
+			</div>
+			
+			<div className="absolute bottom-12 text-[8px] text-text-tertiary font-black uppercase tracking-[0.5em]">
+				Deployment Node Alpha
 			</div>
 		</div>
 	);
 }
-

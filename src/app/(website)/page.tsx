@@ -38,21 +38,28 @@ export default async function ExplorePage() {
 	]);
 
 	return (
-		<div className="flex flex-col min-h-screen pb-32 bg-white">
-			<NavbarSync isLogo title="Explore" />
+		<div className="flex flex-col min-h-screen pb-40 bg-white">
+			<NavbarSync isLogo title="Intelligence Explore" />
 
-			<AirbnbSearchBar />
+			<div className="pt-12">
+				<AirbnbSearchBar />
+			</div>
 
 			{/* Trending Showcase */}
-			<section className="mb-24">
-				<div className="px-6 mb-10 flex items-end justify-between">
+			<section className="mb-32 mt-12">
+				<div className="px-8 mb-12 flex items-end justify-between">
 					<div>
-						<h2 className="text-2xl font-bold text-[#222222]">Trending now</h2>
-						<p className="text-sm text-[#6a6a6a] mt-1">Most viewed placements this week</p>
+						<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/5 border border-brand/10 text-brand text-[9px] font-black uppercase tracking-widest mb-3">
+							Market Pulse
+						</div>
+						<h2 className="text-3xl font-black text-[#111111] tracking-tight">Trending Placements</h2>
+						<p className="text-sm text-text-secondary mt-2">Most impactful nodes captured this week.</p>
 					</div>
-					<Link href="/search" className="text-sm font-semibold text-[#222222] underline underline-offset-4">Explore Map</Link>
+					<Link href="/search" className="text-[10px] font-black uppercase tracking-widest text-brand hover:underline underline-offset-8">
+						Explore Full Map
+					</Link>
 				</div>
-				<HorizontalScrollList className="px-6 scroll-px-6 gap-8">
+				<HorizontalScrollList className="px-8 scroll-px-8 gap-10 no-scrollbar">
 					{trending.map(hoarding => (
 						<HoardingCard key={hoarding.id} id={hoarding.id} title={hoarding.title} imageUrl={hoarding.imageUrl} images={hoarding.images} price={hoarding.price} location={hoarding.location} views={hoarding.views} lat={hoarding.lat} lng={hoarding.lng} />
 					))}
@@ -60,15 +67,18 @@ export default async function ExplorePage() {
 			</section>
 
 			{/* Nearby: Geo-Context Grid */}
-			<section className="mb-24 px-6">
-				<div className="flex items-end justify-between mb-10">
+			<section className="mb-32 px-8">
+				<div className="flex items-end justify-between mb-12">
 					<div>
-						<h2 className="text-2xl font-bold text-[#222222]">Inventory near you</h2>
-						<p className="text-sm text-[#6a6a6a] mt-1">High-impact nodes in your area</p>
+						<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#008a05]/5 border border-[#008a05]/10 text-[#008a05] text-[9px] font-black uppercase tracking-widest mb-3">
+							Proximity Intelligence
+						</div>
+						<h2 className="text-3xl font-black text-[#111111] tracking-tight">Inventory Near You</h2>
+						<p className="text-sm text-text-secondary mt-2">High-impact visibility nodes in your immediate area.</p>
 					</div>
-					<Link href="/filters" className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[#dddddd] hover:border-[#222222] transition-colors">
-						<Settings2 size={16} />
-						<span className="text-sm font-semibold">Filters</span>
+					<Link href="/filters" className="flex items-center gap-3 px-6 py-3 rounded-2xl border border-border-subtle hover:border-brand hover:bg-brand/5 transition-all active:scale-95 group">
+						<Settings2 size={16} className="text-text-tertiary group-hover:text-brand transition-colors" />
+						<span className="text-xs font-bold text-[#111111]">Advanced Filters</span>
 					</Link>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -120,33 +130,36 @@ export default async function ExplorePage() {
 			</section>
 
 			{/* Frequently Asked Questions */}
-			<section className="mb-24 px-6 max-w-4xl mx-auto w-full">
-				<div className="mb-12">
-					<h2 className="text-3xl font-bold text-[#222222]">Frequently Asked Questions</h2>
-					<p className="text-sm text-[#6a6a6a] mt-2">Everything you need to know about booking outdoor media in Ranchi</p>
+			<section className="mb-40 px-8 max-w-5xl mx-auto w-full">
+				<div className="mb-20 text-center">
+					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-sunken border border-border-subtle text-text-tertiary text-[9px] font-black uppercase tracking-widest mb-3">
+						Support & Intelligence
+					</div>
+					<h2 className="text-4xl font-black text-[#111111] tracking-tight">Common Inquiries</h2>
+					<p className="text-base text-text-secondary mt-4 max-w-xl mx-auto leading-relaxed">Everything you need to know about deploying outdoor media on our system.</p>
 				</div>
-				<div className="space-y-6">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
 					{[
 						{
-							q: "How do I book a hoarding/billboard on Hoardify?",
-							a: "Simply browse our map or inventory list, select your preferred dates, and submit a booking request. Our team will verify availability with the media owner and guide you through the setup and printing process."
+							q: "How do I book a hoarding on Hoardify?",
+							a: "Browse our intelligence-mapped inventory, select your preferred dates, and submit a request. Our system validates availability and guides you through the deployment lifecycle."
 						},
 						{
 							q: "Are the listing rates final?",
-							a: "Prices listed on Hoardify are direct rates from the media owners. For long-term campaigns (3+ months) or multi-node bookings, reach out to hello@hoardify.in for campaign discounts."
+							a: "Rates are direct from owners. For high-volume deployments or long-term multi-node campaigns, our intelligence team can negotiate bulk-buy optimization."
 						},
 						{
 							q: "How does verification work?",
-							a: "Every hoarding is verified by our field agents. We verify coordinates, check lighting systems (lit/non-lit/unipole), dimensions, and record visibility scores to prevent fraud."
+							a: "Every node is physically audited by field agents. We verify coordinates, visibility scores, and traffic profiles to ensure data integrity and prevent fraud."
 						},
 						{
-							q: "How can I list my hoarding as an owner?",
-							a: "Go to the profile page and sign up. You can manage your inventory and receive direct enquiry leads from advertisers through our dashboard."
+							q: "Can I list my own inventory?",
+							a: "Yes. Owners can integrate their inventory into the Hoardify ecosystem through the Agency Portal to receive direct high-intent leads."
 						}
 					].map((faq, idx) => (
-						<div key={idx} className="pb-6 border-b border-[#ebebeb]">
-							<h3 className="text-lg font-semibold text-[#222222] mb-2">{faq.q}</h3>
-							<p className="text-sm text-[#6a6a6a] leading-relaxed">{faq.a}</p>
+						<div key={idx} className="group flex flex-col gap-4">
+							<h3 className="text-lg font-bold text-[#111111] group-hover:text-brand transition-colors">{faq.q}</h3>
+							<p className="text-sm text-text-secondary leading-relaxed font-medium">{faq.a}</p>
 						</div>
 					))}
 				</div>

@@ -26,47 +26,47 @@ export default function TopBar() {
 	];
 
 	return (
-		<nav className="sticky top-0 z-50 w-full bg-white border-b border-[#ebebeb] h-20 flex items-center">
-			<div className="container mx-auto px-6 flex items-center justify-between">
+		<nav className="sticky top-0 z-[100] w-full bg-white/80 backdrop-blur-2xl border-b border-border-subtle h-20 flex items-center shadow-premium-sm">
+			<div className="container mx-auto px-8 flex items-center justify-between">
 				{/* Left: Logo */}
-				<div className="flex items-center gap-4">
+				<div className="flex items-center gap-6">
 					{showBack && (
-						<Link href={backHref} className="p-2 hover:bg-[#f7f7f7] rounded-full transition-colors">
-							<ChevronLeft size={20} className="text-[#222222]" />
+						<Link href={backHref} className="p-2.5 hover:bg-surface-sunken rounded-xl transition-all active:scale-90 text-[#111111]">
+							<ChevronLeft size={20} strokeWidth={2.5} />
 						</Link>
 					)}
 					
-					<Link href="/" className="flex items-center gap-2">
-<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#082390] font-black text-white italic">
-							<img src="/new-logo.png" alt="" className="h-full w-full object-contain" />
+					<Link href="/" className="flex items-center gap-3 group">
+						<div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand text-white shadow-premium-md group-hover:scale-110 transition-transform duration-500">
+							<img src="/new-logo.png" alt="" className="h-full w-full object-contain p-1.5" />
 						</div>
-<span className="text-xl font-bold tracking-tight text-[#082390] hidden sm:block">hoardify</span>
+						<span className="text-2xl font-black tracking-tighter text-[#111111] hidden sm:block">hoardify</span>
 					</Link>
 				</div>
 
 				{/* Middle: Search bar (simplified) */}
-				<div className="hidden md:flex flex-1 max-w-sm mx-8">
-					<Link href="/search" className="flex items-center w-full h-12 border border-[#dddddd] rounded-full px-4 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.18)] transition-shadow cursor-pointer">
-						<span className="text-sm font-medium text-[#222222] flex-1">Start your campaign...</span>
-						<div className="bg-[#082390] p-2 rounded-full text-white">
-							<Search size={16} />
+				<div className="hidden md:flex flex-1 max-w-sm mx-12">
+					<Link href="/search" className="flex items-center w-full h-12 bg-surface-sunken border border-border-subtle rounded-full px-5 hover:shadow-premium-md hover:border-brand/20 transition-all cursor-pointer group">
+						<span className="text-sm font-bold text-text-tertiary group-hover:text-text-primary transition-colors flex-1">Start your campaign...</span>
+						<div className="bg-[#111111] p-2 rounded-full text-white group-hover:bg-brand transition-colors">
+							<Search size={14} strokeWidth={3} />
 						</div>
 					</Link>
 				</div>
 
 				{/* Right: Nav items */}
 				<div className="flex items-center gap-4">
-					<div className="hidden md:flex items-center gap-1 mr-4">
+					<div className="hidden md:flex items-center gap-2 mr-4">
 						{navItems.map((item) => {
 							const isActive = pathname === item.href;
 							return (
 								<Link 
 									key={item.href} 
 									href={item.href}
-									className={`px-4 py-2 rounded-full text-sm font-medium transition-all active:scale-95 ${
+									className={`px-5 py-2.5 rounded-full text-sm font-bold tracking-tight transition-all active:scale-95 ${
 										isActive 
-											? "text-[#222222] font-semibold bg-[#f7f7f7]" 
-											: "text-[#6a6a6a] hover:bg-[#f7f7f7]"
+											? "text-[#111111] bg-surface-sunken" 
+											: "text-text-tertiary hover:text-[#111111] hover:bg-surface-sunken"
 									}`}
 								>
 									{item.name}
@@ -75,18 +75,18 @@ export default function TopBar() {
 						})}
 					</div>
 					
+					<div className="h-6 w-px bg-border-subtle mx-2 hidden md:block" />
+					
 					<ThemeToggle />
 					
 					{user ? (
 						<div className="flex items-center gap-4">
-							<Link href="/profile" className="flex items-center gap-2 p-1.5 border border-[#dddddd] rounded-full hover:shadow-[0_2px_4px_rgba(0,0,0,0.18)] transition-all active:scale-95">
-								<div className="text-[#6a6a6a] ml-1">
-									<UserIcon size={20} />
-								</div>
+							<Link href="/profile" className="flex items-center gap-3 p-1.5 pl-4 border border-border-strong rounded-full hover:shadow-premium-md hover:border-brand/20 transition-all active:scale-95 group">
+								<span className="text-xs font-bold text-[#111111] hidden lg:block">Intelligence Profile</span>
 								{user.profileImageUrl ? (
-									<Image src={user.profileImageUrl} alt="User" width={32} height={32} className="w-8 h-8 rounded-full object-cover" unoptimized />
+									<Image src={user.profileImageUrl} alt="User" width={32} height={32} className="w-8 h-8 rounded-full object-cover shadow-sm" unoptimized />
 								) : (
-									<div className="w-8 h-8 rounded-full bg-[#717171] flex items-center justify-center text-white text-xs font-bold">
+									<div className="w-8 h-8 rounded-full bg-[#111111] flex items-center justify-center text-white text-xs font-black">
 										{user.primaryEmail?.[0].toUpperCase()}
 									</div>
 								)}
@@ -95,7 +95,7 @@ export default function TopBar() {
 					) : (
 						<Link 
 							href={stackClientApp.urls.signIn}
-							className="px-6 py-2 rounded-full bg-[#082390] text-white font-bold text-sm hover:bg-[#1d4ed8] transition-all active:scale-95"
+							className="px-8 py-2.5 rounded-full bg-brand text-white font-bold text-sm hover:scale-105 active:scale-95 transition-all shadow-premium-md"
 						>
 							Log In
 						</Link>
