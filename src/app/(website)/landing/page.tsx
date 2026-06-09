@@ -5,6 +5,7 @@ import ValueProps from "@/components/landing/ValueProps";
 import ProcessWorkflow from "@/components/landing/ProcessWorkflow";
 import FAQSection from "@/components/landing/FAQSection";
 import CTASection from "@/components/landing/CTASection";
+import Link from "next/link";
 
 export default function LandingPage() {
 	return (
