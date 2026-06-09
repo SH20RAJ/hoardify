@@ -77,6 +77,7 @@ export async function updateHoarding(
 		location?: string;
 		status?: "For Rent" | "Booked" | "Maintenance";
 		imageUrl?: string;
+		images?: string[];
 		views?: string;
 		features?: string[];
 		lat?: string;
@@ -107,6 +108,7 @@ export async function createHoarding(data: {
 	agencyId?: number;
 	title: string;
 	imageUrl: string;
+	images?: string[];
 	price: number;
 	location: string;
 	lat: string;
@@ -124,6 +126,7 @@ export async function createHoarding(data: {
 		...data,
 		status: data.status || "For Rent",
 		features: data.features || [],
+		images: data.images || [],
 	});
 	revalidatePath("/admin/hoardings");
 	revalidatePath("/");

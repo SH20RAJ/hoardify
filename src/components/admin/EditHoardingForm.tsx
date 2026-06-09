@@ -6,6 +6,8 @@ import { updateHoarding } from "@/actions/hoardings";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+import { ImageUploader } from "@/components/ui/ImageUploader";
+
 interface HoardingData {
 	id: number;
 	agencyId: number | null;
@@ -14,6 +16,7 @@ interface HoardingData {
 	location: string;
 	status: string;
 	imageUrl: string;
+	images?: string[] | null;
 	views: string | null;
 	description?: string | null;
 	dimensions?: string | null;
@@ -44,6 +47,7 @@ export function EditHoardingForm({
 		location: hoarding.location || "",
 		status: (hoarding.status as "For Rent" | "Booked" | "Maintenance") || "For Rent",
 		imageUrl: hoarding.imageUrl || "",
+		images: hoarding.images || [],
 		description: hoarding.description || "",
 		dimensions: hoarding.dimensions || "",
 		category: hoarding.category || "",
@@ -53,8 +57,8 @@ export function EditHoardingForm({
 	const router = useRouter();
 
 	const handleSubmit = async () => {
-		if (!form.title || !form.location || !form.price) {
-			alert("Please fill in the required fields (Title, Location, Price)");
+		if (!form.title || !form.location || !form.price || !form.imageUrl) {
+			alert("Please fill in the required fields (Title, Location, Price, at least 1 Image)");
 			return;
 		}
 		setLoading(true);
@@ -215,11 +219,10 @@ export function EditHoardingForm({
 						</h3>
 						<div className="space-y-6">
 							<div>
-								<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Image URL</label>
-								<input
-									value={form.imageUrl}
-									onChange={e => setForm(p => ({ ...p, imageUrl: e.target.value }))}
-									className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
+								<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Images *</label>
+								<ImageUploader 
+									urls={[form.imageUrl, ...form.images].filter(Boolean)} 
+									onChange={(urls) => setForm(p => ({ ...p, imageUrl: urls[0] || "", images: urls.slice(1) }))} 
 								/>
 							</div>
 							<div>

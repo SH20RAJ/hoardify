@@ -6,6 +6,8 @@ import { createHoarding } from "@/actions/hoardings";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
+import { ImageUploader } from "@/components/ui/ImageUploader";
+
 interface Agency {
 	id: number;
 	name: string;
@@ -19,7 +21,8 @@ export function NewHoardingForm({ agencies }: { agencies: Agency[] }) {
 		price: 0,
 		location: "",
 		status: "For Rent" as "For Rent" | "Booked" | "Maintenance",
-		imageUrl: "https://images.unsplash.com/photo-1541535650810-10d26f5c2ab3?q=80&w=2076&auto=format&fit=crop",
+		imageUrl: "",
+		images: [] as string[],
 		lat: "23.3441",
 		lng: "85.3094",
 		description: "",
@@ -32,8 +35,8 @@ export function NewHoardingForm({ agencies }: { agencies: Agency[] }) {
 	const router = useRouter();
 
 	const handleSubmit = async () => {
-		if (!form.title || !form.location || !form.price) {
-			alert("Please fill in the required fields (Title, Location, Price)");
+		if (!form.title || !form.location || !form.price || !form.imageUrl) {
+			alert("Please fill in the required fields (Title, Location, Price, at least 1 Image)");
 			return;
 		}
 		setLoading(true);
@@ -50,6 +53,7 @@ export function NewHoardingForm({ agencies }: { agencies: Agency[] }) {
 			setLoading(false);
 		}
 	};
+
 
 	return (
 		<div className="max-w-4xl">
@@ -192,11 +196,10 @@ export function NewHoardingForm({ agencies }: { agencies: Agency[] }) {
 						</h3>
 						<div className="space-y-6">
 							<div>
-								<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Image URL</label>
-								<input
-									value={form.imageUrl}
-									onChange={e => setForm(p => ({ ...p, imageUrl: e.target.value }))}
-									className="w-full h-12 px-4 rounded-xl border border-[#dddddd] focus:border-[#222222] outline-none text-sm font-medium transition-colors"
+								<label className="block text-xs font-bold text-[#717171] uppercase tracking-wider mb-2">Images *</label>
+								<ImageUploader 
+									urls={[form.imageUrl, ...form.images].filter(Boolean)} 
+									onChange={(urls) => setForm(p => ({ ...p, imageUrl: urls[0] || "", images: urls.slice(1) }))} 
 								/>
 							</div>
 							<div>
