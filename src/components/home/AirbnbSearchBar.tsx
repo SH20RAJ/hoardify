@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Search, MapPin, Calendar, LayoutGrid, X, ArrowRight } from 'lucide-react';
+import { Search, MapPin, Calendar, LayoutGrid, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function AirbnbSearchBar() {
