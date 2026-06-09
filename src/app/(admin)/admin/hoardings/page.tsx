@@ -88,20 +88,7 @@ export default async function AdminHoardingsPage() {
 											<Link href={`/hoardings/${hoarding.id}`} target="_blank" className="p-2 rounded-lg bg-[#f7f7f7] text-[#717171] hover:text-[#222222] transition-colors" title="View">
 												<ExternalLink size={16} />
 											</Link>
-											<EditHoardingButton hoarding={{
-												id: hoarding.id,
-												title: hoarding.title,
-												price: hoarding.price,
-												location: hoarding.location,
-												status: hoarding.status,
-												imageUrl: hoarding.imageUrl,
-												views: hoarding.views,
-												description: hoarding.description,
-												dimensions: hoarding.dimensions,
-												category: hoarding.category,
-												lighting: hoarding.lighting,
-												trafficCount: hoarding.trafficCount,
-											}} />
+											<EditHoardingButton hoardingId={hoarding.id} />
 											<DeleteHoardingButton id={hoarding.id} title={hoarding.title} />
 										</div>
 									</td>

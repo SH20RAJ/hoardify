@@ -88,7 +88,9 @@ export default async function AgencyLayout({
 			<aside className="w-64 bg-white border-r border-[#ebebeb] flex flex-col shrink-0">
 				<div className="p-6 border-b border-[#ebebeb]">
 					<Link href="/" className="flex items-center gap-2">
-						<div className="h-8 w-8 bg-[#082390] rounded-lg flex items-center justify-center text-white font-bold italic">H</div>
+						<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#082390] font-black text-white italic">
+							<img src="/new-logo.png" alt="Hoardify" className="h-full w-full object-contain p-1" />
+						</div>
 						<span className="font-bold text-xl text-[#082390]">hoardify</span>
 					</Link>
 				</div>
