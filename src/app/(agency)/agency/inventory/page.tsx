@@ -1,26 +1,40 @@
+import { stackServerApp } from "@/stack/server";
 import { db } from "@/db";
-import { hoardings, agencies } from "@/db/schema";
-import { Plus, Search, ExternalLink, Building2 } from "lucide-react";
+import { hoardings, users } from "@/db/schema";
+import { eq, desc } from "drizzle-orm";
+import { Plus, Search, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { formatCurrency } from "@/lib/utils";
-import { EditHoardingButton, DeleteHoardingButton, CreateHoardingButton, MoveHoardingButton } from "@/components/admin/HoardingActions";
-import { desc } from "drizzle-orm";
+import { EditHoardingButton, DeleteHoardingButton } from "@/components/admin/HoardingActions";
 
-export default async function AdminHoardingsPage() {
-	const [allHoardings, allAgencies] = await Promise.all([
-		db.select().from(hoardings).orderBy(desc(hoardings.createdAt)),
-		db.select().from(agencies).orderBy(desc(agencies.name))
-	]);
+export default async function AgencyInventoryPage() {
+	const stackUser = await stackServerApp.getUser();
+	if (!stackUser) return null;
+
+	const dbUser = await db.query.users.findFirst({
+		where: eq(users.id, stackUser.id)
+	});
+
+	if (!dbUser || !dbUser.agencyId) return null;
+
+	const agencyId = dbUser.agencyId;
+	const allHoardings = await db.select().from(hoardings).where(eq(hoardings.agencyId, agencyId)).orderBy(desc(hoardings.createdAt));
 
 	return (
 		<div className="space-y-8">
 			<div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
 				<div>
-					<h2 className="text-2xl font-bold text-[#222222]">Inventory Management</h2>
+					<h2 className="text-2xl font-bold text-[#222222]">My Inventory</h2>
 					<p className="text-sm text-[#717171] mt-1">Total Placements: {allHoardings.length}</p>
 				</div>
-				<CreateHoardingButton />
+				<Link 
+					href="/admin/hoardings/new" // We can reuse admin for now, or create an agency specific one later
+					className="px-6 py-3 bg-[#222222] text-white rounded-xl text-sm font-bold hover:bg-black transition-colors flex items-center gap-2 shadow-sm"
+				>
+					<Plus size={18} />
+					<span>Add New Placement</span>
+				</Link>
 			</div>
 
 			<div className="bg-white rounded-2xl border border-[#ebebeb] shadow-sm overflow-hidden">
@@ -29,7 +43,7 @@ export default async function AdminHoardingsPage() {
 						<Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#b0b0b0]" size={16} />
 						<input 
 							type="text" 
-							placeholder="Search by title or location..." 
+							placeholder="Search your inventory..." 
 							className="w-full h-11 bg-[#f7f7f7] rounded-xl pl-10 pr-4 text-sm border border-[#ebebeb] focus:border-[#222222] outline-none transition-colors"
 						/>
 					</div>
@@ -41,7 +55,6 @@ export default async function AdminHoardingsPage() {
 							<tr className="bg-[#f7f7f7]">
 								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171]">Display</th>
 								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171]">Details</th>
-								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171]">Agency</th>
 								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171]">Pricing</th>
 								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171]">Status</th>
 								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171] text-right">Actions</th>
@@ -60,13 +73,6 @@ export default async function AdminHoardingsPage() {
 											<span className="font-semibold text-[#222222] line-clamp-1">{hoarding.title}</span>
 											<span className="text-xs text-[#717171] line-clamp-1 mt-0.5">{hoarding.location}</span>
 										</div>
-									</td>
-									<td className="px-6 py-4">
-										<MoveHoardingButton 
-											hoardingId={hoarding.id} 
-											currentAgencyId={hoarding.agencyId} 
-											agencies={allAgencies} 
-										/>
 									</td>
 									<td className="px-6 py-4">
 										<span className="font-bold text-[#222222]">{formatCurrency(hoarding.price)}</span>

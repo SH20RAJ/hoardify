@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Edit2, Trash2, X, Save, Loader2 } from "lucide-react";
+import { Edit2, Trash2, X, Save, Loader2, Building2 } from "lucide-react";
 import { updateHoarding, deleteHoarding } from "@/actions/hoardings";
+import { moveHoarding } from "@/actions/admin";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -256,6 +257,96 @@ export function DeleteHoardingButton({ id, title }: { id: number; title: string 
 						{loading ? <Loader2 size={16} className="animate-spin" /> : null}
 						{loading ? "Deleting..." : "Delete"}
 					</button>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+export function MoveHoardingButton({ 
+	hoardingId, 
+	currentAgencyId, 
+	agencies 
+}: { 
+	hoardingId: number; 
+	currentAgencyId: number | null; 
+	agencies: any[] 
+}) {
+	const [open, setOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const router = useRouter();
+
+	const handleMove = async (agencyId: number) => {
+		setLoading(true);
+		try {
+			await moveHoarding(hoardingId, agencyId);
+			setOpen(false);
+			router.refresh();
+		} catch {
+			alert("Failed to move hoarding");
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const currentAgency = agencies.find(a => a.id === currentAgencyId);
+
+	if (!open) {
+		return (
+			<button
+				onClick={() => setOpen(true)}
+				className="flex items-center gap-2 group"
+			>
+				<div className="flex items-center gap-2 text-xs text-[#717171] hover:text-[#222222] transition-colors">
+					<Building2 size={14} className="text-[#b0b0b0]" />
+					<span className="font-medium truncate max-w-[120px]">
+						{currentAgency ? currentAgency.name : "Direct/None"}
+					</span>
+				</div>
+			</button>
+		);
+	}
+
+	return (
+		<div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setOpen(false)}>
+			<div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 p-8 overflow-y-auto max-h-[80vh]" onClick={e => e.stopPropagation()}>
+				<div className="flex items-center justify-between mb-6">
+					<h3 className="text-lg font-bold text-[#222222]">Move to Agency</h3>
+					<button onClick={() => setOpen(false)} className="p-2 rounded-lg hover:bg-[#f7f7f7]">
+						<X size={18} />
+					</button>
+				</div>
+
+				<div className="space-y-3">
+					{agencies.map(agency => (
+						<button
+							key={agency.id}
+							onClick={() => handleMove(agency.id)}
+							disabled={loading || currentAgencyId === agency.id}
+							className={`w-full p-4 rounded-xl border transition-all text-left flex items-center justify-between ${
+								currentAgencyId === agency.id
+									? "bg-blue-50 border-blue-200"
+									: "border-[#dddddd] hover:border-[#222222] bg-white"
+							}`}
+						>
+							<div className="flex items-center gap-3">
+								<div className="h-10 w-10 rounded-lg bg-[#f7f7f7] flex items-center justify-center shrink-0">
+									{agency.logoUrl ? (
+										<img src={agency.logoUrl} alt="" className="h-full w-full object-contain p-1" />
+									) : (
+										<Building2 size={16} className="text-[#b0b0b0]" />
+									)}
+								</div>
+								<div className="min-w-0">
+									<p className="text-sm font-bold text-[#222222] truncate">{agency.name}</p>
+									<p className="text-xs text-[#717171] truncate">{agency.email}</p>
+								</div>
+							</div>
+							{currentAgencyId === agency.id && (
+								<span className="text-[10px] font-bold text-blue-500 uppercase tracking-widest">Current</span>
+							)}
+						</button>
+					))}
 				</div>
 			</div>
 		</div>

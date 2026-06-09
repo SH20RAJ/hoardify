@@ -7,12 +7,17 @@ export const users = pgTable("users", {
 	name: text("name"),
 	imageUrl: text("image_url"),
 	role: text("role", { enum: ["Admin", "Customer", "Owner"] }).default("Customer").notNull(),
+	agencyId: integer("agency_id").references(() => agencies.id),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export const usersRelations = relations(users, ({ many }) => ({
+export const usersRelations = relations(users, ({ one, many }) => ({
 	bookings: many(bookings),
+	agency: one(agencies, {
+		fields: [users.agencyId],
+		references: [agencies.id],
+	}),
 }));
 
 export const agencies = pgTable("agencies", {

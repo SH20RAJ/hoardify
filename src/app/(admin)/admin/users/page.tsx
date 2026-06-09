@@ -1,10 +1,14 @@
 import { getUsers } from "@/actions/admin";
-import { User, Shield, ShieldCheck, Mail, Calendar, Search } from "lucide-react";
+import { getAgencies } from "@/actions/agencies";
+import { User, Shield, ShieldCheck, Mail, Calendar, Search, Building2 } from "lucide-react";
 import Image from "next/image";
-import { ManageRoleButton } from "@/components/admin/UserActions";
+import { ManageRoleButton, ManageAgencyButton } from "@/components/admin/UserActions";
 
 export default async function AdminUsersPage() {
-	const users = await getUsers();
+	const [users, agencies] = await Promise.all([
+		getUsers(),
+		getAgencies()
+	]);
 
 	return (
 		<div className="space-y-8">
@@ -31,6 +35,7 @@ export default async function AdminUsersPage() {
 							<tr className="bg-[#f7f7f7]">
 								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171]">Member</th>
 								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171]">Role</th>
+								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171]">Agency Association</th>
 								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171]">Joined</th>
 								<th className="px-6 py-3.5 text-[10px] font-bold uppercase tracking-widest text-[#717171] text-right">Actions</th>
 							</tr>
@@ -68,6 +73,17 @@ export default async function AdminUsersPage() {
 											{user.role}
 										</div>
 									</td>
+									<td className="px-6 py-5">
+										{user.role === 'Owner' ? (
+											<ManageAgencyButton 
+												userId={user.id} 
+												currentAgencyId={user.agencyId} 
+												agencies={agencies} 
+											/>
+										) : (
+											<span className="text-xs text-[#b0b0b0] italic">Not an owner</span>
+										)}
+									</td>
 									<td className="px-6 py-5 text-xs font-medium text-[#717171]">
 										<div className="flex items-center gap-2">
 											<Calendar size={14} className="text-[#b0b0b0]" />
@@ -81,7 +97,7 @@ export default async function AdminUsersPage() {
 							))}
 							{users.length === 0 && (
 								<tr>
-									<td colSpan={4} className="px-6 py-20 text-center">
+									<td colSpan={5} className="px-6 py-20 text-center">
 										<div className="flex flex-col items-center gap-3 text-[#b0b0b0]">
 											<User size={28} />
 											<p className="text-sm font-medium">No users found</p>

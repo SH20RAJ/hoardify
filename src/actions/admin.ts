@@ -30,8 +30,19 @@ export async function getEnquiries() {
 }
 
 export async function updateUserRole(userId: string, role: "Admin" | "Customer" | "Owner") {
-	await db.update(users).set({ role }).where(eq(users.id, userId));
+	await db.update(users).set({ 
+		role,
+		// If role is changed away from Owner, we might want to clear agencyId, 
+		// but let's keep it for now in case it's a mistake.
+	}).where(eq(users.id, userId));
 	revalidatePath("/admin/users");
+	return { success: true };
+}
+
+export async function updateUserAgency(userId: string, agencyId: number | null) {
+	await db.update(users).set({ agencyId }).where(eq(users.id, userId));
+	revalidatePath("/admin/users");
+	revalidatePath("/admin/agencies");
 	return { success: true };
 }
 
@@ -40,6 +51,13 @@ export async function updateEnquiryStatus(enquiryId: number, status: "New" | "Co
 	revalidatePath("/admin/enquiries");
 	revalidatePath(`/admin/enquiries/${enquiryId}`);
 	revalidatePath("/inbox");
+	return { success: true };
+}
+
+export async function moveHoarding(hoardingId: number, agencyId: number) {
+	await db.update(hoardings).set({ agencyId }).where(eq(hoardings.id, hoardingId));
+	revalidatePath("/admin/hoardings");
+	revalidatePath("/admin/agencies");
 	return { success: true };
 }
 

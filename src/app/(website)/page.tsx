@@ -1,4 +1,4 @@
-import { Monitor, Smartphone, Video, Grid, Settings2 } from "lucide-react";
+import { Monitor, Smartphone, Video, Grid, Settings2, ShieldCheck, BadgePercent, BarChart3 } from "lucide-react";
 import HoardingCard from "@/components/hoardings/HoardingCard";
 import HorizontalScrollList from "@/components/hoardings/HorizontalScrollList";
 import Link from "next/link";
@@ -79,31 +79,41 @@ export default async function ExplorePage() {
 			</section>
 
 			{/* Why Brands Use Hoardify */}
-			<section className="mt-24 mb-24 px-6 max-w-7xl mx-auto w-full">
-				<div className="text-center mb-16">
-					<h2 className="text-3xl font-bold text-[#222222]">Why Brands Use Hoardify</h2>
-					<p className="text-sm text-[#6a6a6a] mt-2">The modern outdoor advertising marketplace built for speed, analytics, and transparency</p>
+			<section className="mt-32 mb-32 px-6 max-w-7xl mx-auto w-full">
+				<div className="text-center mb-20">
+					<h2 className="text-4xl font-extrabold text-[#222222] tracking-tight">Why Brands Use Hoardify</h2>
+					<p className="text-base text-[#6a6a6a] mt-4 max-w-2xl mx-auto leading-relaxed">
+						The modern outdoor advertising marketplace built for speed, analytics, and 100% transparency.
+					</p>
 				</div>
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-					<div className="p-8 rounded-2xl border border-[#ebebeb] bg-[#f7f7f7] hover:shadow-md transition-shadow">
-						<div className="text-[#082390] text-3xl mb-4">📍</div>
-						<h3 className="text-lg font-bold text-[#222222] mb-2">100% Verified Locations</h3>
-						<p className="text-sm text-[#6a6a6a] leading-relaxed">
-							Every single listing on Hoardify is physically inspected and verified for coordinate accuracy, visibility angles, and local traffic profiles.
+				<div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+					<div className="group p-10 rounded-[2rem] border border-[#ebebeb] bg-white hover:border-[#082390]/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-2">
+						<div className="w-14 h-14 rounded-2xl bg-[#f7f7f7] flex items-center justify-center text-[#082390] mb-8 group-hover:scale-110 group-hover:bg-[#082390] group-hover:text-white transition-all duration-500">
+							<ShieldCheck size={28} strokeWidth={1.5} />
+						</div>
+						<h3 className="text-xl font-bold text-[#222222] mb-4">100% Verified Locations</h3>
+						<p className="text-[#6a6a6a] leading-relaxed">
+							Every single listing is physically inspected and verified for coordinate accuracy, visibility angles, and local traffic profiles.
 						</p>
 					</div>
-					<div className="p-8 rounded-2xl border border-[#ebebeb] bg-[#f7f7f7] hover:shadow-md transition-shadow">
-						<div className="text-[#082390] text-3xl mb-4">💳</div>
-						<h3 className="text-lg font-bold text-[#222222] mb-2">Transparent Pricing</h3>
-						<p className="text-sm text-[#6a6a6a] leading-relaxed">
+
+					<div className="group p-10 rounded-[2rem] border border-[#ebebeb] bg-white hover:border-[#082390]/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-2">
+						<div className="w-14 h-14 rounded-2xl bg-[#f7f7f7] flex items-center justify-center text-[#082390] mb-8 group-hover:scale-110 group-hover:bg-[#082390] group-hover:text-white transition-all duration-500">
+							<BadgePercent size={28} strokeWidth={1.5} />
+						</div>
+						<h3 className="text-xl font-bold text-[#222222] mb-4">Transparent Pricing</h3>
+						<p className="text-[#6a6a6a] leading-relaxed">
 							No broker markups, no hidden commissions. View direct owner rental rates and make informed planning decisions with upfront details.
 						</p>
 					</div>
-					<div className="p-8 rounded-2xl border border-[#ebebeb] bg-[#f7f7f7] hover:shadow-md transition-shadow">
-						<div className="text-[#082390] text-3xl mb-4">📊</div>
-						<h3 className="text-lg font-bold text-[#222222] mb-2">Impact Analytics</h3>
-						<p className="text-sm text-[#6a6a6a] leading-relaxed">
-							Estimate monthly impressions, view audience demographics, and track coverage metrics across Ranchi to optimize your campaign budget.
+
+					<div className="group p-10 rounded-[2rem] border border-[#ebebeb] bg-white hover:border-[#082390]/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-2">
+						<div className="w-14 h-14 rounded-2xl bg-[#f7f7f7] flex items-center justify-center text-[#082390] mb-8 group-hover:scale-110 group-hover:bg-[#082390] group-hover:text-white transition-all duration-500">
+							<BarChart3 size={28} strokeWidth={1.5} />
+						</div>
+						<h3 className="text-xl font-bold text-[#222222] mb-4">Impact Analytics</h3>
+						<p className="text-[#6a6a6a] leading-relaxed">
+							Estimate monthly impressions, view audience demographics, and track coverage metrics across Ranchi to optimize your budget.
 						</p>
 					</div>
 				</div>

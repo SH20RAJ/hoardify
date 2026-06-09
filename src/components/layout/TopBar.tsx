@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { ChevronLeft, Search, Bookmark, Compass, Inbox, User as UserIcon } from "lucide-react";
 import { useNavbar } from "./NavbarContext";
 import { stackClientApp } from "@/stack/client";
+import ThemeToggle from "./ThemeToggle";
 
 export default function TopBar() {
 	const pathname = usePathname();
@@ -54,7 +55,7 @@ export default function TopBar() {
 				</div>
 
 				{/* Right: Nav items */}
-				<div className="flex items-center gap-2">
+				<div className="flex items-center gap-4">
 					<div className="hidden md:flex items-center gap-1 mr-4">
 						{navItems.map((item) => {
 							const isActive = pathname === item.href;
@@ -62,9 +63,9 @@ export default function TopBar() {
 								<Link 
 									key={item.href} 
 									href={item.href}
-									className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+									className={`px-4 py-2 rounded-full text-sm font-medium transition-all active:scale-95 ${
 										isActive 
-											? "text-[#222222] font-semibold" 
+											? "text-[#222222] font-semibold bg-[#f7f7f7]" 
 											: "text-[#6a6a6a] hover:bg-[#f7f7f7]"
 									}`}
 								>
@@ -74,9 +75,11 @@ export default function TopBar() {
 						})}
 					</div>
 					
+					<ThemeToggle />
+					
 					{user ? (
 						<div className="flex items-center gap-4">
-							<Link href="/profile" className="flex items-center gap-2 p-2 border border-[#dddddd] rounded-full hover:shadow-[0_2px_4px_rgba(0,0,0,0.18)] transition-shadow">
+							<Link href="/profile" className="flex items-center gap-2 p-1.5 border border-[#dddddd] rounded-full hover:shadow-[0_2px_4px_rgba(0,0,0,0.18)] transition-all active:scale-95">
 								<div className="text-[#6a6a6a] ml-1">
 									<UserIcon size={20} />
 								</div>
@@ -92,7 +95,7 @@ export default function TopBar() {
 					) : (
 						<Link 
 							href={stackClientApp.urls.signIn}
-							className="px-6 py-2 rounded-full bg-[#082390] text-white font-bold text-sm hover:bg-[#1d4ed8] transition-colors"
+							className="px-6 py-2 rounded-full bg-[#082390] text-white font-bold text-sm hover:bg-[#1d4ed8] transition-all active:scale-95"
 						>
 							Log In
 						</Link>

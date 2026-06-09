@@ -61,14 +61,14 @@ export default function HoardingCard({
 
 	if (variant === "compact") {
 		return (
-			<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-60 group">
+			<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-60 group active:scale-95 transition-transform duration-200">
 				<div className="flex flex-col gap-3">
-					<div className="relative aspect-square w-full overflow-hidden rounded-xl border border-[#ebebeb]">
+					<div className="relative aspect-square w-full overflow-hidden rounded-xl border border-[#ebebeb] group-hover:shadow-lg transition-all duration-300">
 						<Image
 							src={getImgSrc(currentIndex)}
 							alt={title}
 							fill
-							className="object-cover"
+							className="object-cover group-hover:scale-110 transition-transform duration-700"
 							sizes="240px"
 							onError={() => handleImageError(currentIndex)}
 						/>
@@ -108,7 +108,7 @@ export default function HoardingCard({
 									e.stopPropagation();
 									window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`, '_blank');
 								}}
-								className="mt-2 w-full py-1.5 rounded-lg border border-[#ebebeb] text-[10px] font-bold uppercase tracking-widest text-[#222222] hover:bg-[#f7f7f7] transition-colors"
+								className="mt-2 w-full py-1.5 rounded-lg border border-[#ebebeb] text-[10px] font-bold uppercase tracking-widest text-[#222222] hover:bg-[#222222] hover:text-white transition-all active:scale-95"
 							>
 								See in 3D
 							</button>
@@ -121,14 +121,14 @@ export default function HoardingCard({
 
 	if (variant === "banner") {
 		return (
-			<Link href={`/hoardings/${id}`} className="block w-full group">
+			<Link href={`/hoardings/${id}`} className="block w-full group active:scale-[0.98] transition-all duration-200">
 				<div className="flex flex-col gap-4">
-					<div className="relative aspect-[21/9] w-full overflow-hidden rounded-2xl border border-[#ebebeb] shadow-sm group-hover:shadow-md transition-shadow">
+					<div className="relative aspect-[21/9] w-full overflow-hidden rounded-2xl border border-[#ebebeb] shadow-sm group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-300">
 						<Image
 							src={getImgSrc(currentIndex)}
 							alt={title}
 							fill
-							className="object-cover"
+							className="object-cover group-hover:scale-105 transition-transform duration-700"
 							priority
 							sizes="100vw"
 							onError={() => handleImageError(currentIndex)}
@@ -169,7 +169,7 @@ export default function HoardingCard({
 									e.stopPropagation();
 									window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`, '_blank');
 								}}
-								className="mt-4 w-full py-2.5 rounded-xl border border-[#ebebeb] text-xs font-bold uppercase tracking-widest text-[#222222] hover:bg-[#f7f7f7] transition-colors"
+								className="mt-4 w-full py-2.5 rounded-xl border border-[#ebebeb] text-xs font-bold uppercase tracking-widest text-[#222222] hover:bg-[#222222] hover:text-white transition-all active:scale-95"
 							>
 								View Immersive 3D Experience
 							</button>
@@ -182,14 +182,14 @@ export default function HoardingCard({
 
 	// large variant (default)
 	return (
-		<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-[300px] group">
+		<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-[300px] group active:scale-[0.97] transition-all duration-200">
 			<div className="flex flex-col gap-4">
-				<div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-[#ebebeb] shadow-sm group-hover:shadow-md transition-shadow">
+				<div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-[#ebebeb] shadow-sm group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-300">
 					<Image
 						src={getImgSrc(currentIndex)}
 						alt={title}
 						fill
-						className="object-cover"
+						className="object-cover group-hover:scale-110 transition-transform duration-700"
 						onError={() => handleImageError(currentIndex)}
 						unoptimized
 					/>
@@ -232,7 +232,7 @@ export default function HoardingCard({
 								e.stopPropagation();
 								window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`, '_blank');
 							}}
-							className="mt-4 w-full py-2.5 rounded-xl border border-[#ebebeb] text-xs font-bold uppercase tracking-widest text-[#222222] hover:bg-[#f7f7f7] transition-colors"
+							className="mt-4 w-full py-2.5 rounded-xl border border-[#ebebeb] text-xs font-bold uppercase tracking-widest text-[#222222] hover:bg-[#222222] hover:text-white transition-all active:scale-95"
 						>
 							See in 3D
 						</button>

@@ -1,8 +1,10 @@
 import { getAgencyById } from "@/actions/agencies";
 import { getHoardings } from "@/actions/hoardings";
+import { getUsers } from "@/actions/admin";
 import { notFound } from "next/navigation";
-import { Building2, MapPin, Mail, Phone, ArrowLeft, ExternalLink } from "lucide-react";
+import { Building2, MapPin, Mail, Phone, ArrowLeft, ExternalLink, Users } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import HoardingCard from "@/components/hoardings/HoardingCard";
 
 export default async function AgencyDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -11,12 +13,15 @@ export default async function AgencyDetailPage({ params }: { params: Promise<{ i
 	
 	if (isNaN(agencyId)) notFound();
 
-	const [agency, hoardings] = await Promise.all([
+	const [agency, hoardings, allUsers] = await Promise.all([
 		getAgencyById(agencyId),
-		getHoardings({ agencyId })
+		getHoardings({ agencyId }),
+		getUsers()
 	]);
 
 	if (!agency) notFound();
+
+	const agencyUsers = allUsers.filter(u => u.agencyId === agencyId);
 
 	return (
 		<div className="space-y-8">
@@ -82,6 +87,40 @@ export default async function AgencyDetailPage({ params }: { params: Promise<{ i
 								<span className="text-[10px] font-bold text-[#717171] uppercase tracking-wider">Total Inventory</span>
 								<span className="text-sm text-[#222222] font-semibold">{hoardings.length} Placements</span>
 							</div>
+						</div>
+					</div>
+
+					{/* Agency Owners Section */}
+					<div className="mt-8 pt-8 border-t border-[#f7f7f7]">
+						<div className="flex items-center justify-between mb-4">
+							<h3 className="text-sm font-bold text-[#222222] flex items-center gap-2">
+								<Users size={16} />
+								Agency Owners
+							</h3>
+							<Link href="/admin/users" className="text-[10px] font-bold text-[#082390] uppercase hover:underline">Manage</Link>
+						</div>
+						<div className="space-y-3">
+							{agencyUsers.length > 0 ? (
+								agencyUsers.map(user => (
+									<div key={user.id} className="flex items-center gap-3 p-2 rounded-xl hover:bg-[#fafafa] transition-colors border border-transparent hover:border-[#ebebeb]">
+										<div className="h-8 w-8 rounded-full bg-[#f7f7f7] border border-[#ebebeb] overflow-hidden relative shrink-0">
+											{user.imageUrl ? (
+												<Image src={user.imageUrl} alt="" fill className="object-cover" unoptimized />
+											) : (
+												<div className="w-full h-full flex items-center justify-center text-[10px] font-bold text-[#b0b0b0]">
+													{(user.name || user.email)[0].toUpperCase()}
+												</div>
+											)}
+										</div>
+										<div className="min-w-0">
+											<p className="text-xs font-semibold text-[#222222] truncate">{user.name || "Anonymous"}</p>
+											<p className="text-[10px] text-[#717171] truncate">{user.email}</p>
+										</div>
+									</div>
+								))
+							) : (
+								<p className="text-[10px] text-[#b0b0b0] italic py-2">No users associated with this agency</p>
+							)}
 						</div>
 					</div>
 				</div>

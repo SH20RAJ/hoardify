@@ -19,9 +19,9 @@ export default function AirbnbSearchBar() {
 
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-8">
-      <div className="flex items-center bg-white rounded-full border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 p-2 pl-4">
+      <div className="flex items-center bg-white rounded-full border border-gray-200 shadow-[0_3px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.12)] transition-all duration-300 p-2 pl-4">
         {/* Location */}
-        <div className="flex-1 flex flex-col items-start px-4 py-2 hover:bg-gray-100 rounded-full transition-colors group relative">
+        <div className="flex-1 flex flex-col items-start px-4 py-2 hover:bg-gray-100/80 rounded-full transition-all group relative cursor-pointer active:bg-gray-200/50">
           <label className="text-[10px] font-black text-gray-800 uppercase tracking-wider">Location</label>
           <input 
             type="text"
@@ -43,7 +43,7 @@ export default function AirbnbSearchBar() {
         <div className="h-8 w-px bg-gray-200" />
         
         {/* Dates - Simplified for now as it's a display element for the search bar */}
-        <button className="flex-1 flex flex-col items-start px-6 py-2 hover:bg-gray-100 rounded-full transition-colors text-left">
+        <button className="flex-1 flex flex-col items-start px-6 py-2 hover:bg-gray-100/80 rounded-full transition-all text-left active:bg-gray-200/50">
           <span className="text-[10px] font-black text-gray-800 uppercase tracking-wider">Dates</span>
           <span className="text-sm text-gray-500 font-medium">Select dates</span>
         </button>
@@ -51,7 +51,7 @@ export default function AirbnbSearchBar() {
         <div className="h-8 w-px bg-gray-200" />
         
         {/* Category Selection */}
-        <div className="flex-1 flex flex-col items-start px-4 py-2 hover:bg-gray-100 rounded-full transition-colors group relative">
+        <div className="flex-1 flex flex-col items-start px-4 py-2 hover:bg-gray-100/80 rounded-full transition-all group relative cursor-pointer active:bg-gray-200/50">
           <label className="text-[10px] font-black text-gray-800 uppercase tracking-wider">Category</label>
           <select 
             value={category}
@@ -70,7 +70,7 @@ export default function AirbnbSearchBar() {
         {/* Search Button */}
         <button 
           onClick={handleSearch}
-          className="bg-[#082390] p-4 rounded-full text-white hover:bg-[#1d4ed8] transition-colors ml-2 shadow-sm active:scale-95"
+          className="bg-[#082390] p-4 rounded-full text-white hover:bg-[#1d4ed8] transition-all ml-2 shadow-sm active:scale-90 hover:shadow-lg"
         >
           <Search size={20} strokeWidth={3} />
         </button>
