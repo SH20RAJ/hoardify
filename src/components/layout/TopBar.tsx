@@ -36,10 +36,10 @@ export default function TopBar() {
 					)}
 					
 					<Link href="/" className="flex items-center gap-2">
-						<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#082390] font-black text-white italic">
-							H
+<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#082390] font-black text-white italic">
+							<img src="/new-logo.png" alt="" className="h-full w-full object-contain" />
 						</div>
-						<span className="text-xl font-bold tracking-tight text-[#082390] hidden sm:block">hoardify</span>
+<span className="text-xl font-bold tracking-tight text-[#082390] hidden sm:block">hoardify</span>
 					</Link>
 				</div>
 
