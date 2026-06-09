@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useCallback } from "react";
 import { formatCurrency } from "@/lib/utils";
-import { MapPin, ChevronLeft, ChevronRight } from "lucide-react";
+import { MapPin, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 export type HoardingVariant = "large" | "compact" | "banner";
 
