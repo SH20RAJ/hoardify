@@ -19,7 +19,7 @@ export default function CTASection() {
 					<div className="flex flex-col sm:flex-row gap-4 justify-center">
 						<Link 
 							href="/search" 
-							className="px-8 py-4 rounded-lg bg-[#ff385c] text-white font-bold text-lg flex items-center justify-center gap-2 transition-all hover:bg-[#e00b41]"
+							className="px-8 py-4 rounded-lg bg-[#082390] text-white font-bold text-lg flex items-center justify-center gap-2 transition-all hover:bg-[#1d4ed8]"
 						>
 							Get Started <ArrowRight size={20} />
 						</Link>

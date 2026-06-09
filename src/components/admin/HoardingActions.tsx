@@ -223,7 +223,7 @@ export function DeleteHoardingButton({ id, title }: { id: number; title: string 
 		return (
 			<button
 				onClick={() => setConfirming(true)}
-				className="p-2 rounded-lg bg-red-50 text-red-400 hover:text-red-600 transition-colors"
+				className="p-2 rounded-lg bg-blue-50 text-blue-500 hover:text-blue-700 transition-colors"
 				title="Delete"
 			>
 				<Trash2 size={16} />
@@ -234,8 +234,8 @@ export function DeleteHoardingButton({ id, title }: { id: number; title: string 
 	return (
 		<div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setConfirming(false)}>
 			<div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 p-8 text-center" onClick={e => e.stopPropagation()}>
-				<div className="h-12 w-12 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4">
-					<Trash2 size={20} className="text-red-500" />
+				<div className="h-12 w-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto mb-4">
+					<Trash2 size={20} className="text-blue-600" />
 				</div>
 				<h3 className="text-lg font-bold text-[#222222] mb-2">Delete Placement</h3>
 				<p className="text-sm text-[#717171] mb-6">
@@ -251,7 +251,7 @@ export function DeleteHoardingButton({ id, title }: { id: number; title: string 
 					<button
 						onClick={handleDelete}
 						disabled={loading}
-						className="flex-1 h-11 rounded-xl bg-red-500 text-white text-sm font-bold hover:bg-red-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+						className="flex-1 h-11 rounded-xl bg-blue-500 text-white text-sm font-bold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
 					>
 						{loading ? <Loader2 size={16} className="animate-spin" /> : null}
 						{loading ? "Deleting..." : "Delete"}

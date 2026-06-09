@@ -8,7 +8,7 @@ export default function IntelligenceSection() {
 					<div>
 						<h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#222222] mb-6">
 							Data-driven <br />
-							<span className="text-[#ff385c]">OOH intelligence.</span>
+							<span className="text-[#082390]">OOH intelligence.</span>
 						</h2>
 						<p className="text-lg text-[#6a6a6a] mb-12 leading-relaxed">
 							We are building the intelligence layer for the physical world. Our platform uses advanced traffic signals and device density estimates to provide real-world campaign analytics.
@@ -37,7 +37,7 @@ export default function IntelligenceSection() {
 							<div className="flex items-center justify-between">
 								<div className="h-2 w-24 bg-[#dddddd] rounded-full" />
 								<div className="flex gap-2">
-									<div className="h-6 w-6 rounded-md bg-[#ff385c]/10 border border-[#ff385c]/20" />
+									<div className="h-6 w-6 rounded-md bg-[#082390]/10 border border-[#082390]/20" />
 									<div className="h-6 w-6 rounded-md bg-[#dddddd]" />
 								</div>
 							</div>
@@ -51,7 +51,7 @@ export default function IntelligenceSection() {
 							<div className="p-6 rounded-xl bg-white border border-[#ebebeb] shadow-sm">
 								<div className="flex items-center justify-between mb-2">
 									<span className="text-[10px] font-bold uppercase text-[#717171] tracking-wider">Traffic Prediction</span>
-									<TrendingUp size={14} className="text-[#ff385c]" />
+									<TrendingUp size={14} className="text-[#082390]" />
 								</div>
 								<div className="text-2xl font-bold text-[#222222]">84,500 <span className="text-xs text-[#717171] font-normal ml-2">Vehicles / Day</span></div>
 							</div>

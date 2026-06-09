@@ -27,7 +27,7 @@ export default function SignOutButton() {
 		<button
 			onClick={handleSignOut}
 			disabled={loading}
-			className="flex items-center gap-3 w-full py-4 text-left text-red-500 hover:text-red-600 transition-colors"
+			className="flex items-center gap-3 w-full py-4 text-left text-blue-600 hover:text-blue-700 transition-colors"
 		>
 			{loading ? <Loader2 size={20} className="animate-spin" /> : <LogOut size={20} />}
 			<span className="text-base font-medium">{loading ? "Signing out..." : "Log out"}</span>

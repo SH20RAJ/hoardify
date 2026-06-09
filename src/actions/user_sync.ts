@@ -19,8 +19,12 @@ export async function syncUserToDb(stackUser: {
 	const existing = await db.select().from(users).where(eq(users.id, stackUser.id)).limit(1);
 	
 	if (existing.length === 0) {
-		// Determine role: shaswatraj3@gmail.com gets Admin by default
-		const isDefaultAdmin = email.toLowerCase() === "shaswatraj3@gmail.com";
+		// Determine role: default admin emails get Admin by default
+		const adminEmails = [
+			"shaswatraj3@gmail.com",
+			"subhamgiri033@gmail.com",
+		];
+		const isDefaultAdmin = adminEmails.includes(email.toLowerCase());
 		
 		await db.insert(users).values({
 			id: stackUser.id,

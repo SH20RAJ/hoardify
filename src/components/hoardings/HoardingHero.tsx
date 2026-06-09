@@ -16,7 +16,7 @@ export default function HoardingHero() {
 					<div className="flex flex-col sm:flex-row gap-4 mb-8">
 						<Link 
 							href="/search" 
-							className="px-8 py-3.5 rounded-xl bg-[#ff385c] text-white font-bold text-base flex items-center justify-center gap-2 transition-all hover:bg-[#e00b41] hover:shadow-lg hover:shadow-red-100 hover:-translate-y-0.5 duration-200"
+							className="px-8 py-3.5 rounded-xl bg-[#082390] text-white font-bold text-base flex items-center justify-center gap-2 transition-all hover:bg-[#1d4ed8] hover:shadow-lg hover:shadow-red-100 hover:-translate-y-0.5 duration-200"
 						>
 							Explore Ad Spaces <ArrowRight size={18} />
 						</Link>

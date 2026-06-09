@@ -92,7 +92,7 @@ export default async function AgencyDetailPage({ params }: { params: Promise<{ i
 						<h3 className="text-lg font-bold text-[#222222]">Agency Inventory</h3>
 						<Link 
 							href="/admin/hoardings/new"
-							className="text-sm font-bold text-[#ff385c] hover:underline"
+							className="text-sm font-bold text-[#082390] hover:underline"
 						>
 							+ Add for this agency
 						</Link>

@@ -27,7 +27,7 @@ export default function ChannelCard({
 			}`}
 		>
 			<div className={`mb-3 transition-colors ${
-				active ? "text-[#ff385c]" : "text-[#717171]"
+				active ? "text-[#082390]" : "text-[#717171]"
 			}`}>
 				{icon}
 			</div>

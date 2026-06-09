@@ -40,8 +40,8 @@ export default async function AdminLayout({
 		return (
 			<div className="flex items-center justify-center min-h-screen bg-[#f7f7f7] px-6">
 				<div className="max-w-md w-full text-center">
-					<div className="h-16 w-16 mx-auto rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center mb-6">
-						<ShieldAlert size={32} className="text-red-500" />
+					<div className="h-16 w-16 mx-auto rounded-2xl bg-blue-50 border border-red-100 flex items-center justify-center mb-6">
+						<ShieldAlert size={32} className="text-blue-600" />
 					</div>
 					<h1 className="text-2xl font-bold text-[#222222] mb-2">Access Denied</h1>
 					<p className="text-sm text-[#717171] mb-2">
@@ -75,13 +75,13 @@ export default async function AdminLayout({
 					<div className="flex items-center gap-4">
 						<div className="flex flex-col items-end">
 							<span className="text-xs font-semibold text-[#222222]">{user.displayName || user.primaryEmail?.split('@')[0] || "Admin"}</span>
-							<span className="text-[10px] text-[#ff385c] font-bold uppercase tracking-wider">Admin</span>
+							<span className="text-[10px] text-[#082390] font-bold uppercase tracking-wider">Admin</span>
 						</div>
 						<div className="h-8 w-8 rounded-full bg-[#f7f7f7] border border-[#dddddd] overflow-hidden">
 							{user.profileImageUrl ? (
 								<Image src={user.profileImageUrl} alt="Admin" width={32} height={32} className="w-full h-full object-cover" unoptimized />
 							) : (
-								<div className="w-full h-full flex items-center justify-center text-[#ff385c] font-bold text-xs">
+								<div className="w-full h-full flex items-center justify-center text-[#082390] font-bold text-xs">
 									{user.primaryEmail?.[0].toUpperCase() || "A"}
 								</div>
 							)}

@@ -95,7 +95,7 @@ export default function AdminChatClient({ enquiry, adminName }: Props) {
 									<Mail size={12} /> {enquiry.email}
 								</div>
 								<div className="flex items-center gap-1.5 text-xs text-[#717171] mt-0.5">
-									<Phone size={12} className="text-[#ff385c]" /> {enquiry.phone}
+									<Phone size={12} className="text-[#082390]" /> {enquiry.phone}
 								</div>
 							</div>
 						</div>
@@ -132,7 +132,7 @@ export default function AdminChatClient({ enquiry, adminName }: Props) {
 								<span className="truncate">{enquiry.hoarding.location}</span>
 							</div>
 							<div className="mt-4 flex items-center justify-between">
-								<span className="text-xs font-bold text-[#ff385c]">{formatCurrency(enquiry.hoarding.price)}/mo</span>
+								<span className="text-xs font-bold text-[#082390]">{formatCurrency(enquiry.hoarding.price)}/mo</span>
 								<div className="flex items-center gap-1 text-[10px] text-[#b0b0b0]">
 									<Calendar size={10} />
 									<span>{new Date(enquiry.createdAt).toLocaleDateString()}</span>
@@ -159,7 +159,7 @@ export default function AdminChatClient({ enquiry, adminName }: Props) {
 					{/* First message from lead */}
 					<div className="flex justify-start">
 						<div className="max-w-[80%] px-4 py-3 rounded-2xl bg-white border border-[#ebebeb] rounded-bl-md shadow-sm">
-							<p className="text-xs font-bold text-[#ff385c] mb-1">{enquiry.name}</p>
+							<p className="text-xs font-bold text-[#082390] mb-1">{enquiry.name}</p>
 							<p className="text-sm text-[#222222] leading-relaxed">{enquiry.message}</p>
 							<p className="text-[10px] text-[#b0b0b0] mt-2">
 								{new Date(enquiry.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
@@ -181,7 +181,7 @@ export default function AdminChatClient({ enquiry, adminName }: Props) {
 									</div>
 								)}
 								{msg.senderRole === "customer" && (
-									<p className="text-xs font-bold text-[#ff385c] mb-1">{msg.senderName}</p>
+									<p className="text-xs font-bold text-[#082390] mb-1">{msg.senderName}</p>
 								)}
 								<p className="text-sm leading-relaxed">{msg.content}</p>
 								<p className={`text-[10px] mt-2 ${msg.senderRole === "admin" ? "text-white/50" : "text-[#b0b0b0]"}`}>

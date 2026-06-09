@@ -36,10 +36,10 @@ export default function TopBar() {
 					)}
 					
 					<Link href="/" className="flex items-center gap-2">
-						<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#ff385c] font-black text-white italic">
+						<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#082390] font-black text-white italic">
 							H
 						</div>
-						<span className="text-xl font-bold tracking-tight text-[#ff385c] hidden sm:block">hoardify</span>
+						<span className="text-xl font-bold tracking-tight text-[#082390] hidden sm:block">hoardify</span>
 					</Link>
 				</div>
 
@@ -47,7 +47,7 @@ export default function TopBar() {
 				<div className="hidden md:flex flex-1 max-w-sm mx-8">
 					<Link href="/search" className="flex items-center w-full h-12 border border-[#dddddd] rounded-full px-4 shadow-[0_1px_2px_rgba(0,0,0,0.08),0_4px_12px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_4px_rgba(0,0,0,0.18)] transition-shadow cursor-pointer">
 						<span className="text-sm font-medium text-[#222222] flex-1">Start your campaign...</span>
-						<div className="bg-[#ff385c] p-2 rounded-full text-white">
+						<div className="bg-[#082390] p-2 rounded-full text-white">
 							<Search size={16} />
 						</div>
 					</Link>
@@ -92,7 +92,7 @@ export default function TopBar() {
 					) : (
 						<Link 
 							href={stackClientApp.urls.signIn}
-							className="px-6 py-2 rounded-full bg-[#ff385c] text-white font-bold text-sm hover:bg-[#e00b41] transition-colors"
+							className="px-6 py-2 rounded-full bg-[#082390] text-white font-bold text-sm hover:bg-[#1d4ed8] transition-colors"
 						>
 							Log In
 						</Link>

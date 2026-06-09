@@ -77,7 +77,7 @@ export default async function ProfilePage() {
 								{user.profileImageUrl ? (
 									<Image src={user.profileImageUrl} alt="" fill className="object-cover" unoptimized />
 								) : (
-									<div className="w-full h-full flex items-center justify-center bg-[#ff385c] text-white text-2xl font-bold">
+									<div className="w-full h-full flex items-center justify-center bg-[#082390] text-white text-2xl font-bold">
 										{(user.displayName || user.primaryEmail || "U")[0].toUpperCase()}
 									</div>
 								)}
@@ -116,7 +116,7 @@ export default async function ProfilePage() {
 													<span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${
 														booking.status === "Confirmed" ? "bg-green-50 text-green-600" :
 														booking.status === "Pending" ? "bg-amber-50 text-amber-600" :
-														"bg-red-50 text-red-500"
+														"bg-blue-50 text-blue-600"
 													}`}>
 														{booking.status}
 													</span>
@@ -164,7 +164,7 @@ export default async function ProfilePage() {
 								<div className="divide-y divide-[#ebebeb]">
 									<Link href="/admin" className="flex items-center justify-between w-full py-4 group">
 										<div className="flex items-center gap-4 text-[#222222]">
-											<LayoutDashboard size={22} className="text-[#ff385c]" />
+											<LayoutDashboard size={22} className="text-[#082390]" />
 											<span className="text-base font-bold">Admin Management Suite</span>
 										</div>
 										<ChevronRight size={20} className="text-[#b0b0b0]" />
@@ -209,7 +209,7 @@ export default async function ProfilePage() {
 						<div className="bg-white rounded-2xl border border-[#dddddd] shadow-[0_6px_16px_rgba(0,0,0,0.12)] p-6 mb-12">
 							<h3 className="text-xl font-bold text-[#222222] mb-2">Hoardify your brand</h3>
 							<p className="text-[#6a6a6a] mb-6">It&apos;s easy to start a campaign and reach thousands.</p>
-							<Link href="/handler/sign-in" className="inline-block px-6 py-3 bg-[#ff385c] text-white rounded-lg font-bold hover:bg-[#e00b41] transition-colors">
+							<Link href="/handler/sign-in" className="inline-block px-6 py-3 bg-[#082390] text-white rounded-lg font-bold hover:bg-[#1d4ed8] transition-colors">
 								Log in
 							</Link>
 						</div>

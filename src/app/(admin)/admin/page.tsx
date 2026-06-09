@@ -33,7 +33,7 @@ export default async function AdminDashboard() {
 									<span>72%</span>
 								</div>
 								<div className="h-2 w-full bg-[#dddddd] rounded-full overflow-hidden">
-									<div className="h-full bg-[#ff385c] w-[72%]" />
+									<div className="h-full bg-[#082390] w-[72%]" />
 								</div>
 							</div>
 						</div>

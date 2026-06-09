@@ -29,7 +29,7 @@ export default function BottomNav() {
 							key={item.name}
 							href={item.href}
 							className={`flex flex-col items-center justify-center gap-1 flex-1 h-full transition-colors ${
-								isActive ? "text-[#ff385c]" : "text-[#717171]"
+								isActive ? "text-[#082390]" : "text-[#717171]"
 							}`}
 						>
 							<Icon size={20} strokeWidth={isActive ? 2.5 : 2} aria-hidden="true" />

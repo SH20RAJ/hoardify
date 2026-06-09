@@ -353,6 +353,30 @@ describe('User Sync Actions', () => {
       expect(result.role).toBe('Admin');
     });
 
+    it('should create new user with Admin role for secondary default admin email', async () => {
+      chainableMock.select.mockReturnValue({
+        from: vi.fn().mockReturnValue({
+          where: vi.fn().mockReturnValue({
+            limit: vi.fn().mockReturnValue(Promise.resolve([])),
+          }),
+        }),
+      });
+      chainableMock.insert.mockReturnValue({
+        values: vi.fn().mockResolvedValue({ success: true }),
+      });
+
+      const { syncUserToDb } = await import('@/actions/user_sync');
+      const result = await syncUserToDb({
+        id: 'secondary-admin-user',
+        primaryEmail: 'subhamgiri033@gmail.com',
+        displayName: 'Admin',
+        profileImageUrl: null,
+      });
+
+      expect(result.created).toBe(true);
+      expect(result.role).toBe('Admin');
+    });
+
     it('should update existing user', async () => {
       chainableMock.select.mockReturnValue({
         from: vi.fn().mockReturnValue({
@@ -403,6 +427,64 @@ describe('Messages Actions', () => {
       expect(result).toEqual({ success: true });
       expect(chainableMock.insert).toHaveBeenCalled();
       expect(chainableMock.update).toHaveBeenCalled();
+    });
+  });
+
+  describe('createHoardingEnquiry', () => {
+    it('should create a new enquiry and return the conversation id', async () => {
+      vi.mocked((await import('@/stack/server')).stackServerApp.getUser).mockResolvedValue({
+        id: 'user-123',
+        primaryEmail: 'test@example.com',
+        displayName: 'Test User',
+        profileImageUrl: null,
+      });
+
+      chainableMock.select.mockReturnValue({
+        from: vi.fn().mockReturnValue({
+          where: vi.fn().mockReturnValue({
+            limit: vi.fn().mockReturnValue(Promise.resolve([])),
+          }),
+        }),
+      });
+      chainableMock.insert.mockReturnValue({
+        values: vi.fn().mockResolvedValue({ success: true }),
+      });
+chainableMock.query.enquiries.findFirst.mockResolvedValueOnce(null).mockResolvedValueOnce({ id: 99, hoardingId: 1, userId: 'user-123', email: 'test@example.com' }).mockResolvedValueOnce({ id: 99, hoardingId: 1, userId: 'user-123', email: 'test@example.com' });
+
+      const { createHoardingEnquiry } = await import('@/actions/messages');
+      const result = await createHoardingEnquiry(1, new Date('2026-07-01'), new Date('2026-08-01'));
+
+      expect(result).toEqual({ id: 99, hoardingId: 1, userId: 'user-123', email: 'test@example.com' });
+      expect(chainableMock.insert).toHaveBeenCalled();
+    });
+  });
+
+  describe('getOrCreateAdminConversation', () => {
+    it('should create a new admin conversation when none exists', async () => {
+      vi.mocked((await import('@/stack/server')).stackServerApp.getUser).mockResolvedValue({
+        id: 'user-123',
+        primaryEmail: 'test@example.com',
+        displayName: 'Test User',
+        profileImageUrl: null,
+      });
+
+      chainableMock.select.mockReturnValue({
+        from: vi.fn().mockReturnValue({
+          where: vi.fn().mockReturnValue({
+            limit: vi.fn().mockReturnValue(Promise.resolve([])),
+          }),
+        }),
+      });
+      chainableMock.insert.mockReturnValue({
+        values: vi.fn().mockResolvedValue({ success: true }),
+      });
+      chainableMock.query.enquiries.findFirst.mockResolvedValueOnce(null).mockResolvedValueOnce({ id: 100, hoardingId: null, userId: 'user-123', email: 'test@example.com' });
+
+      const { getOrCreateAdminConversation } = await import('@/actions/messages');
+      const result = await getOrCreateAdminConversation('user-123', 'test@example.com', 'Test User');
+
+      expect(result).toEqual({ id: 100, hoardingId: null, userId: 'user-123', email: 'test@example.com' });
+      expect(chainableMock.insert).toHaveBeenCalled();
     });
   });
 });

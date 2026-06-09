@@ -70,7 +70,7 @@ export default function AirbnbSearchBar() {
         {/* Search Button */}
         <button 
           onClick={handleSearch}
-          className="bg-[#ff385c] p-4 rounded-full text-white hover:bg-[#e00b41] transition-colors ml-2 shadow-sm active:scale-95"
+          className="bg-[#082390] p-4 rounded-full text-white hover:bg-[#1d4ed8] transition-colors ml-2 shadow-sm active:scale-95"
         >
           <Search size={20} strokeWidth={3} />
         </button>

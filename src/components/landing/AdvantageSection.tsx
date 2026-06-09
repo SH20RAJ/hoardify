@@ -33,7 +33,7 @@ export default function AdvantageSection() {
 						<ul className="space-y-6">
 							{traditionalFlaws.map((flaw, i) => (
 								<li key={i} className="flex items-start gap-4">
-									<X size={18} className="text-[#ff385c] mt-0.5 shrink-0" />
+									<X size={18} className="text-[#082390] mt-0.5 shrink-0" />
 									<span className="text-[#222222]">{flaw}</span>
 								</li>
 							))}

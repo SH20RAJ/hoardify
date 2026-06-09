@@ -6,7 +6,7 @@ export default function MapBridge() {
 		<section className="px-6">
 			<div className="relative overflow-hidden rounded-2xl bg-[#f7f7f7] p-8 border border-[#ebebeb]">
 				<div className="relative z-10">
-					<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#ff385c] text-white mb-6">
+					<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#082390] text-white mb-6">
 						<MapPin size={24} />
 					</div>
 					<h3 className="text-2xl font-semibold text-[#222222] mb-2">Visual Planning</h3>

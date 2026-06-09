@@ -30,8 +30,8 @@ export default function AdminSidebar({ signOutUrl }: AdminSidebarProps) {
 		<aside className="w-64 bg-white border-r border-[#ebebeb] flex flex-col shrink-0">
 			<div className="p-6 border-b border-[#ebebeb]">
 				<Link href="/" className="flex items-center gap-2">
-					<div className="h-8 w-8 bg-[#ff385c] rounded-lg flex items-center justify-center text-white font-bold italic">H</div>
-					<span className="font-bold text-xl text-[#ff385c]">hoardify</span>
+					<div className="h-8 w-8 bg-[#082390] rounded-lg flex items-center justify-center text-white font-bold italic">H</div>
+					<span className="font-bold text-xl text-[#082390]">hoardify</span>
 				</Link>
 			</div>
 			
@@ -45,11 +45,11 @@ export default function AdminSidebar({ signOutUrl }: AdminSidebarProps) {
 							href={item.href}
 							className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
 								isActive 
-									? "bg-[#fff8f6] text-[#ff385c]" 
+									? "bg-[#fff8f6] text-[#082390]" 
 									: "text-[#717171] hover:bg-[#f7f7f7] hover:text-[#222222]"
 							}`}
 						>
-							<Icon size={18} className={isActive ? "text-[#ff385c]" : "text-[#717171]"} />
+							<Icon size={18} className={isActive ? "text-[#082390]" : "text-[#717171]"} />
 							{item.name}
 						</Link>
 					);
@@ -69,7 +69,7 @@ export default function AdminSidebar({ signOutUrl }: AdminSidebarProps) {
 			<div className="p-4 border-t border-[#ebebeb]">
 				<Link 
 					href={signOutUrl}
-					className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-[#ff385c] hover:bg-[#fff8f6] transition-all duration-200"
+					className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold text-[#082390] hover:bg-[#fff8f6] transition-all duration-200"
 				>
 					<LogOut size={18} />
 					Sign Out

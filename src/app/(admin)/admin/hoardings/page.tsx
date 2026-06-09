@@ -67,7 +67,7 @@ export default async function AdminHoardingsPage() {
 												? "bg-green-50 text-green-600" 
 												: hoarding.status === "Booked"
 												? "bg-blue-50 text-blue-600"
-												: "bg-red-50 text-red-600"
+												: "bg-blue-50 text-blue-700"
 										}`}>
 											{hoarding.status}
 										</span>

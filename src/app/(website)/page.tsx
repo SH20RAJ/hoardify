@@ -86,21 +86,21 @@ export default async function ExplorePage() {
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					<div className="p-8 rounded-2xl border border-[#ebebeb] bg-[#f7f7f7] hover:shadow-md transition-shadow">
-						<div className="text-[#ff385c] text-3xl mb-4">📍</div>
+						<div className="text-[#082390] text-3xl mb-4">📍</div>
 						<h3 className="text-lg font-bold text-[#222222] mb-2">100% Verified Locations</h3>
 						<p className="text-sm text-[#6a6a6a] leading-relaxed">
 							Every single listing on Hoardify is physically inspected and verified for coordinate accuracy, visibility angles, and local traffic profiles.
 						</p>
 					</div>
 					<div className="p-8 rounded-2xl border border-[#ebebeb] bg-[#f7f7f7] hover:shadow-md transition-shadow">
-						<div className="text-[#ff385c] text-3xl mb-4">💳</div>
+						<div className="text-[#082390] text-3xl mb-4">💳</div>
 						<h3 className="text-lg font-bold text-[#222222] mb-2">Transparent Pricing</h3>
 						<p className="text-sm text-[#6a6a6a] leading-relaxed">
 							No broker markups, no hidden commissions. View direct owner rental rates and make informed planning decisions with upfront details.
 						</p>
 					</div>
 					<div className="p-8 rounded-2xl border border-[#ebebeb] bg-[#f7f7f7] hover:shadow-md transition-shadow">
-						<div className="text-[#ff385c] text-3xl mb-4">📊</div>
+						<div className="text-[#082390] text-3xl mb-4">📊</div>
 						<h3 className="text-lg font-bold text-[#222222] mb-2">Impact Analytics</h3>
 						<p className="text-sm text-[#6a6a6a] leading-relaxed">
 							Estimate monthly impressions, view audience demographics, and track coverage metrics across Ranchi to optimize your campaign budget.

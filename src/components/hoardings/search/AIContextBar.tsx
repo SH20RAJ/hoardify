@@ -36,7 +36,7 @@ export default function AIContextBar({
 					className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
 						isAIChatOpen 
 							? "bg-[#222222] text-white border-[#222222]" 
-							: "bg-white text-[#ff385c] border-[#ff385c] hover:bg-[#fff8f6]"
+							: "bg-white text-[#082390] border-[#082390] hover:bg-[#fff8f6]"
 					}`}
 				>
 					<Sparkles size={14} fill="currentColor" />
@@ -66,7 +66,7 @@ export default function AIContextBar({
 				<div className="absolute top-18 left-4 right-4 z-[60] md:left-6 md:w-[400px]">
 					<div className="bg-white p-6 border border-[#ebebeb] shadow-[0_12px_24px_rgba(0,0,0,0.12)] rounded-2xl">
 						<div className="flex items-center gap-3 mb-4">
-							<div className="h-10 w-10 rounded-full bg-[#ff385c] flex items-center justify-center text-white">
+							<div className="h-10 w-10 rounded-full bg-[#082390] flex items-center justify-center text-white">
 								<Sparkles size={18} fill="currentColor" />
 							</div>
 							<div>
@@ -87,7 +87,7 @@ export default function AIContextBar({
 								placeholder="Describe your target audience..." 
 								className="w-full h-12 bg-white rounded-lg pl-4 pr-12 text-sm text-[#222222] border border-[#dddddd] focus:border-[#222222] outline-none transition-all"
 							/>
-							<button className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-[#ff385c] text-white rounded-md flex items-center justify-center transition-all hover:bg-[#e00b41] active:scale-95">
+							<button className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-[#082390] text-white rounded-md flex items-center justify-center transition-all hover:bg-[#1d4ed8] active:scale-95">
 								<Send size={14} />
 							</button>
 						</div>

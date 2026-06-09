@@ -44,7 +44,7 @@ export function UpdateEnquiryButton({ id, currentStatus }: { id: number; current
 		return (
 			<button
 				onClick={() => setOpen(true)}
-				className="text-[10px] font-black uppercase tracking-widest text-[#ff385c] hover:underline"
+				className="text-[10px] font-black uppercase tracking-widest text-[#082390] hover:underline"
 			>
 				Update Stage
 			</button>

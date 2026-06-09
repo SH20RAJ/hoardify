@@ -54,7 +54,7 @@ export default async function AdminEnquiriesPage() {
 											<span className="font-semibold text-sm text-[#222222]">{enquiry.name}</span>
 											<div className="flex flex-col gap-0.5">
 												<div className="flex items-center gap-1.5 text-[10px] text-[#717171] font-medium">
-													<Phone size={10} className="text-[#ff385c]" /> {enquiry.phone}
+													<Phone size={10} className="text-[#082390]" /> {enquiry.phone}
 												</div>
 												<div className="flex items-center gap-1.5 text-[10px] text-[#717171]">
 													<Mail size={10} /> {enquiry.email}
@@ -68,7 +68,7 @@ export default async function AdminEnquiriesPage() {
 											<div className="flex items-center gap-1 text-[10px] text-[#717171] mt-0.5">
 												<MapPin size={10} /> {enquiry.hoarding?.location}
 											</div>
-											<span className="text-[10px] font-bold text-[#ff385c] mt-1">{enquiry.hoarding ? formatCurrency(enquiry.hoarding.price) : "-"}</span>
+											<span className="text-[10px] font-bold text-[#082390] mt-1">{enquiry.hoarding ? formatCurrency(enquiry.hoarding.price) : "-"}</span>
 										</div>
 									</td>
 									<td className="px-6 py-5">

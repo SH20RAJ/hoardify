@@ -48,6 +48,7 @@ export default async function InboxPage() {
 				<h1 className="text-2xl font-bold text-[#222222] mb-6">Messages</h1>
 				<InboxClient
 					conversations={conversations}
+					userId={user.id}
 					userName={user.displayName || "User"}
 					userEmail={user.primaryEmail || ""}
 				/>

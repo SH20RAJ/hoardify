@@ -2,7 +2,7 @@
 
 import { formatCurrency } from "@/lib/utils";
 import { Star } from "lucide-react";
-import { createBooking } from "@/actions/bookings";
+import { createHoardingEnquiry } from "@/actions/messages";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -37,11 +37,15 @@ export default function BookingCard({ price, hoardingId }: BookingCardProps) {
 
 		setLoading(true);
 		try {
-			await createBooking(hoardingId, price, start, end);
-			alert("Booking inquiry sent successfully!");
-			router.push("/profile");
+			const enquiry = await createHoardingEnquiry(hoardingId, start, end);
+			if (enquiry?.id) {
+				router.push(`/inbox?conversationId=${enquiry.id}`);
+			} else {
+				alert("Availability request created. Check your inbox for the conversation.");
+				router.push("/inbox");
+			}
 		} catch (error: unknown) {
-			const message = error instanceof Error ? error.message : "Failed to book hoarding. Please log in first.";
+			const message = error instanceof Error ? error.message : "Failed to start the chat. Please log in first.";
 			alert(message);
 			if (message.includes("logged in")) {
 				router.push("/landing");
@@ -97,7 +101,7 @@ export default function BookingCard({ price, hoardingId }: BookingCardProps) {
 			<button 
 				onClick={handleBooking}
 				disabled={loading}
-				className="w-full bg-[#ff385c] text-white py-3.5 rounded-lg font-bold text-lg hover:bg-[#e00b41] transition-colors mb-4 disabled:opacity-70"
+				className="w-full bg-[#082390] text-white py-3.5 rounded-lg font-bold text-lg hover:bg-[#1d4ed8] transition-colors mb-4 disabled:opacity-70"
 			>
 				{loading ? "Processing..." : "Check Availability"}
 			</button>

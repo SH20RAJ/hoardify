@@ -11,7 +11,7 @@ export default function LandingHero() {
 				<div className="flex flex-col items-center text-center max-w-4xl mx-auto">
 					<h1 className="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tight text-[#222222] mb-10">
 						Own the <br />
-						<span className="text-[#ff385c]">Streets.</span>
+						<span className="text-[#082390]">Streets.</span>
 					</h1>
 					
 					<p className="text-xl md:text-2xl font-medium text-[#6a6a6a] leading-relaxed mb-14 max-w-2xl">
@@ -21,7 +21,7 @@ export default function LandingHero() {
 					<div className="flex flex-col sm:flex-row items-center gap-6 w-full justify-center">
 						<Link 
 							href="/search" 
-							className="px-8 py-4 rounded-lg bg-[#ff385c] text-white font-bold text-lg flex items-center gap-2 transition-all hover:bg-[#e00b41]"
+							className="px-8 py-4 rounded-lg bg-[#082390] text-white font-bold text-lg flex items-center gap-2 transition-all hover:bg-[#1d4ed8]"
 						>
 							Launch Campaign <ArrowRight size={20} />
 						</Link>
