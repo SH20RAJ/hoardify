@@ -92,7 +92,7 @@ export default function HoardingCard({
 						<h3 className="text-sm sm:text-base font-bold text-text-primary line-clamp-1 group-hover:text-brand transition-colors">{title}</h3>
 						{location && (
 							<div className="flex items-center gap-1.5 mt-1 text-text-tertiary">
-								<MapPin size={10} sm:size={12} strokeWidth={2.5} />
+								<MapPin size={12} strokeWidth={2.5} />
 								<p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest truncate">{location}</p>
 							</div>
 						)}
@@ -131,10 +131,10 @@ export default function HoardingCard({
 						{hasMultiple && (
 							<>
 								<button onClick={prev} className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 p-2.5 md:p-3 rounded-full bg-background/90 text-text-primary shadow-premium-md opacity-0 group-hover:opacity-100 transition-all hover:bg-background active:scale-90">
-									<ChevronLeft size={16} md:size={18} strokeWidth={3} />
+									<ChevronLeft size={18} strokeWidth={3} />
 								</button>
 								<button onClick={next} className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 p-2.5 md:p-3 rounded-full bg-background/90 text-text-primary shadow-premium-md opacity-0 group-hover:opacity-100 transition-all hover:bg-background active:scale-90">
-									<ChevronRight size={16} md:size={18} strokeWidth={3} />
+									<ChevronRight size={18} strokeWidth={3} />
 								</button>
 								<div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 md:gap-2">
 									{allImages.slice(0, 5).map((_, i) => (
@@ -150,7 +150,7 @@ export default function HoardingCard({
 								<h3 className="text-xl md:text-2xl font-black text-text-primary tracking-tight group-hover:text-brand transition-colors">{title}</h3>
 								{location && (
 									<div className="flex items-center gap-2 mt-1.5 md:mt-2 text-text-secondary">
-										<MapPin size={12} md:size={14} strokeWidth={2.5} className="text-brand" />
+										<MapPin size={14} strokeWidth={2.5} className="text-brand" />
 										<p className="text-xs md:text-sm font-bold uppercase tracking-widest">{location}</p>
 									</div>
 								)}
@@ -212,7 +212,7 @@ export default function HoardingCard({
 					</div>
 					{location && (
 						<div className="flex items-center gap-2 mt-2 md:mt-3 text-text-tertiary">
-							<MapPin size={12} md:size={14} strokeWidth={2.5} />
+							<MapPin size={14} strokeWidth={2.5} />
 							<p className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] truncate">{location}</p>
 						</div>
 					)}
