@@ -38,22 +38,22 @@ export default async function ExplorePage() {
 	]);
 
 	return (
-		<div className="flex flex-col min-h-screen pb-32 md:pb-40 bg-white">
+		<div className="flex flex-col min-h-screen pb-24 md:pb-40 bg-background transition-colors duration-300">
 			<NavbarSync isLogo title="Intelligence Explore" />
 
-			<div className="pt-8 md:pt-12">
+			<div className="pt-4 md:pt-12">
 				<AirbnbSearchBar />
 			</div>
 
 			{/* Trending Showcase */}
-			<section className="mb-20 md:mb-32">
-				<div className="px-4 md:px-8 mb-8 md:mb-12 flex items-end justify-between">
+			<section className="mb-12 md:mb-32">
+				<div className="px-4 md:px-8 mb-6 md:mb-12 flex items-end justify-between">
 					<div>
 						<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/5 border border-brand/10 text-brand text-[9px] font-black uppercase tracking-widest mb-3">
 							Market Pulse
 						</div>
-						<h2 className="text-3xl font-black text-[#111111] tracking-tight">Trending Placements</h2>
-						<p className="text-sm text-text-secondary mt-2">Most impactful nodes captured this week.</p>
+						<h2 className="text-2xl md:text-3xl font-black text-text-primary tracking-tight">Trending Placements</h2>
+						<p className="text-sm text-text-secondary mt-1 md:mt-2">Most impactful nodes captured this week.</p>
 					</div>
 					<Link href="/search" className="text-[10px] font-black uppercase tracking-widest text-brand hover:underline underline-offset-8">
 						Explore Full Map
@@ -67,21 +67,21 @@ export default async function ExplorePage() {
 			</section>
 
 			{/* Nearby: Geo-Context Grid */}
-			<section className="mb-20 md:mb-32 px-4 md:px-8">
+			<section className="mb-12 md:mb-32 px-4 md:px-8">
 				<div className="flex flex-col gap-6 md:flex md:items-end md:justify-between mb-8 md:mb-12">
 					<div>
 						<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#008a05]/5 border border-[#008a05]/10 text-[#008a05] text-[9px] font-black uppercase tracking-widest mb-3">
 							Proximity Intelligence
 						</div>
-						<h2 className="text-3xl font-black text-[#111111] tracking-tight">Inventory Near You</h2>
-						<p className="text-sm text-text-secondary mt-2">High-impact visibility nodes in your immediate area.</p>
+						<h2 className="text-2xl md:text-3xl font-black text-text-primary tracking-tight">Inventory Near You</h2>
+						<p className="text-sm text-text-secondary mt-1 md:mt-2">High-impact visibility nodes in your immediate area.</p>
 					</div>
 					<Link href="/filters" className="flex w-full md:w-auto items-center justify-center md:justify-start gap-3 px-5 md:px-6 py-3 rounded-2xl border border-border-subtle hover:border-brand hover:bg-brand/5 transition-all active:scale-95 group">
 						<Settings2 size={16} className="text-text-tertiary group-hover:text-brand transition-colors" />
-						<span className="text-xs font-bold text-[#111111]">Advanced Filters</span>
+						<span className="text-xs font-bold text-text-primary">Advanced Filters</span>
 					</Link>
 				</div>
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
 					{nearby.map(hoarding => (
 						<HoardingCard key={hoarding.id} id={hoarding.id} title={hoarding.title} imageUrl={hoarding.imageUrl} images={hoarding.images} price={hoarding.price} location={hoarding.location} views={hoarding.views} variant="banner" lat={hoarding.lat} lng={hoarding.lng} />
 					))}
@@ -89,40 +89,40 @@ export default async function ExplorePage() {
 			</section>
 
 			{/* Why Brands Use Hoardify */}
-			<section className="mt-20 md:mt-32 mb-20 md:mb-32 px-4 md:px-6 max-w-7xl mx-auto w-full">
-				<div className="text-center mb-12 md:mb-20">
-					<h2 className="text-4xl font-extrabold text-[#222222] tracking-tight">Why Brands Use Hoardify</h2>
-					<p className="text-base text-[#6a6a6a] mt-4 max-w-2xl mx-auto leading-relaxed">
+			<section className="mt-12 md:mt-32 mb-12 md:mb-32 px-4 md:px-6 max-w-7xl mx-auto w-full">
+				<div className="text-center mb-10 md:mb-20">
+					<h2 className="text-3xl md:text-4xl font-extrabold text-text-primary tracking-tight">Why Brands Use Hoardify</h2>
+					<p className="text-sm md:text-base text-text-secondary mt-4 max-w-2xl mx-auto leading-relaxed">
 						The modern outdoor advertising marketplace built for speed, analytics, and 100% transparency.
 					</p>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
-					<div className="group p-6 md:p-10 rounded-[2rem] border border-[#ebebeb] bg-white hover:border-[#082390]/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-2">
-						<div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#f7f7f7] flex items-center justify-center text-[#082390] mb-5 md:mb-8 group-hover:scale-110 group-hover:bg-[#082390] group-hover:text-white transition-all duration-500">
+					<div className="group p-6 md:p-10 rounded-[2rem] border border-border-subtle bg-surface-raised hover:border-brand/20 hover:shadow-premium-md transition-all duration-500 hover:-translate-y-2">
+						<div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-surface-sunken flex items-center justify-center text-brand mb-5 md:mb-8 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-500">
 							<ShieldCheck size={28} strokeWidth={1.5} />
 						</div>
-						<h3 className="text-xl font-bold text-[#222222] mb-4">100% Verified Locations</h3>
-						<p className="text-[#6a6a6a] leading-relaxed">
+						<h3 className="text-xl font-bold text-text-primary mb-4">100% Verified Locations</h3>
+						<p className="text-text-secondary leading-relaxed">
 							Every single listing is physically inspected and verified for coordinate accuracy, visibility angles, and local traffic profiles.
 						</p>
 					</div>
 
-					<div className="group p-6 md:p-10 rounded-[2rem] border border-[#ebebeb] bg-white hover:border-[#082390]/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-2">
-						<div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#f7f7f7] flex items-center justify-center text-[#082390] mb-5 md:mb-8 group-hover:scale-110 group-hover:bg-[#082390] group-hover:text-white transition-all duration-500">
+					<div className="group p-6 md:p-10 rounded-[2rem] border border-border-subtle bg-surface-raised hover:border-brand/20 hover:shadow-premium-md transition-all duration-500 hover:-translate-y-2">
+						<div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-surface-sunken flex items-center justify-center text-brand mb-5 md:mb-8 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-500">
 							<BadgePercent size={28} strokeWidth={1.5} />
 						</div>
-						<h3 className="text-xl font-bold text-[#222222] mb-4">Transparent Pricing</h3>
-						<p className="text-[#6a6a6a] leading-relaxed">
+						<h3 className="text-xl font-bold text-text-primary mb-4">Transparent Pricing</h3>
+						<p className="text-text-secondary leading-relaxed">
 							No broker markups, no hidden commissions. View direct owner rental rates and make informed planning decisions with upfront details.
 						</p>
 					</div>
 
-					<div className="group p-6 md:p-10 rounded-[2rem] border border-[#ebebeb] bg-white hover:border-[#082390]/20 hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-2">
-						<div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#f7f7f7] flex items-center justify-center text-[#082390] mb-5 md:mb-8 group-hover:scale-110 group-hover:bg-[#082390] group-hover:text-white transition-all duration-500">
+					<div className="group p-6 md:p-10 rounded-[2rem] border border-border-subtle bg-surface-raised hover:border-brand/20 hover:shadow-premium-md transition-all duration-500 hover:-translate-y-2">
+						<div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-surface-sunken flex items-center justify-center text-brand mb-5 md:mb-8 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-500">
 							<BarChart3 size={28} strokeWidth={1.5} />
 						</div>
-						<h3 className="text-xl font-bold text-[#222222] mb-4">Impact Analytics</h3>
-						<p className="text-[#6a6a6a] leading-relaxed">
+						<h3 className="text-xl font-bold text-text-primary mb-4">Impact Analytics</h3>
+						<p className="text-text-secondary leading-relaxed">
 							Estimate monthly impressions, view audience demographics, and track coverage metrics across Ranchi to optimize your budget.
 						</p>
 					</div>
@@ -130,15 +130,15 @@ export default async function ExplorePage() {
 			</section>
 
 			{/* Frequently Asked Questions */}
-			<section className="mb-28 md:mb-40 px-4 md:px-8 max-w-5xl mx-auto w-full">
-				<div className="mb-12 md:mb-20 text-center">
+			<section className="mb-20 md:mb-40 px-4 md:px-8 max-w-5xl mx-auto w-full">
+				<div className="mb-10 md:mb-20 text-center">
 					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-sunken border border-border-subtle text-text-tertiary text-[9px] font-black uppercase tracking-widest mb-3">
 						Support & Intelligence
 					</div>
-					<h2 className="text-4xl font-black text-[#111111] tracking-tight">Common Inquiries</h2>
-					<p className="text-base text-text-secondary mt-4 max-w-xl mx-auto leading-relaxed">Everything you need to know about deploying outdoor media on our system.</p>
+					<h2 className="text-3xl md:text-4xl font-black text-text-primary tracking-tight">Common Inquiries</h2>
+					<p className="text-sm md:text-base text-text-secondary mt-4 max-w-xl mx-auto leading-relaxed">Everything you need to know about deploying outdoor media on our system.</p>
 				</div>
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-8 md:gap-y-12">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-6 md:gap-y-12">
 					{[
 						{
 							q: "How do I book a hoarding on Hoardify?",
@@ -157,9 +157,9 @@ export default async function ExplorePage() {
 							a: "Yes. Owners can integrate their inventory into the Hoardify ecosystem through the Agency Portal to receive direct high-intent leads."
 						}
 					].map((faq, idx) => (
-						<div key={idx} className="group flex flex-col gap-4">
-							<h3 className="text-lg font-bold text-[#111111] group-hover:text-brand transition-colors">{faq.q}</h3>
-							<p className="text-sm text-text-secondary leading-relaxed font-medium">{faq.a}</p>
+						<div key={idx} className="group flex flex-col gap-3 md:gap-4">
+							<h3 className="text-base md:text-lg font-bold text-text-primary group-hover:text-brand transition-colors">{faq.q}</h3>
+							<p className="text-xs md:text-sm text-text-secondary leading-relaxed font-medium">{faq.a}</p>
 						</div>
 					))}
 				</div>

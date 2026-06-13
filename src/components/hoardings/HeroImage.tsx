@@ -98,23 +98,23 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 	// Inline gallery — Airbnb-style grid
 	if (allImages.length >= 5) {
 		return (
-			<div className="relative">
-				<div className="grid grid-cols-4 grid-rows-2 gap-2 rounded-2xl overflow-hidden h-[300px] sm:h-[360px] md:h-[400px]" onClick={() => setShowGallery(true)} role="button" tabIndex={0}>
+			<div className="relative group/hero">
+				<div className="grid grid-cols-4 grid-rows-2 gap-2 rounded-2xl md:rounded-[2rem] overflow-hidden h-[300px] sm:h-[360px] md:h-[450px] border border-border-subtle" onClick={() => setShowGallery(true)} role="button" tabIndex={0}>
 					{/* Main large image */}
 					<div className="col-span-2 row-span-2 relative cursor-pointer">
-						<Image src={getImgSrc(0)} alt={alt} fill className="object-cover hover:brightness-90 transition-all" priority unoptimized onError={() => handleImageError(0)} />
+						<Image src={getImgSrc(0)} alt={alt} fill className="object-cover hover:brightness-90 transition-all duration-500" priority unoptimized onError={() => handleImageError(0)} />
 					</div>
 					{/* 4 smaller images */}
 					{[1, 2, 3, 4].map(i => (
 						<div key={i} className="relative cursor-pointer">
-							<Image src={getImgSrc(i)} alt={`${alt} ${i + 1}`} fill className="object-cover hover:brightness-90 transition-all" unoptimized onError={() => handleImageError(i)} />
+							<Image src={getImgSrc(i)} alt={`${alt} ${i + 1}`} fill className="object-cover hover:brightness-90 transition-all duration-500" unoptimized onError={() => handleImageError(i)} />
 						</div>
 					))}
 				</div>
 				{/* Show all photos button */}
 				<button
 					onClick={() => setShowGallery(true)}
-					className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#222222] text-sm font-semibold text-[#222222] hover:bg-[#f7f7f7] transition-colors"
+					className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 bg-background/90 backdrop-blur-md rounded-xl border border-border-subtle text-xs font-black uppercase tracking-widest text-text-primary hover:bg-background transition-all active:scale-95 shadow-premium-md"
 				>
 					<Grid2X2 size={14} />
 					Show all photos
@@ -122,9 +122,9 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 				{videoUrl && (
 					<button
 						onClick={(e) => { e.stopPropagation(); setShowVideo(true); }}
-						className="absolute bottom-4 left-4 flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-lg text-sm font-semibold text-[#222222] hover:bg-white transition-colors"
+						className="absolute bottom-4 left-4 flex items-center gap-2 px-4 py-2 bg-brand text-white rounded-xl text-xs font-black uppercase tracking-widest hover:scale-105 transition-all active:scale-95 shadow-premium-md"
 					>
-						<Play size={14} fill="#222" />
+						<Play size={14} fill="currentColor" />
 						Watch Video
 					</button>
 				)}
@@ -135,7 +135,7 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 	// Fallback: single image with arrows
 	return (
 		<div className="relative">
-			<div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#ebebeb] cursor-pointer" onClick={() => setShowGallery(true)}>
+			<div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden rounded-2xl md:rounded-[2rem] border border-border-subtle cursor-pointer shadow-premium-sm" onClick={() => setShowGallery(true)}>
 				<Image
 					src={getImgSrc(currentIndex)}
 					alt={alt}
@@ -147,16 +147,16 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 				/>
 				{allImages.length > 1 && (
 					<>
-						<button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 text-[#222222] hover:bg-white shadow-sm">
-							<ChevronLeft size={16} />
+						<button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-background/80 text-text-primary backdrop-blur-md hover:bg-background shadow-premium-md transition-all active:scale-90">
+							<ChevronLeft size={18} strokeWidth={3} />
 						</button>
-						<button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 text-[#222222] hover:bg-white shadow-sm">
-							<ChevronRight size={16} />
+						<button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-background/80 text-text-primary backdrop-blur-md hover:bg-background shadow-premium-md transition-all active:scale-90">
+							<ChevronRight size={18} strokeWidth={3} />
 						</button>
 						{/* Dots */}
-						<div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+						<div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
 							{allImages.map((_, i) => (
-								<div key={i} className={`w-1.5 h-1.5 rounded-full transition-all ${i === currentIndex ? "bg-white w-3" : "bg-white/60"}`} />
+								<div key={i} className={`h-1.5 rounded-full transition-all duration-500 ${i === currentIndex ? "bg-white w-4" : "bg-white/40 w-1.5"}`} />
 							))}
 						</div>
 					</>
@@ -165,9 +165,9 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 			{videoUrl && (
 				<button
 					onClick={() => setShowVideo(true)}
-					className="absolute bottom-16 left-4 flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-lg text-sm font-semibold text-[#222222] hover:bg-white transition-colors"
+					className="absolute bottom-16 left-4 flex items-center gap-2 px-4 py-2 bg-brand text-white rounded-xl text-xs font-black uppercase tracking-widest hover:scale-105 transition-all active:scale-95 shadow-premium-md"
 				>
-					<Play size={14} fill="#222" />
+					<Play size={14} fill="currentColor" />
 					Watch Video
 				</button>
 			)}

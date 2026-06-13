@@ -2,7 +2,7 @@
 
 export default function RootLoading() {
 	return (
-		<div className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-white gap-12">
+		<div className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-background gap-12 transition-colors duration-500">
 			{/* High-end Minimal Loader */}
 			<div className="relative">
 				<div className="h-24 w-24 border-[2px] border-brand/5 rounded-full" />
@@ -17,7 +17,7 @@ export default function RootLoading() {
 			
 			<div className="flex flex-col items-center gap-4">
 				<div className="flex flex-col items-center">
-					<p className="text-[10px] font-black text-[#111111] tracking-[0.4em] uppercase mb-2">
+					<p className="text-[10px] font-black text-text-primary tracking-[0.4em] uppercase mb-2">
 						Hoardify Systems
 					</p>
 					<div className="h-px w-32 bg-gradient-to-r from-transparent via-brand/20 to-transparent" />

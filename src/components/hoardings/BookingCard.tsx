@@ -56,70 +56,73 @@ export default function BookingCard({ price, hoardingId }: BookingCardProps) {
 	};
 
 	return (
-		<div className="bg-white p-4 sm:p-6 border border-[#dddddd] rounded-2xl shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
-			<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+		<div className="bg-surface-raised p-5 md:p-8 border border-border-subtle rounded-2xl md:rounded-3xl shadow-premium-lg transition-colors duration-300">
+			<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 md:mb-8 gap-4">
 				<div>
-					<span className="text-xl sm:text-2xl font-bold text-[#222222]">{formatCurrency(price)}</span>
-					<span className="text-[#6a6a6a] text-sm sm:text-base font-normal"> / month</span>
+					<span className="text-2xl md:text-3xl font-black text-text-primary tracking-tighter">{formatCurrency(price)}</span>
+					<span className="text-text-secondary text-sm md:text-base font-bold"> / month</span>
 				</div>
-				<div className="flex items-center gap-1">
-					<Star size={14} fill="currentColor" className="text-[#222222]" />
-					<span className="text-sm font-semibold text-[#222222]">4.9</span>
-					<span className="text-sm text-[#717171] underline">(12 inquiries)</span>
+				<div className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-sunken rounded-full border border-border-subtle">
+					<Star size={14} fill="currentColor" className="text-brand" />
+					<span className="text-sm font-black text-text-primary">4.9</span>
+					<span className="text-[10px] text-text-tertiary font-bold uppercase tracking-widest ml-1">(12)</span>
 				</div>
 			</div>
 
-			<div className="border border-[#b0b0b0] rounded-xl overflow-hidden mb-6">
-				<div className="grid grid-cols-1 md:grid-cols-2 border-b border-[#b0b0b0]">
-					<div className="p-3 border-r border-[#b0b0b0]">
-						<label htmlFor="startDate" className="text-[10px] font-bold uppercase text-[#222222] block mb-0.5">Start Date</label>
+			<div className="border border-border-strong rounded-2xl overflow-hidden mb-6 md:mb-8 bg-surface-sunken">
+				<div className="grid grid-cols-2 border-b border-border-strong">
+					<div className="p-4 border-r border-border-strong">
+						<label htmlFor="startDate" className="text-[9px] font-black uppercase text-text-tertiary block mb-1 tracking-widest">Start Date</label>
 						<input 
 							type="date" 
 							id="startDate"
 							value={startDate}
 							onChange={(e) => setStartDate(e.target.value)}
-							className="text-sm text-[#222222] w-full bg-transparent focus:outline-none cursor-pointer" 
+							className="text-sm font-bold text-text-primary w-full bg-transparent focus:outline-none cursor-pointer" 
 						/>
 					</div>
-					<div className="p-3">
-						<label htmlFor="endDate" className="text-[10px] font-bold uppercase text-[#222222] block mb-0.5">End Date</label>
+					<div className="p-4">
+						<label htmlFor="endDate" className="text-[9px] font-black uppercase text-text-tertiary block mb-1 tracking-widest">End Date</label>
 						<input 
 							type="date" 
 							id="endDate"
 							value={endDate}
 							onChange={(e) => setEndDate(e.target.value)}
-							className="text-sm text-[#222222] w-full bg-transparent focus:outline-none cursor-pointer" 
+							className="text-sm font-bold text-text-primary w-full bg-transparent focus:outline-none cursor-pointer" 
 						/>
 					</div>
 				</div>
-				<div className="p-3">
-					<div className="text-[10px] font-bold uppercase text-[#222222]">Campaign Size</div>
-					<div className="text-sm text-[#717171]">1 Billboard</div>
+				<div className="p-4">
+					<div className="text-[9px] font-black uppercase text-text-tertiary tracking-widest mb-1">Campaign Size</div>
+					<div className="text-sm font-bold text-text-primary flex items-center gap-2">
+						<div className="h-1.5 w-1.5 rounded-full bg-brand" />
+						1 Premium Node
+					</div>
 				</div>
 			</div>
 
 			<button 
 				onClick={handleBooking}
 				disabled={loading}
-				className="w-full bg-[#082390] text-white py-3.5 rounded-lg font-bold text-lg hover:bg-[#1d4ed8] transition-colors mb-4 disabled:opacity-70"
+				className="w-full bg-brand text-white py-4 rounded-2xl font-black text-base md:text-lg hover:scale-[1.02] active:scale-[0.98] transition-all mb-4 disabled:opacity-70 shadow-premium-md hover:shadow-premium-lg"
 			>
-				{loading ? "Processing..." : "Check Availability"}
+				{loading ? "Processing Intelligence..." : "Check Availability"}
 			</button>
 			
-			<p className="text-center text-sm text-[#717171] mb-6">You won&apos;t be charged yet</p>
+			<p className="text-center text-[10px] md:text-xs font-bold text-text-tertiary uppercase tracking-widest mb-6 md:mb-8">No immediate commitment required</p>
 
-			<div className="space-y-4">
-				<div className="flex justify-between text-base text-[#222222]">
-					<span className="underline italic">Rental fee (1 month)</span>
-					<span>{formatCurrency(price)}</span>
+			<div className="space-y-4 pt-4 border-t border-border-subtle">
+				<div className="flex justify-between text-sm md:text-base font-medium text-text-secondary">
+					<span className="underline decoration-border-strong underline-offset-4">Monthly Rental</span>
+					<span className="text-text-primary font-bold">{formatCurrency(price)}</span>
 				</div>
-				<div className="flex justify-between text-base text-[#222222]">
-					<span className="underline italic">Printing & Installation</span>
-					<span>₹ 0</span>
+				<div className="flex justify-between text-sm md:text-base font-medium text-text-secondary">
+					<span className="underline decoration-border-strong underline-offset-4">Operations & Verify</span>
+					<span className="text-text-primary font-bold">₹ 0</span>
 				</div>
-				<div className="pt-4 border-t border-[#dddddd] flex justify-between text-lg font-bold text-[#222222]">
-					<span>Total before taxes</span>
-					<span>{formatCurrency(price)}</span>
+				<div className="pt-4 border-t border-border-strong flex justify-between text-lg md:text-xl font-black text-text-primary tracking-tight">
+					<span>Estimated Total</span>
+					<span className="text-brand">{formatCurrency(price)}</span>
 				</div>
 			</div>
 		</div>

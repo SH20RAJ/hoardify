@@ -27,12 +27,12 @@ export default function TopBar() {
 	];
 
 	return (
-		<nav className="sticky top-0 z-[100] w-full bg-white/80 backdrop-blur-2xl border-b border-border-subtle h-16 md:h-20 flex items-center shadow-premium-sm">
-			<div className="container mx-auto px-3 md:px-8 flex items-center justify-between">
+		<nav className="sticky top-0 z-[100] w-full bg-background/80 backdrop-blur-2xl border-b border-border-subtle h-16 md:h-20 flex items-center shadow-premium-sm transition-colors duration-300">
+			<div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
 				{/* Left: Logo */}
 				<div className="flex items-center gap-3 min-w-0">
 					{showBack && (
-						<Link href={backHref} className="p-2 hover:bg-surface-sunken rounded-xl transition-all active:scale-90 text-[#111111] shrink-0">
+						<Link href={backHref} className="p-2 hover:bg-surface-sunken rounded-xl transition-all active:scale-90 text-text-primary shrink-0">
 							<ChevronLeft size={20} strokeWidth={2.5} />
 						</Link>
 					)}
@@ -41,20 +41,20 @@ export default function TopBar() {
 						<div className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-xl bg-brand text-white shadow-premium-md group-hover:scale-110 transition-transform duration-500">
 							<img src="/new-logo.png" alt="" className="h-full w-full object-contain p-1.5" />
 						</div>
-						<span className="text-xl md:text-2xl font-black tracking-tighter text-[#111111] hidden sm:block">hoardify</span>
+						<span className="text-xl md:text-2xl font-black tracking-tighter text-text-primary hidden sm:block">hoardify</span>
 					</Link>
 				</div>
 
 				{/* Mobile center title */}
 				<div className="min-w-0 flex-1 text-center md:hidden absolute left-14 right-14">
-					<div className="truncate text-sm font-bold text-[#111111]">{config.title}</div>
+					<div className="truncate text-sm font-bold text-text-primary">{config.title}</div>
 				</div>
 
 				{/* Middle: Search bar (simplified) */}
 				<div className="hidden md:flex flex-1 max-w-sm mx-12">
 					<Link href="/search" className="flex items-center w-full h-12 bg-surface-sunken border border-border-subtle rounded-full px-5 hover:shadow-premium-md hover:border-brand/20 transition-all cursor-pointer group">
 						<span className="text-sm font-bold text-text-tertiary group-hover:text-text-primary transition-colors flex-1">Start your campaign...</span>
-						<div className="bg-[#111111] p-2 rounded-full text-white group-hover:bg-brand transition-colors">
+						<div className="bg-text-primary p-2 rounded-full text-background group-hover:bg-brand transition-colors">
 							<Search size={14} strokeWidth={3} />
 						</div>
 					</Link>
@@ -71,8 +71,8 @@ export default function TopBar() {
 									href={item.href}
 									className={`px-5 py-2.5 rounded-full text-sm font-bold tracking-tight transition-all active:scale-95 ${
 										isActive 
-											? "text-[#111111] bg-surface-sunken" 
-											: "text-text-tertiary hover:text-[#111111] hover:bg-surface-sunken"
+											? "text-text-primary bg-surface-sunken" 
+											: "text-text-tertiary hover:text-text-primary hover:bg-surface-sunken"
 									}`}
 								>
 									{item.name}
@@ -93,11 +93,11 @@ export default function TopBar() {
 								{user.profileImageUrl ? (
 									<Image src={user.profileImageUrl} alt="User" width={32} height={32} className="w-8 h-8 rounded-full object-cover shadow-sm" unoptimized />
 								) : (
-									<div className="w-8 h-8 rounded-full bg-[#111111] flex items-center justify-center text-white text-xs font-black">
+									<div className="w-8 h-8 rounded-full bg-text-primary flex items-center justify-center text-background text-xs font-black">
 										{user.primaryEmail?.[0].toUpperCase()}
 									</div>
 								)}
-								<span className="text-xs font-bold text-[#111111] hidden lg:block">Intelligence Profile</span>
+								<span className="text-xs font-bold text-text-primary hidden lg:block">Intelligence Profile</span>
 							</Link>
 						</div>
 					) : (

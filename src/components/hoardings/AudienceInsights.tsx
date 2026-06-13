@@ -13,8 +13,8 @@ export default function AudienceInsights({ views }: AudienceInsightsProps) {
 	];
 
 	return (
-		<div className="mt-12 py-12 border-t border-[#ebebeb]">
-			<h3 className="text-2xl font-semibold text-[#222222] mb-8">
+		<div className="mt-12 py-12 border-t border-border-subtle">
+			<h3 className="text-xl md:text-2xl font-black text-text-primary mb-8 tracking-tight">
 				Audience Intelligence
 			</h3>
 			<div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -22,16 +22,16 @@ export default function AudienceInsights({ views }: AudienceInsightsProps) {
 					const Icon = item.icon;
 					return (
 						<div key={i} className="flex flex-col gap-2">
-							<Icon size={24} className="text-[#222222] mb-2" />
-							<span className="text-xl font-bold text-[#222222]">{item.value}</span>
-							<span className="text-sm text-[#717171]">{item.label}</span>
+							<Icon size={24} className="text-text-primary mb-2" />
+							<span className="text-xl font-black text-text-primary tracking-tight">{item.value}</span>
+							<span className="text-xs font-bold text-text-tertiary uppercase tracking-widest">{item.label}</span>
 						</div>
 					);
 				})}
 			</div>
 			
-			<div className="mt-10 p-6 rounded-xl bg-[#f7f7f7] border border-[#ebebeb]">
-				<p className="text-xs text-[#717171] leading-relaxed">
+			<div className="mt-10 p-6 rounded-2xl bg-surface-sunken border border-border-subtle">
+				<p className="text-xs text-text-secondary leading-relaxed font-medium">
 					Data based on average weekly traffic counts and mobile device signals in the immediate 200m radius of the placement. Powered by Ranchi Traffic Intelligence.
 				</p>
 			</div>

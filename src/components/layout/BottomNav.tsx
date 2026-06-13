@@ -20,7 +20,7 @@ export default function BottomNav() {
 
 	return (
 		<nav className="md:hidden fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom))] left-3 right-3 z-[60]" aria-label="Main navigation">
-			<div className="flex justify-around items-center h-16 bg-[#ffffff]/80 backdrop-blur-2xl border border-[#e5e5e5] rounded-full shadow-premium-lg px-2">
+			<div className="flex justify-around items-center h-16 bg-background/80 backdrop-blur-2xl border border-border-subtle rounded-full shadow-premium-lg px-2 transition-colors duration-300">
 				{navItems.map((item) => {
 					const Icon = item.icon;
 					const isActive = pathname === item.href;
