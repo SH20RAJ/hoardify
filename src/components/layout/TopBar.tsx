@@ -16,6 +16,7 @@ export default function TopBar() {
 	const {
 		showBack = false,
 		backHref = "/",
+		rightAction,
 	} = config;
 
 	const navItems = [
@@ -26,22 +27,27 @@ export default function TopBar() {
 	];
 
 	return (
-		<nav className="sticky top-0 z-[100] w-full bg-white/80 backdrop-blur-2xl border-b border-border-subtle h-20 flex items-center shadow-premium-sm">
-			<div className="container mx-auto px-8 flex items-center justify-between">
+		<nav className="sticky top-0 z-[100] w-full bg-white/80 backdrop-blur-2xl border-b border-border-subtle h-16 md:h-20 flex items-center shadow-premium-sm">
+			<div className="container mx-auto px-3 md:px-8 flex items-center justify-between">
 				{/* Left: Logo */}
-				<div className="flex items-center gap-6">
+				<div className="flex items-center gap-3 min-w-0">
 					{showBack && (
-						<Link href={backHref} className="p-2.5 hover:bg-surface-sunken rounded-xl transition-all active:scale-90 text-[#111111]">
+						<Link href={backHref} className="p-2 hover:bg-surface-sunken rounded-xl transition-all active:scale-90 text-[#111111] shrink-0">
 							<ChevronLeft size={20} strokeWidth={2.5} />
 						</Link>
 					)}
 					
-					<Link href="/" className="flex items-center gap-3 group">
-						<div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand text-white shadow-premium-md group-hover:scale-110 transition-transform duration-500">
+					<Link href="/" className="flex items-center gap-3 group shrink-0">
+						<div className="flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-xl bg-brand text-white shadow-premium-md group-hover:scale-110 transition-transform duration-500">
 							<img src="/new-logo.png" alt="" className="h-full w-full object-contain p-1.5" />
 						</div>
-						<span className="text-2xl font-black tracking-tighter text-[#111111] hidden sm:block">hoardify</span>
+						<span className="text-xl md:text-2xl font-black tracking-tighter text-[#111111] hidden sm:block">hoardify</span>
 					</Link>
+				</div>
+
+				{/* Mobile center title */}
+				<div className="min-w-0 flex-1 text-center md:hidden absolute left-14 right-14">
+					<div className="truncate text-sm font-bold text-[#111111]">{config.title}</div>
 				</div>
 
 				{/* Middle: Search bar (simplified) */}
@@ -55,7 +61,7 @@ export default function TopBar() {
 				</div>
 
 				{/* Right: Nav items */}
-				<div className="flex items-center gap-4">
+				<div className="flex items-center gap-2 md:gap-4 shrink-0">
 					<div className="hidden md:flex items-center gap-2 mr-4">
 						{navItems.map((item) => {
 							const isActive = pathname === item.href;
@@ -79,10 +85,11 @@ export default function TopBar() {
 					
 					<ThemeToggle />
 					
+					{rightAction && <div className="hidden md:flex items-center">{rightAction}</div>}
+					
 					{user ? (
-						<div className="flex items-center gap-4">
-							<Link href="/profile" className="flex items-center gap-3 p-1.5 pl-4 border border-border-strong rounded-full hover:shadow-premium-md hover:border-brand/20 transition-all active:scale-95 group">
-								<span className="text-xs font-bold text-[#111111] hidden lg:block">Intelligence Profile</span>
+						<div className="flex items-center gap-3">
+							<Link href="/profile" className="flex items-center gap-2 p-1.5 border border-border-strong rounded-full hover:shadow-premium-md hover:border-brand/20 transition-all active:scale-95 group">
 								{user.profileImageUrl ? (
 									<Image src={user.profileImageUrl} alt="User" width={32} height={32} className="w-8 h-8 rounded-full object-cover shadow-sm" unoptimized />
 								) : (
@@ -90,12 +97,13 @@ export default function TopBar() {
 										{user.primaryEmail?.[0].toUpperCase()}
 									</div>
 								)}
+								<span className="text-xs font-bold text-[#111111] hidden lg:block">Intelligence Profile</span>
 							</Link>
 						</div>
 					) : (
 						<Link 
 							href={stackClientApp.urls.signIn}
-							className="px-8 py-2.5 rounded-full bg-brand text-white font-bold text-sm hover:scale-105 active:scale-95 transition-all shadow-premium-md"
+							className="px-4 md:px-8 py-2 rounded-full bg-brand text-white font-bold text-xs md:text-sm hover:scale-105 active:scale-95 transition-all shadow-premium-md"
 						>
 							Log In
 						</Link>

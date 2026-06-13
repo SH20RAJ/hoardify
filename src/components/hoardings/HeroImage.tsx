@@ -59,11 +59,11 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 						<X size={20} />
 					</button>
 				</div>
-				<div className="flex-1 flex items-center justify-center relative px-4">
-					<button onClick={prev} className="absolute left-4 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 z-10">
-						<ChevronLeft size={24} />
-					</button>
-					<div className="relative w-full max-w-4xl aspect-[16/10]">
+			<div className="flex-1 flex items-center justify-center relative px-3 sm:px-4">
+				<button onClick={prev} className="absolute left-2 sm:left-4 p-2.5 sm:p-3 rounded-full bg-white/10 text-white hover:bg-white/20 z-10">
+					<ChevronLeft size={20} />
+				</button>
+				<div className="relative w-full max-w-4xl aspect-[16/10]">
 						<Image
 							src={getImgSrc(currentIndex)}
 							alt={`${alt} ${currentIndex + 1}`}
@@ -73,9 +73,9 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 							onError={() => handleImageError(currentIndex)}
 						/>
 					</div>
-					<button onClick={next} className="absolute right-4 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 z-10">
-						<ChevronRight size={24} />
-					</button>
+				<button onClick={next} className="absolute right-2 sm:right-4 p-2.5 sm:p-3 rounded-full bg-white/10 text-white hover:bg-white/20 z-10">
+					<ChevronRight size={20} />
+				</button>
 				</div>
 				{/* Thumbnail strip */}
 				<div className="flex gap-2 p-4 justify-center overflow-x-auto">
@@ -83,7 +83,7 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 						<button
 							key={i}
 							onClick={() => setCurrentIndex(i)}
-							className={`relative w-16 h-12 rounded-lg overflow-hidden border-2 shrink-0 transition-all ${
+							className={`relative w-14 h-10 rounded-lg overflow-hidden border-2 shrink-0 transition-all ${
 								i === currentIndex ? "border-white opacity-100" : "border-transparent opacity-50 hover:opacity-80"
 							}`}
 						>
@@ -99,7 +99,7 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 	if (allImages.length >= 5) {
 		return (
 			<div className="relative">
-				<div className="grid grid-cols-4 grid-rows-2 gap-2 rounded-2xl overflow-hidden h-[400px]" onClick={() => setShowGallery(true)} role="button" tabIndex={0}>
+				<div className="grid grid-cols-4 grid-rows-2 gap-2 rounded-2xl overflow-hidden h-[300px] sm:h-[360px] md:h-[400px]" onClick={() => setShowGallery(true)} role="button" tabIndex={0}>
 					{/* Main large image */}
 					<div className="col-span-2 row-span-2 relative cursor-pointer">
 						<Image src={getImgSrc(0)} alt={alt} fill className="object-cover hover:brightness-90 transition-all" priority unoptimized onError={() => handleImageError(0)} />
@@ -135,7 +135,7 @@ export default function HeroImage({ src, alt, id, images = [], videoUrl }: HeroI
 	// Fallback: single image with arrows
 	return (
 		<div className="relative">
-			<div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#ebebeb] cursor-pointer" onClick={() => setShowGallery(true)}>
+			<div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#ebebeb] cursor-pointer" onClick={() => setShowGallery(true)}>
 				<Image
 					src={getImgSrc(currentIndex)}
 					alt={alt}

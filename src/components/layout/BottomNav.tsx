@@ -19,7 +19,7 @@ export default function BottomNav() {
 	if (pathname.startsWith("/hoardings/")) return null;
 
 	return (
-		<nav className="md:hidden fixed bottom-6 left-6 right-6 z-[60]" aria-label="Main navigation">
+		<nav className="md:hidden fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom))] left-3 right-3 z-[60]" aria-label="Main navigation">
 			<div className="flex justify-around items-center h-16 bg-[#ffffff]/80 backdrop-blur-2xl border border-[#e5e5e5] rounded-full shadow-premium-lg px-2">
 				{navItems.map((item) => {
 					const Icon = item.icon;

@@ -37,9 +37,9 @@ const features = [
 
 export default function ValueProps() {
 	return (
-		<section className="py-32 bg-white">
-			<div className="container mx-auto px-6 max-w-7xl">
-				<div className="max-w-3xl mb-24">
+		<section className="py-20 md:py-32 bg-white">
+			<div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+				<div className="max-w-3xl mb-14 md:mb-24">
 					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/5 border border-brand/10 text-brand text-[9px] font-black uppercase tracking-widest mb-6">
 						Platform Capabilities
 					</div>
@@ -51,10 +51,10 @@ export default function ValueProps() {
 					</p>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 lg:gap-x-12 gap-y-10 md:gap-y-20">
 					{features.map((feature, index) => (
-						<div key={index} className="group flex flex-col items-start">
-							<div className="w-14 h-14 rounded-2xl bg-surface-sunken flex items-center justify-center text-text-tertiary mb-8 group-hover:bg-brand group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-premium-sm group-hover:shadow-premium-md">
+					<div key={index} className="group flex flex-col items-start">
+						<div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-surface-sunken flex items-center justify-center text-text-tertiary mb-5 sm:mb-8 group-hover:bg-brand group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-premium-sm group-hover:shadow-premium-md">
 								{feature.icon}
 							</div>
 							<h3 className="text-xl font-bold text-[#111111] mb-4 group-hover:text-brand transition-colors">

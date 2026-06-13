@@ -35,7 +35,7 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 	const relatedHoardings = all.filter(h => h.id !== hoarding.id).slice(0, 4);
 
 	return (
-		<div className="flex flex-col min-h-screen bg-white pb-32">
+		<div className="flex flex-col min-h-screen bg-white pb-28 md:pb-32">
 			<NavbarSync 
 				title={hoarding.title}
 				showBack
@@ -52,29 +52,29 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 				}
 			/>
 
-			<div className="max-w-7xl mx-auto w-full px-4 md:px-6 mt-6 md:mt-10">
-				<div className="flex flex-col lg:flex-row gap-12">
+			<div className="max-w-7xl mx-auto w-full px-3 md:px-6 mt-4 md:mt-10">
+				<div className="flex flex-col lg:flex-row gap-8 md:gap-12">
 					
 					{/* Left Column: Details */}
 					<div className="w-full lg:w-[60%]">
-						<section className="mb-10">
+						<section className="mb-6 md:mb-10">
 							<HeroImage src={hoarding.imageUrl} alt={hoarding.title} id={hoarding.id} images={hoarding.images} videoUrl={hoarding.videoUrl} />
 						</section>
 
-						<section className="border-b border-[#ebebeb] pb-10">
+						<section className="border-b border-[#ebebeb] pb-6 md:pb-10">
 							<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
 								<div className="flex flex-col">
-									<h1 className="text-3xl font-semibold text-[#222222] mb-2">{hoarding.title}</h1>
+									<h1 className="text-2xl md:text-3xl font-semibold text-[#222222] mb-2">{hoarding.title}</h1>
 									<div className="flex items-center gap-2 text-[#222222] font-normal">
-										<MapPin size={18} />
-										<span className="text-lg underline underline-offset-4 font-semibold">{hoarding.location}</span>
+										<MapPin size={16} />
+										<span className="text-base md:text-lg underline underline-offset-4 font-semibold">{hoarding.location}</span>
 									</div>
 								</div>
 								<a
 									href={`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${hoarding.lat},${hoarding.lng}`}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#ebebeb] hover:bg-[#f7f7f7] text-xs font-bold uppercase tracking-widest text-[#222222] transition-all duration-200 shadow-sm hover:shadow shrink-0"
+									className="flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-3 rounded-xl border border-[#ebebeb] hover:bg-[#f7f7f7] text-xs font-bold uppercase tracking-widest text-[#222222] transition-all duration-200 shadow-sm hover:shadow shrink-0"
 								>
 									<Compass size={16} />
 									See in 3D
@@ -82,23 +82,23 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 							</div>
 						</section>
 
-						<section className="py-10 border-b border-[#ebebeb]">
-							<h3 className="text-2xl font-semibold text-[#222222] mb-6">What this place offers</h3>
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<section className="py-6 md:py-10 border-b border-[#ebebeb]">
+							<h3 className="text-xl md:text-2xl font-semibold text-[#222222] mb-4 md:mb-6">What this place offers</h3>
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
 								{hoarding.category && (
-									<div className="flex items-center gap-4 text-[#222222]">
+									<div className="flex items-center gap-3 md:gap-4 text-[#222222]">
 										<ShieldCheck size={24} className="text-[#717171]" />
 										<span className="text-base">Type: {hoarding.category}</span>
 									</div>
 								)}
 								{hoarding.lighting && (
-									<div className="flex items-center gap-4 text-[#222222]">
+									<div className="flex items-center gap-3 md:gap-4 text-[#222222]">
 										<ShieldCheck size={24} className="text-[#717171]" />
 										<span className="text-base">Lighting: {hoarding.lighting}</span>
 									</div>
 								)}
 								{hoarding.dimensions && (
-									<div className="flex items-center gap-4 text-[#222222]">
+									<div className="flex items-center gap-3 md:gap-4 text-[#222222]">
 										<ShieldCheck size={24} className="text-[#717171]" />
 										<span className="text-base">Size: {hoarding.dimensions}</span>
 									</div>
@@ -113,23 +113,23 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 						</section>
 
 						{hoarding.description && (
-							<section className="py-10 border-b border-[#ebebeb]">
-								<h3 className="text-2xl font-semibold text-[#222222] mb-6">About this placement</h3>
+						<section className="py-6 md:py-10 border-b border-[#ebebeb]">
+							<h3 className="text-xl md:text-2xl font-semibold text-[#222222] mb-4 md:mb-6">About this placement</h3>
 								<p className="text-[#222222] leading-relaxed whitespace-pre-wrap">
 									{hoarding.description}
 								</p>
 							</section>
 						)}
 
-						<section className="py-10 border-b border-[#ebebeb]">
-							<h3 className="text-2xl font-semibold text-[#222222] mb-6">Reach & Impact</h3>
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-								<div className="p-6 rounded-2xl bg-[#f7f7f7] border border-[#ebebeb]">
+						<section className="py-6 md:py-10 border-b border-[#ebebeb]">
+							<h3 className="text-xl md:text-2xl font-semibold text-[#222222] mb-4 md:mb-6">Reach & Impact</h3>
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+								<div className="p-4 md:p-6 rounded-2xl bg-[#f7f7f7] border border-[#ebebeb]">
 									<p className="text-sm text-[#717171] font-semibold uppercase tracking-wider mb-1">Estimated Reach</p>
 									<p className="text-3xl font-bold text-[#222222]">{hoarding.trafficCount ? hoarding.trafficCount.toLocaleString() : "50,000+"}</p>
 									<p className="text-xs text-[#717171] mt-1">Monthly impressions (local data)</p>
 								</div>
-								<div className="p-6 rounded-2xl bg-[#f7f7f7] border border-[#ebebeb]">
+								<div className="p-4 md:p-6 rounded-2xl bg-[#f7f7f7] border border-[#ebebeb]">
 									<p className="text-sm text-[#717171] font-semibold uppercase tracking-wider mb-1">Audience View</p>
 									<p className="text-3xl font-bold text-[#222222]">{hoarding.views || "100%"}</p>
 									<p className="text-xs text-[#717171] mt-1">Direct line-of-sight visibility</p>
@@ -137,9 +137,9 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 							</div>
 						</section>
 
-						<section className="py-10">
-							<h3 className="text-2xl font-semibold text-[#222222] mb-6">Where you&apos;ll be seen</h3>
-							<div className="w-full h-[450px] bg-[#f7f7f7] rounded-2xl relative overflow-hidden border border-[#ebebeb]">
+						<section className="py-6 md:py-10">
+							<h3 className="text-xl md:text-2xl font-semibold text-[#222222] mb-4 md:mb-6">Where you&apos;ll be seen</h3>
+							<div className="w-full h-[320px] sm:h-[400px] md:h-[450px] bg-[#f7f7f7] rounded-2xl relative overflow-hidden border border-[#ebebeb]">
 								<GoogleMapWrapper 
 									hoardings={[hoarding]} 
 									center={{
@@ -155,10 +155,10 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 
 					{/* Right Column: Sticky Booking Card & Calendar */}
 					<div className="w-full lg:w-[40%]">
-						<div className="lg:sticky lg:top-32">
-							<BookingCard price={hoarding.price} hoardingId={hoarding.id} />
+					<div className="lg:sticky lg:top-32">
+						<BookingCard price={hoarding.price} hoardingId={hoarding.id} />
 
-							<div className="mt-8 flex items-center justify-center gap-2 p-6 rounded-2xl bg-[#f7f7f7] border border-[#ebebeb]">
+						<div className="mt-4 md:mt-8 flex items-center justify-center gap-2 p-4 md:p-6 rounded-2xl bg-[#f7f7f7] border border-[#ebebeb]">
 								<div className="h-2 w-2 rounded-full bg-[#008a05]" />
 								<p className="text-sm font-semibold text-[#222222]">
 									This is a rare find. It&apos;s usually booked.
@@ -169,8 +169,8 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 				</div>
 
 				{/* Recommended Section */}
-				<section className="mt-24 pt-16 border-t border-[#ebebeb]">
-					<div className="flex items-end justify-between mb-10">
+				<section className="mt-12 md:mt-24 pt-10 md:pt-16 border-t border-[#ebebeb]">
+					<div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-10 gap-4">
 						<div>
 							<h2 className="text-2xl font-semibold text-[#222222]">Explore other options nearby</h2>
 							<p className="text-sm text-[#717171] mt-1">Boost your reach with multi-node deployments</p>

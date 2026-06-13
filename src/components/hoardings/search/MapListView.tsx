@@ -40,7 +40,7 @@ export default function MapListView({ viewMode, hoardings }: MapListViewProps) {
 						<div className="absolute inset-0 z-0">
 							<GoogleMapWrapper hoardings={hoardings} />
 						</div>
-						<div className="relative z-10 p-4">
+						<div className="relative z-10 p-3">
 							<div className="flex items-center gap-3 bg-white px-4 py-3 shadow-[0_6px_16px_rgba(0,0,0,0.12)] rounded-full border border-[#ebebeb]">
 								<Search size={18} className="text-[#222222]" />
 								<input 
@@ -54,8 +54,8 @@ export default function MapListView({ viewMode, hoardings }: MapListViewProps) {
 								</Link>
 							</div>
 						</div>
-						<div className="absolute bottom-6 w-full z-10 px-4 left-0">
-							<div className="bg-white rounded-2xl p-4 shadow-[0_6px_20px_rgba(0,0,0,0.15)] border border-[#ebebeb]">
+						<div className="absolute bottom-4 w-full z-10 px-3 left-0">
+							<div className="bg-white rounded-2xl p-3 sm:p-4 shadow-[0_6px_20px_rgba(0,0,0,0.15)] border border-[#ebebeb] max-h-[42vh] overflow-y-auto">
 								<div className="w-10 h-1 bg-[#dddddd] rounded-full mx-auto mb-4"></div>
 								<div className="flex items-center justify-between mb-4">
 									<h2 className="text-sm font-bold text-[#222222]">Nearby</h2>
@@ -70,8 +70,8 @@ export default function MapListView({ viewMode, hoardings }: MapListViewProps) {
 						</div>
 					</>
 				) : (
-					<div className="flex-1 overflow-y-auto px-6 py-6 bg-white">
-						<div className="flex flex-col gap-10">
+					<div className="flex-1 overflow-y-auto px-4 py-4 bg-white">
+						<div className="flex flex-col gap-8">
 							{hoardings.map(hoarding => (
 								<HoardingCard key={hoarding.id} {...hoarding} variant="banner" />
 							))}

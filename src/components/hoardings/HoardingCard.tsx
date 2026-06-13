@@ -61,7 +61,7 @@ export default function HoardingCard({
 
 	if (variant === "compact") {
 		return (
-			<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-64 group active:scale-95 transition-all duration-500">
+			<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-56 sm:w-64 group active:scale-95 transition-all duration-500">
 				<div className="flex flex-col gap-5">
 					<div className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] border border-border-subtle group-hover:shadow-premium-lg transition-all duration-700">
 						<Image
@@ -114,11 +114,11 @@ export default function HoardingCard({
 		);
 	}
 
-	if (variant === "banner") {
+		if (variant === "banner") {
 		return (
 			<Link href={`/hoardings/${id}`} className="block w-full group active:scale-[0.99] transition-all duration-500">
-				<div className="flex flex-col gap-6">
-					<div className="relative aspect-[21/9] w-full overflow-hidden rounded-[2.5rem] border border-border-subtle shadow-premium-sm group-hover:shadow-premium-xl group-hover:-translate-y-2 transition-all duration-700">
+				<div className="flex flex-col gap-5 md:gap-6">
+					<div className="relative aspect-[4/3] md:aspect-[21/9] w-full overflow-hidden rounded-[2rem] md:rounded-[2.5rem] border border-border-subtle shadow-premium-sm group-hover:shadow-premium-xl group-hover:-translate-y-2 transition-all duration-700">
 						<Image
 							src={getImgSrc(currentIndex)}
 							alt={title}
@@ -144,8 +144,8 @@ export default function HoardingCard({
 							</>
 						)}
 					</div>
-					<div className="px-4">
-						<div className="flex justify-between items-start gap-8">
+					<div className="px-3 md:px-4">
+						<div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-8">
 							<div className="flex-1">
 								<h3 className="text-2xl font-black text-[#111111] tracking-tight group-hover:text-brand transition-colors">{title}</h3>
 								{location && (
@@ -156,7 +156,7 @@ export default function HoardingCard({
 								)}
 							</div>
 							{price && (
-								<div className="text-right flex flex-col items-end">
+								<div className="text-right flex flex-col items-start md:items-end w-full md:w-auto">
 									<div className="px-3 py-1 bg-brand/5 border border-brand/10 rounded-full mb-2">
 										<p className="text-[10px] font-black text-brand uppercase tracking-[0.2em]">Premium Tier</p>
 									</div>
@@ -173,7 +173,7 @@ export default function HoardingCard({
 
 	// large variant (default)
 	return (
-		<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-[340px] group active:scale-[0.98] transition-all duration-500">
+		<Link href={`/hoardings/${id}`} className="block flex-shrink-0 w-[82vw] max-w-[340px] group active:scale-[0.98] transition-all duration-500">
 			<div className="flex flex-col gap-6">
 				<div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2.5rem] border border-border-subtle shadow-premium-md group-hover:shadow-premium-xl group-hover:-translate-y-2 transition-all duration-700">
 					<Image

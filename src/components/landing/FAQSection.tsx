@@ -19,9 +19,9 @@ const faqs = [
 
 export default function FAQSection() {
 	return (
-		<section className="py-32 bg-white border-t border-border-subtle">
-			<div className="container mx-auto px-6 max-w-4xl">
-				<div className="text-center mb-24">
+		<section className="py-20 md:py-32 bg-white border-t border-border-subtle">
+			<div className="container mx-auto px-4 sm:px-6 max-w-4xl">
+				<div className="text-center mb-14 md:mb-24">
 					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-sunken border border-border-subtle text-text-tertiary text-[9px] font-black uppercase tracking-widest mb-6">
 						Intelligence FAQ
 					</div>
@@ -33,7 +33,7 @@ export default function FAQSection() {
 					</p>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-8 md:gap-y-16">
 					{faqs.map((faq, index) => (
 						<div key={index} className="group">
 							<h3 className="text-xl font-bold text-[#111111] mb-4 group-hover:text-brand transition-colors">

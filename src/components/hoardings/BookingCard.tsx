@@ -56,11 +56,11 @@ export default function BookingCard({ price, hoardingId }: BookingCardProps) {
 	};
 
 	return (
-		<div className="bg-white p-6 border border-[#dddddd] rounded-2xl shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
-			<div className="flex items-center justify-between mb-6">
+		<div className="bg-white p-4 sm:p-6 border border-[#dddddd] rounded-2xl shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+			<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
 				<div>
-					<span className="text-2xl font-bold text-[#222222]">{formatCurrency(price)}</span>
-					<span className="text-[#6a6a6a] text-base font-normal"> / month</span>
+					<span className="text-xl sm:text-2xl font-bold text-[#222222]">{formatCurrency(price)}</span>
+					<span className="text-[#6a6a6a] text-sm sm:text-base font-normal"> / month</span>
 				</div>
 				<div className="flex items-center gap-1">
 					<Star size={14} fill="currentColor" className="text-[#222222]" />
@@ -70,7 +70,7 @@ export default function BookingCard({ price, hoardingId }: BookingCardProps) {
 			</div>
 
 			<div className="border border-[#b0b0b0] rounded-xl overflow-hidden mb-6">
-				<div className="grid grid-cols-2 border-b border-[#b0b0b0]">
+				<div className="grid grid-cols-1 md:grid-cols-2 border-b border-[#b0b0b0]">
 					<div className="p-3 border-r border-[#b0b0b0]">
 						<label htmlFor="startDate" className="text-[10px] font-bold uppercase text-[#222222] block mb-0.5">Start Date</label>
 						<input 

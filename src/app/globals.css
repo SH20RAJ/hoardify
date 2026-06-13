@@ -123,3 +123,52 @@ h1, h2, h3, h4, h5, h6 {
 		display: none;
 	}
 }
+
+/* Mobile-first overflow and tap targets */
+@media (max-width: 640px) {
+	html,
+	body,
+	#__next {
+		width: 100%;
+		max-width: 100%;
+		overflow-x: hidden;
+	}
+
+	body {
+		padding-left: env(safe-area-inset-left);
+		padding-right: env(safe-area-inset-right);
+	}
+
+	h1 {
+		font-size: clamp(2.25rem, 12vw, 3.25rem);
+		line-height: 0.95;
+	}
+
+	h2 {
+		font-size: clamp(1.65rem, 8vw, 2.25rem);
+		line-height: 1;
+	}
+
+	h3 {
+		font-size: clamp(1.1rem, 6vw, 1.5rem);
+		line-height: 1.15;
+	}
+
+	img,
+	video,
+	canvas,
+	svg {
+		max-width: 100%;
+	}
+
+	button,
+	input,
+	select,
+	textarea {
+		max-width: 100%;
+	}
+
+	::-webkit-scrollbar {
+		height: 4px;
+	}
+}

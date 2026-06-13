@@ -15,7 +15,7 @@ export default function WebsiteLayout({
 
 			{/* Discovery Content Wrapper */}
 			<div className="mx-auto w-full max-w-7xl flex-1 flex flex-col relative">
-				<main className="flex-1 relative w-full px-4 md:px-0">
+				<main className="flex-1 relative w-full md:px-0">
 					{children}
 				</main>
 

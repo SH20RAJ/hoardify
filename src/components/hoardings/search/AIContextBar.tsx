@@ -30,7 +30,7 @@ export default function AIContextBar({
 	return (
 		<div className="relative">
 			{/* Context Bar */}
-			<div className="bg-white border-b border-[#ebebeb] px-6 py-4 flex items-center gap-3 overflow-x-auto no-scrollbar scroll-smooth">
+			<div className="bg-white border-b border-[#ebebeb] px-4 md:px-6 py-3 md:py-4 flex items-center gap-2 md:gap-3 overflow-x-auto no-scrollbar scroll-smooth">
 				<button
 					onClick={() => setIsAIChatOpen(!isAIChatOpen)}
 					className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap border ${
@@ -63,7 +63,7 @@ export default function AIContextBar({
 
 			{/* AI Overlay */}
 			{isAIChatOpen && (
-				<div className="absolute top-18 left-4 right-4 z-[60] md:left-6 md:w-[400px]">
+				<div className="absolute top-16 md:top-18 left-3 right-3 z-[60] md:left-6 md:w-[400px]">
 					<div className="bg-white p-6 border border-[#ebebeb] shadow-[0_12px_24px_rgba(0,0,0,0.12)] rounded-2xl">
 						<div className="flex items-center gap-3 mb-4">
 							<div className="h-10 w-10 rounded-full bg-[#082390] flex items-center justify-center text-white">

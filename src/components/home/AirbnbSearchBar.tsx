@@ -19,16 +19,16 @@ export default function AirbnbSearchBar() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-6 py-12">
+    <div className="w-full max-w-5xl mx-auto px-4 md:px-6 py-6 md:py-12">
       <div 
-        className={`flex items-center bg-white rounded-[2.5rem] border border-[#e5e5e5] p-2 pl-6 transition-all duration-500 ${
+        className={`flex flex-col md:flex-row items-stretch md:items-center bg-white rounded-[2rem] md:rounded-[2.5rem] border border-[#e5e5e5] p-2 transition-all duration-500 ${
           isFocused 
             ? "shadow-premium-xl border-[#082390]/20 -translate-y-1" 
             : "shadow-premium-lg hover:shadow-premium-xl hover:-translate-y-0.5"
         }`}
       >
         {/* Location Section */}
-        <div className="flex-[1.5] flex flex-col items-start px-6 py-3 hover:bg-[#fafafa] rounded-[2rem] transition-all group relative cursor-pointer active:scale-[0.98]">
+        <div className="w-full flex flex-col items-start px-4 py-3 hover:bg-[#fafafa] rounded-[1.5rem] transition-all group relative cursor-pointer active:scale-[0.98]">
           <label className="text-[9px] font-black text-text-tertiary uppercase tracking-[0.2em] mb-1">Where</label>
           <input 
             type="text"
@@ -49,10 +49,10 @@ export default function AirbnbSearchBar() {
           )}
         </div>
         
-        <div className="h-10 w-px bg-[#f0f0f0] mx-2" />
+        <div className="h-px w-full bg-[#f0f0f0] mx-0 md:h-10 md:w-px md:mx-2" />
         
         {/* Category Section */}
-        <div className="flex-1 flex flex-col items-start px-6 py-3 hover:bg-[#fafafa] rounded-[2rem] transition-all group relative cursor-pointer active:scale-[0.98]">
+        <div className="w-full flex flex-col items-start px-4 py-3 hover:bg-[#fafafa] rounded-[1.5rem] transition-all group relative cursor-pointer active:scale-[0.98]">
           <label className="text-[9px] font-black text-text-tertiary uppercase tracking-[0.2em] mb-1">Type</label>
           <div className="relative w-full">
             <select 
@@ -75,11 +75,11 @@ export default function AirbnbSearchBar() {
           </div>
         </div>
         
-        <div className="h-10 w-px bg-[#f0f0f0] mx-2" />
+        <div className="h-px w-full bg-[#f0f0f0] mx-0 md:h-10 md:w-px md:mx-2" />
         
         {/* Dates Section */}
         <button 
-          className="flex-1 flex flex-col items-start px-6 py-3 hover:bg-[#fafafa] rounded-[2rem] transition-all text-left active:scale-[0.98]"
+          className="w-full flex flex-col items-start px-4 py-3 hover:bg-[#fafafa] rounded-[1.5rem] transition-all text-left active:scale-[0.98]"
           onClick={() => setIsFocused(true)}
         >
           <span className="text-[9px] font-black text-text-tertiary uppercase tracking-[0.2em] mb-1">Timeline</span>
@@ -89,7 +89,7 @@ export default function AirbnbSearchBar() {
         {/* Search CTA */}
         <button 
           onClick={handleSearch}
-          className="group relative bg-[#082390] px-8 py-4 rounded-[2rem] text-white font-bold text-sm transition-all ml-4 shadow-premium-md hover:shadow-premium-lg active:scale-90 flex items-center gap-2 overflow-hidden"
+          className="group relative bg-[#082390] px-6 py-4 rounded-[1.5rem] text-white font-bold text-sm transition-all ml-0 md:ml-4 shadow-premium-md hover:shadow-premium-lg active:scale-90 flex items-center justify-center gap-2 overflow-hidden"
         >
           <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           <Search size={18} strokeWidth={3} className="relative z-10" />

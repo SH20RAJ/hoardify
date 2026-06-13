@@ -17,13 +17,13 @@ export default function FiltersPage() {
 				rightAction={<button className="text-sm font-semibold text-[#222222] underline underline-offset-4">Clear all</button>}
 			/>
 
-			<div className="max-w-3xl mx-auto w-full px-6 py-10 flex flex-col gap-12">
+			<div className="max-w-3xl mx-auto w-full px-4 sm:px-6 py-6 pb-28 md:pb-32 md:py-10 flex flex-col gap-8 md:gap-12">
 				{/* Type of board */}
 				<section>
-					<h3 className="text-2xl font-semibold text-[#222222] mb-6">Type of board</h3>
-					<div className="flex flex-wrap gap-3">
+					<h3 className="text-xl md:text-2xl font-semibold text-[#222222] mb-4 md:mb-6">Type of board</h3>
+					<div className="flex flex-wrap gap-2 md:gap-3">
 						{["Classic Billboard", "Digital Billboard", "Mobile Billboard", "Transit ads", "Airport ads", "Shopping Mall Hoarding"].map((type, i) => (
-							<button key={i} className={`px-5 py-3 rounded-full border text-sm font-medium transition-all ${i === 0 ? "border-[#222222] bg-[#f7f7f7] text-[#222222]" : "border-[#dddddd] text-[#222222] hover:border-[#222222]"}`}>
+							<button key={i} className={`px-4 py-3 rounded-full border text-sm font-medium transition-all ${i === 0 ? "border-[#222222] bg-[#f7f7f7] text-[#222222]" : "border-[#dddddd] text-[#222222] hover:border-[#222222]"}`}>
 								{type}
 							</button>
 						))}
@@ -32,10 +32,10 @@ export default function FiltersPage() {
 
 				{/* Size */}
 				<section>
-					<h3 className="text-2xl font-semibold text-[#222222] mb-6">What size do you want?</h3>
-					<div className="flex flex-wrap gap-3">
+					<h3 className="text-xl md:text-2xl font-semibold text-[#222222] mb-4 md:mb-6">What size do you want?</h3>
+					<div className="flex flex-wrap gap-2 md:gap-3">
 						{["Large 14x48 ft", "Medium 10x30 ft", "Small 8x24 ft"].map((size, i) => (
-							<button key={i} className={`px-5 py-3 rounded-full border text-sm font-medium transition-all ${i === 0 ? "border-[#222222] bg-[#f7f7f7] text-[#222222]" : "border-[#dddddd] text-[#222222] hover:border-[#222222]"}`}>
+							<button key={i} className={`px-4 py-3 rounded-full border text-sm font-medium transition-all ${i === 0 ? "border-[#222222] bg-[#f7f7f7] text-[#222222]" : "border-[#dddddd] text-[#222222] hover:border-[#222222]"}`}>
 								{size}
 							</button>
 						))}
@@ -44,14 +44,14 @@ export default function FiltersPage() {
 
 				{/* Price Range */}
 				<section>
-					<h3 className="text-2xl font-semibold text-[#222222] mb-6">Price range</h3>
-					<p className="text-[#717171] mb-8">Average monthly rate is ₹ 92,000</p>
-					<div className="flex items-center gap-4">
+					<h3 className="text-xl md:text-2xl font-semibold text-[#222222] mb-4 md:mb-6">Price range</h3>
+					<p className="text-[#717171] mb-6 md:mb-8">Average monthly rate is ₹ 92,000</p>
+					<div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
 						<div className="flex-1 p-4 border border-[#dddddd] rounded-xl">
 							<div className="text-xs text-[#717171]">Minimum</div>
 							<div className="text-base font-medium text-[#222222]">₹ 80,000</div>
 						</div>
-						<div className="w-4 h-[1px] bg-[#dddddd]" />
+						<div className="w-4 h-[1px] bg-[#dddddd] hidden sm:block" />
 						<div className="flex-1 p-4 border border-[#dddddd] rounded-xl">
 							<div className="text-xs text-[#717171]">Maximum</div>
 							<div className="text-base font-medium text-[#222222]">₹ 1,25,000</div>
@@ -61,8 +61,8 @@ export default function FiltersPage() {
 
 				{/* Features */}
 				<section>
-					<h3 className="text-2xl font-semibold text-[#222222] mb-6">Features</h3>
-					<div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+					<h3 className="text-xl md:text-2xl font-semibold text-[#222222] mb-4 md:mb-6">Features</h3>
+					<div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
 						<button className="flex flex-col items-start p-4 border-2 border-[#222222] rounded-xl gap-6 aspect-square transition-all">
 							<Eye size={32} className="text-[#222222]" />
 							<span className="text-sm font-semibold text-[#222222]">High visibility</span>
@@ -79,9 +79,9 @@ export default function FiltersPage() {
 				</section>
 			</div>
 
-			<div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-[#ebebeb] flex items-center justify-between z-50">
+			<div className="fixed bottom-0 left-0 right-0 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] bg-white border-t border-[#ebebeb] flex items-center justify-between gap-3 z-50">
 				<button className="text-sm font-bold text-[#222222] underline underline-offset-4">Clear all</button>
-				<button className="px-10 py-3.5 bg-[#222222] text-white rounded-lg font-bold">Show 56 results</button>
+				<button className="px-6 py-3.5 bg-[#222222] text-white rounded-lg font-bold flex-1">Show 56 results</button>
 			</div>
 		</div>
 	);

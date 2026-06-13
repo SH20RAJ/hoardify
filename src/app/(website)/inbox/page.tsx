@@ -22,8 +22,8 @@ export default async function InboxPage() {
 		return (
 			<div className="flex flex-col min-h-screen pb-32 bg-white">
 				<NavbarSync title="Inbox" isLogo={false} />
-				<div className="max-w-2xl mx-auto w-full px-6 py-12">
-					<h1 className="text-3xl font-bold text-[#222222] mb-8">Inbox</h1>
+				<div className="max-w-2xl mx-auto w-full px-4 sm:px-6 py-8 md:py-12">
+					<h1 className="text-2xl md:text-3xl font-bold text-[#222222] mb-6 md:mb-8">Inbox</h1>
 					<div className="py-20 flex flex-col items-center justify-center text-center border-t border-[#ebebeb]">
 						<h2 className="text-xl font-semibold text-[#222222] mb-2">Sign in to see your messages</h2>
 						<p className="text-base text-[#717171] max-w-[320px] mb-6">
@@ -44,7 +44,7 @@ export default async function InboxPage() {
 	return (
 		<div className="flex flex-col min-h-screen pb-32 bg-white">
 			<NavbarSync title="Inbox" isLogo={false} />
-			<div className="max-w-2xl mx-auto w-full px-6 py-8">
+			<div className="max-w-2xl mx-auto w-full px-4 sm:px-6 py-6 md:py-8">
 				<h1 className="text-2xl font-bold text-[#222222] mb-6">Messages</h1>
 				<InboxClient
 					conversations={conversations}

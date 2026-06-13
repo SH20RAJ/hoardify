@@ -85,7 +85,7 @@ export default async function AgencyLayout({
 	return (
 		<div className="flex h-screen bg-white">
 			{/* Agency Sidebar */}
-			<aside className="w-64 bg-white border-r border-[#ebebeb] flex flex-col shrink-0">
+			<aside className="hidden md:flex w-64 bg-white border-r border-[#ebebeb] flex flex-col shrink-0">
 				<div className="p-6 border-b border-[#ebebeb]">
 					<Link href="/" className="flex items-center gap-2">
 						<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#082390] font-black text-white italic">
@@ -127,26 +127,35 @@ export default async function AgencyLayout({
 
 			{/* Main Content Area */}
 			<main className="flex-1 overflow-y-auto flex flex-col bg-[#f7f7f7]">
-				<header className="h-16 bg-white border-b border-[#ebebeb] flex items-center justify-between px-8 sticky top-0 z-10">
-					<div className="flex items-center gap-3">
-						<div className="h-8 w-8 rounded-lg bg-[#f7f7f7] border border-[#ebebeb] overflow-hidden flex items-center justify-center">
+				<header className="h-16 bg-white border-b border-[#ebebeb] flex items-center justify-between px-4 md:px-8 sticky top-0 z-10">
+					<div className="flex items-center gap-3 min-w-0">
+						<div className="h-8 w-8 rounded-lg bg-[#f7f7f7] border border-[#ebebeb] overflow-hidden flex items-center justify-center shrink-0">
 							{agency?.logoUrl ? <img src={agency.logoUrl} className="h-full w-full object-contain p-1" /> : <Building2 size={16} className="text-[#b0b0b0]" />}
 						</div>
-						<h1 className="text-sm font-bold text-[#222222] uppercase tracking-wider">{agency?.name || "Agency Portal"}</h1>
+						<h1 className="text-xs sm:text-sm font-bold text-[#222222] uppercase tracking-wider truncate">{agency?.name || "Agency Portal"}</h1>
 					</div>
 					
-					<div className="flex items-center gap-4">
-						<div className="flex flex-col items-end">
-							<span className="text-xs font-semibold text-[#222222]">{dbUser.name || stackUser.primaryEmail?.split('@')[0]}</span>
+					<div className="hidden sm:flex items-center gap-4">
+						<div className="flex flex-col items-end min-w-0">
+							<span className="text-xs font-semibold text-[#222222] truncate">{dbUser.name || stackUser.primaryEmail?.split('@')[0]}</span>
 							<span className="text-[10px] text-[#717171] font-bold uppercase tracking-wider">Agency Owner</span>
 						</div>
 					</div>
 				</header>
 				
-				<div className="p-8 max-w-6xl mx-auto w-full">
+				<div className="p-4 md:p-8 max-w-6xl mx-auto w-full">
 					{children}
 				</div>
 			</main>
+
+			<nav className="md:hidden fixed bottom-[calc(0.75rem+env(safe-area-inset-bottom))] left-3 right-3 z-[60]">
+				<div className="grid grid-cols-4 h-16 bg-white/90 backdrop-blur-2xl border border-[#e5e5e5] rounded-full shadow-premium-lg px-1">
+					<Link href="/agency" className="flex flex-col items-center justify-center gap-0.5 rounded-full text-[9px] font-bold text-[#717171]"><LayoutDashboard size={18} />Dash</Link>
+					<Link href="/agency/inventory" className="flex flex-col items-center justify-center gap-0.5 rounded-full text-[9px] font-bold text-[#717171]"><Megaphone size={18} />Stock</Link>
+					<Link href="/agency/enquiries" className="flex flex-col items-center justify-center gap-0.5 rounded-full text-[9px] font-bold text-[#717171]"><Inbox size={18} />Leads</Link>
+					<Link href="/" className="flex flex-col items-center justify-center gap-0.5 rounded-full text-[9px] font-bold text-[#717171]"><ExternalLink size={18} />Site</Link>
+				</div>
+			</nav>
 		</div>
 	);
 }

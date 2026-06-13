@@ -27,7 +27,7 @@ export default function AdminSidebar({ signOutUrl }: AdminSidebarProps) {
 	];
 
 	return (
-		<aside className="w-64 bg-white border-r border-[#ebebeb] flex flex-col shrink-0">
+		<aside className="hidden md:flex w-64 bg-white border-r border-[#ebebeb] flex flex-col shrink-0">
 			<div className="p-6 border-b border-[#ebebeb]">
 				<Link href="/" className="flex items-center gap-2">
 					<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#082390] font-black text-white italic">

@@ -6,13 +6,13 @@ import { ArrowRight, Play } from "lucide-react";
 
 export default function LandingHero() {
 	return (
-		<section className="relative pt-32 pb-40 overflow-hidden bg-white">
+		<section className="relative pt-20 pb-24 sm:pt-28 sm:pb-32 md:pt-32 md:pb-40 overflow-hidden bg-white">
 			{/* Subtle Background Elements */}
 			<div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[100%] bg-radial-gradient from-[#082390]/5 via-transparent to-transparent opacity-50 pointer-events-none" />
 			
-			<div className="container relative z-10 mx-auto px-6">
+			<div className="container relative z-10 mx-auto px-4 sm:px-6">
 				<div className="flex flex-col items-center text-center max-w-5xl mx-auto">
-					<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand/5 border border-brand/10 text-brand text-[10px] font-bold uppercase tracking-[0.2em] mb-12 animate-fade-in">
+					<div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/5 border border-brand/10 text-brand text-[10px] font-bold uppercase tracking-[0.18em] mb-6 sm:mb-8 md:mb-12 animate-fade-in">
 						<span className="relative flex h-2 w-2">
 							<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
 							<span className="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
@@ -20,27 +20,27 @@ export default function LandingHero() {
 						Live in Ranchi & Beyond
 					</div>
 
-					<h1 className="text-7xl md:text-9xl font-black leading-[0.85] tracking-tight text-[#111111] mb-12">
+					<h1 className="text-6xl sm:text-7xl md:text-9xl font-black leading-[0.9] md:leading-[0.85] tracking-tight text-[#111111] mb-8 md:mb-12">
 						DOMINATE <br />
 						<span className="text-[#082390]">THE CITY.</span>
 					</h1>
 					
-					<p className="text-xl md:text-2xl font-medium text-text-secondary leading-relaxed mb-16 max-w-3xl">
+					<p className="text-lg sm:text-xl md:text-2xl font-medium text-text-secondary leading-relaxed mb-10 sm:mb-12 md:mb-16 max-w-3xl">
 						Deploy your brand on Ranchi&apos;s most high-impact outdoor inventory. <br className="hidden md:block" />
 						Verified, searchable, and physically dominant.
 					</p>
 
-					<div className="flex flex-col sm:flex-row items-center gap-6 w-full justify-center">
+					<div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
 						<Link 
 							href="/search" 
-							className="group relative px-10 py-5 rounded-2xl bg-[#082390] text-white font-bold text-lg flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-premium-lg hover:shadow-premium-xl"
+							className="group relative w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 rounded-2xl bg-[#082390] text-white font-bold text-base sm:text-lg flex items-center justify-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-premium-lg hover:shadow-premium-xl"
 						>
 							Launch Campaign 
 							<ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
 						</Link>
 						<Link 
 							href="/filters" 
-							className="px-10 py-5 rounded-2xl bg-white border border-[#e5e5e5] text-[#111111] font-bold text-lg hover:bg-[#fafafa] transition-all active:scale-95 flex items-center gap-3"
+							className="w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 rounded-2xl bg-white border border-[#e5e5e5] text-[#111111] font-bold text-base sm:text-lg hover:bg-[#fafafa] transition-all active:scale-95 flex items-center justify-center gap-3"
 						>
 							<div className="w-8 h-8 rounded-full bg-[#f0f0f0] flex items-center justify-center">
 								<Play size={14} fill="#111111" />
@@ -51,8 +51,8 @@ export default function LandingHero() {
 				</div>
 			</div>
 
-			<div className="mt-32 px-6 max-w-7xl mx-auto">
-				<div className="relative rounded-[2.5rem] overflow-hidden shadow-premium-xl border-[8px] border-white group">
+			<div className="mt-16 sm:mt-24 md:mt-32 px-4 sm:px-6 max-w-7xl mx-auto">
+				<div className="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-premium-xl border-4 sm:border-[8px] border-white group">
 					<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 					<Image 
 						src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" 
