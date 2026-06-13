@@ -40,7 +40,7 @@ export default function AIContextBar({
 					}`}
 				>
 					<Sparkles size={14} fill="currentColor" />
-					Ask Hoardify
+					Search with AI
 				</button>
 				
 				<div className="h-6 w-[1px] bg-border-subtle mx-1" />
@@ -70,8 +70,8 @@ export default function AIContextBar({
 								<Sparkles size={18} fill="currentColor" />
 							</div>
 							<div>
-								<h3 className="text-sm font-black text-text-primary uppercase tracking-tight">AI Intelligence</h3>
-								<p className="text-[10px] font-bold text-text-tertiary uppercase tracking-widest">Powered by Gemini</p>
+								<h3 className="text-sm font-black text-text-primary uppercase tracking-tight">Smart Search</h3>
+								<p className="text-[10px] font-bold text-text-tertiary uppercase tracking-widest">Powered by Gemini AI</p>
 							</div>
 						</div>
 						

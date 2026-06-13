@@ -15,7 +15,7 @@ export default function AudienceInsights({ views }: AudienceInsightsProps) {
 	return (
 		<div className="mt-12 py-12 border-t border-border-subtle">
 			<h3 className="text-xl md:text-2xl font-black text-text-primary mb-8 tracking-tight">
-				Audience Intelligence
+				Who will see your ad?
 			</h3>
 			<div className="grid grid-cols-2 md:grid-cols-4 gap-8">
 				{insights.map((item, i) => {
@@ -24,7 +24,7 @@ export default function AudienceInsights({ views }: AudienceInsightsProps) {
 						<div key={i} className="flex flex-col gap-2">
 							<Icon size={24} className="text-text-primary mb-2" />
 							<span className="text-xl font-black text-text-primary tracking-tight">{item.value}</span>
-							<span className="text-xs font-bold text-text-tertiary uppercase tracking-widest">{item.label}</span>
+							<span className="text-[10px] font-black text-text-tertiary uppercase tracking-widest">{item.label}</span>
 						</div>
 					);
 				})}
@@ -32,7 +32,7 @@ export default function AudienceInsights({ views }: AudienceInsightsProps) {
 			
 			<div className="mt-10 p-6 rounded-2xl bg-surface-sunken border border-border-subtle">
 				<p className="text-xs text-text-secondary leading-relaxed font-medium">
-					Data based on average weekly traffic counts and mobile device signals in the immediate 200m radius of the placement. Powered by Ranchi Traffic Intelligence.
+					This data is based on local traffic counts and mobile signals near this spot. Powered by Ranchi Traffic Data.
 				</p>
 			</div>
 		</div>

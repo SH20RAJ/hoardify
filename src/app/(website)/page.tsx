@@ -39,7 +39,7 @@ export default async function ExplorePage() {
 
 	return (
 		<div className="flex flex-col min-h-screen pb-24 md:pb-40 bg-background transition-colors duration-300">
-			<NavbarSync isLogo title="Intelligence Explore" />
+			<NavbarSync isLogo title="Explore" />
 
 			<div className="pt-4 md:pt-12">
 				<AirbnbSearchBar />
@@ -50,13 +50,13 @@ export default async function ExplorePage() {
 				<div className="px-4 md:px-8 mb-6 md:mb-12 flex items-end justify-between">
 					<div>
 						<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/5 border border-brand/10 text-brand text-[9px] font-black uppercase tracking-widest mb-3">
-							Market Pulse
+							Trending
 						</div>
-						<h2 className="text-2xl md:text-3xl font-black text-text-primary tracking-tight">Trending Placements</h2>
-						<p className="text-sm text-text-secondary mt-1 md:mt-2">Most impactful nodes captured this week.</p>
+						<h2 className="text-2xl md:text-3xl font-black text-text-primary tracking-tight">Popular Locations</h2>
+						<p className="text-sm text-text-secondary mt-1 md:mt-2">Most viewed billboards this week.</p>
 					</div>
 					<Link href="/search" className="text-[10px] font-black uppercase tracking-widest text-brand hover:underline underline-offset-8">
-						Explore Full Map
+						See All on Map
 					</Link>
 				</div>
 				<HorizontalScrollList className="px-4 md:px-8 scroll-px-4 md:scroll-px-8 gap-4 md:gap-10 no-scrollbar">
@@ -71,14 +71,14 @@ export default async function ExplorePage() {
 				<div className="flex flex-col gap-6 md:flex md:items-end md:justify-between mb-8 md:mb-12">
 					<div>
 						<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#008a05]/5 border border-[#008a05]/10 text-[#008a05] text-[9px] font-black uppercase tracking-widest mb-3">
-							Proximity Intelligence
+							Near You
 						</div>
-						<h2 className="text-2xl md:text-3xl font-black text-text-primary tracking-tight">Inventory Near You</h2>
-						<p className="text-sm text-text-secondary mt-1 md:mt-2">High-impact visibility nodes in your immediate area.</p>
+						<h2 className="text-2xl md:text-3xl font-black text-text-primary tracking-tight">Available Near You</h2>
+						<p className="text-sm text-text-secondary mt-1 md:mt-2">Best spots in your current area.</p>
 					</div>
 					<Link href="/filters" className="flex w-full md:w-auto items-center justify-center md:justify-start gap-3 px-5 md:px-6 py-3 rounded-2xl border border-border-subtle hover:border-brand hover:bg-brand/5 transition-all active:scale-95 group">
 						<Settings2 size={16} className="text-text-tertiary group-hover:text-brand transition-colors" />
-						<span className="text-xs font-bold text-text-primary">Advanced Filters</span>
+						<span className="text-xs font-bold text-text-primary">More Filters</span>
 					</Link>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -91,9 +91,9 @@ export default async function ExplorePage() {
 			{/* Why Brands Use Hoardify */}
 			<section className="mt-12 md:mt-32 mb-12 md:mb-32 px-4 md:px-6 max-w-7xl mx-auto w-full">
 				<div className="text-center mb-10 md:mb-20">
-					<h2 className="text-3xl md:text-4xl font-extrabold text-text-primary tracking-tight">Why Brands Use Hoardify</h2>
+					<h2 className="text-3xl md:text-4xl font-extrabold text-text-primary tracking-tight">Why Choose Hoardify?</h2>
 					<p className="text-sm md:text-base text-text-secondary mt-4 max-w-2xl mx-auto leading-relaxed">
-						The modern outdoor advertising marketplace built for speed, analytics, and 100% transparency.
+						The easiest way to find and book outdoor ads with clear pricing and verified spots.
 					</p>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
@@ -101,9 +101,9 @@ export default async function ExplorePage() {
 						<div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-surface-sunken flex items-center justify-center text-brand mb-5 md:mb-8 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-500">
 							<ShieldCheck size={28} strokeWidth={1.5} />
 						</div>
-						<h3 className="text-xl font-bold text-text-primary mb-4">100% Verified Locations</h3>
-						<p className="text-text-secondary leading-relaxed">
-							Every single listing is physically inspected and verified for coordinate accuracy, visibility angles, and local traffic profiles.
+						<h3 className="text-xl font-bold text-text-primary mb-4">Verified Spots</h3>
+						<p className="text-text-secondary leading-relaxed font-medium">
+							Every location is checked by us for accuracy and visibility. No fake listings.
 						</p>
 					</div>
 
@@ -111,9 +111,9 @@ export default async function ExplorePage() {
 						<div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-surface-sunken flex items-center justify-center text-brand mb-5 md:mb-8 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-500">
 							<BadgePercent size={28} strokeWidth={1.5} />
 						</div>
-						<h3 className="text-xl font-bold text-text-primary mb-4">Transparent Pricing</h3>
-						<p className="text-text-secondary leading-relaxed">
-							No broker markups, no hidden commissions. View direct owner rental rates and make informed planning decisions with upfront details.
+						<h3 className="text-xl font-bold text-text-primary mb-4">Clear Pricing</h3>
+						<p className="text-text-secondary leading-relaxed font-medium">
+							No hidden fees or extra costs. You see the same price that the owners offer.
 						</p>
 					</div>
 
@@ -121,9 +121,9 @@ export default async function ExplorePage() {
 						<div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-surface-sunken flex items-center justify-center text-brand mb-5 md:mb-8 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-500">
 							<BarChart3 size={28} strokeWidth={1.5} />
 						</div>
-						<h3 className="text-xl font-bold text-text-primary mb-4">Impact Analytics</h3>
-						<p className="text-text-secondary leading-relaxed">
-							Estimate monthly impressions, view audience demographics, and track coverage metrics across Ranchi to optimize your budget.
+						<h3 className="text-xl font-bold text-text-primary mb-4">Real Results</h3>
+						<p className="text-text-secondary leading-relaxed font-medium">
+							Get estimates on how many people will see your ad and who your audience is.
 						</p>
 					</div>
 				</div>
@@ -133,28 +133,28 @@ export default async function ExplorePage() {
 			<section className="mb-20 md:mb-40 px-4 md:px-8 max-w-5xl mx-auto w-full">
 				<div className="mb-10 md:mb-20 text-center">
 					<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-sunken border border-border-subtle text-text-tertiary text-[9px] font-black uppercase tracking-widest mb-3">
-						Support & Intelligence
+						Help Center
 					</div>
-					<h2 className="text-3xl md:text-4xl font-black text-text-primary tracking-tight">Common Inquiries</h2>
-					<p className="text-sm md:text-base text-text-secondary mt-4 max-w-xl mx-auto leading-relaxed">Everything you need to know about deploying outdoor media on our system.</p>
+					<h2 className="text-3xl md:text-4xl font-black text-text-primary tracking-tight">Common Questions</h2>
+					<p className="text-sm md:text-base text-text-secondary mt-4 max-w-xl mx-auto leading-relaxed">Everything you need to know about booking with us.</p>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-16 gap-y-6 md:gap-y-12">
 					{[
 						{
-							q: "How do I book a hoarding on Hoardify?",
-							a: "Browse our intelligence-mapped inventory, select your preferred dates, and submit a request. Our system validates availability and guides you through the deployment lifecycle."
+							q: "How do I book a spot?",
+							a: "Browse our map, pick your dates, and send a request. We'll check availability and help you set up your ad."
 						},
 						{
-							q: "Are the listing rates final?",
-							a: "Rates are direct from owners. For high-volume deployments or long-term multi-node campaigns, our intelligence team can negotiate bulk-buy optimization."
+							q: "Are the prices final?",
+							a: "Yes, these are direct prices from owners. For large or long-term bookings, we can help you get better deals."
 						},
 						{
-							q: "How does verification work?",
-							a: "Every node is physically audited by field agents. We verify coordinates, visibility scores, and traffic profiles to ensure data integrity and prevent fraud."
+							q: "How do you verify spots?",
+							a: "Our team visits every location to check coordinates, visibility, and traffic. This ensures you get what you pay for."
 						},
 						{
-							q: "Can I list my own inventory?",
-							a: "Yes. Owners can integrate their inventory into the Hoardify ecosystem through the Agency Portal to receive direct high-intent leads."
+							q: "Can I list my own billboards?",
+							a: "Yes! If you own billboards, you can list them in our Agency Portal to get direct leads from advertisers."
 						}
 					].map((faq, idx) => (
 						<div key={idx} className="group flex flex-col gap-3 md:gap-4">

@@ -9,15 +9,15 @@ export default function MapBridge() {
 					<div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-brand text-white mb-5 md:mb-8">
 						<MapPin size={22} />
 					</div>
-					<h3 className="text-xl md:text-2xl font-black text-text-primary mb-2 md:mb-4 tracking-tight">Visual Planning</h3>
+					<h3 className="text-xl md:text-2xl font-black text-text-primary mb-2 md:mb-4 tracking-tight">View on Map</h3>
 					<p className="text-text-secondary mb-6 md:mb-8 max-w-sm md:max-w-md leading-relaxed text-sm md:text-base font-medium">
-						Use our interactive map to plan your city-wide coverage and optimize your reach effortlessly.
+						Use our map to find the best spots for your brand across the city.
 					</p>
 					<Link 
 						href="/search" 
 						className="inline-flex w-full sm:w-auto items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-text-primary text-background font-bold text-sm transition-all hover:bg-brand hover:text-white active:scale-95 shadow-premium-md"
 					>
-						<span>Open Intelligence Map</span>
+						<span>Browse All Billboards</span>
 						<ArrowRight size={18} />
 					</Link>
 				</div>

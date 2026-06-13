@@ -25,7 +25,7 @@ export default function RootLoading() {
 				
 				<div className="flex flex-col items-center gap-2">
 					<p className="text-[9px] text-text-tertiary font-bold uppercase tracking-widest animate-pulse">
-						Synchronizing Intelligence
+						Loading...
 					</p>
 					<div className="flex items-center gap-1.5">
 						<span className="h-1 w-1 bg-brand rounded-full animate-[bounce_1s_infinite_0ms]" />
@@ -36,7 +36,7 @@ export default function RootLoading() {
 			</div>
 			
 			<div className="absolute bottom-12 text-[8px] text-text-tertiary font-black uppercase tracking-[0.5em]">
-				Deployment Node Alpha
+				Hoardify
 			</div>
 		</div>
 	);

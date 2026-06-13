@@ -125,20 +125,20 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 							<h3 className="text-lg md:text-2xl font-black text-text-primary mb-4 md:mb-6 tracking-tight">Reach & Impact</h3>
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
 								<div className="p-4 md:p-6 rounded-2xl bg-surface-sunken border border-border-subtle">
-									<p className="text-[10px] md:text-xs text-text-tertiary font-black uppercase tracking-[0.2em] mb-1">Estimated Reach</p>
+									<p className="text-[10px] md:text-xs text-text-tertiary font-black uppercase tracking-[0.2em] mb-1">Total Views</p>
 									<p className="text-2xl md:text-3xl font-black text-text-primary tracking-tighter">{hoarding.trafficCount ? hoarding.trafficCount.toLocaleString() : "50,000+"}</p>
-									<p className="text-[10px] text-text-tertiary mt-1 font-bold">Monthly impressions (local data)</p>
+									<p className="text-[10px] text-text-tertiary mt-1 font-bold">Estimated monthly views</p>
 								</div>
 								<div className="p-4 md:p-6 rounded-2xl bg-surface-sunken border border-border-subtle">
-									<p className="text-[10px] md:text-xs text-text-tertiary font-black uppercase tracking-[0.2em] mb-1">Audience View</p>
+									<p className="text-[10px] md:text-xs text-text-tertiary font-black uppercase tracking-[0.2em] mb-1">Visibility Score</p>
 									<p className="text-2xl md:text-3xl font-black text-text-primary tracking-tighter">{hoarding.views || "100%"}</p>
-									<p className="text-[10px] text-text-tertiary mt-1 font-bold">Direct line-of-sight visibility</p>
+									<p className="text-[10px] text-text-tertiary mt-1 font-bold">How clearly the ad is seen</p>
 								</div>
 							</div>
 						</section>
 
 						<section className="py-6 md:py-10">
-							<h3 className="text-lg md:text-2xl font-black text-text-primary mb-4 md:mb-6 tracking-tight">Where you&apos;ll be seen</h3>
+							<h3 className="text-lg md:text-2xl font-black text-text-primary mb-4 md:mb-6 tracking-tight">Location on Map</h3>
 							<div className="w-full h-[300px] sm:h-[400px] md:h-[450px] bg-surface-sunken rounded-2xl relative overflow-hidden border border-border-subtle shadow-premium-sm">
 								<GoogleMapWrapper 
 									hoardings={[hoarding]} 
@@ -161,7 +161,7 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 						<div className="mt-4 md:mt-8 flex items-center justify-center gap-3 p-4 md:p-6 rounded-2xl bg-brand/5 border border-brand/10">
 								<div className="h-2 w-2 rounded-full bg-[#008a05] animate-pulse" />
 								<p className="text-sm font-bold text-text-primary">
-									This is a rare find. It&apos;s usually booked.
+									Popular spot. Usually booked fast.
 								</p>
 							</div>
 						</div>
@@ -172,8 +172,8 @@ export default async function HoardingDetailPage({ params }: { params: Promise<{
 				<section className="mt-12 md:mt-24 pt-10 md:pt-16 border-t border-border-subtle">
 					<div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-10 gap-4">
 						<div>
-							<h2 className="text-xl md:text-2xl font-black text-text-primary tracking-tight">Explore other options nearby</h2>
-							<p className="text-sm text-text-secondary mt-1 font-medium">Boost your reach with multi-node deployments</p>
+							<h2 className="text-xl md:text-2xl font-black text-text-primary tracking-tight">Other options nearby</h2>
+							<p className="text-sm text-text-secondary mt-1 font-medium">See more spots to grow your reach</p>
 						</div>
 						<div className="hidden md:flex gap-2">
 							<div className="p-2 border border-border-subtle rounded-full hover:shadow-premium-md transition-shadow cursor-pointer text-text-primary">

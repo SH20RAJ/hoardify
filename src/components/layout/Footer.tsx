@@ -33,13 +33,13 @@ export default function Footer() {
 
 					{/* Platform Links */}
 					<div className="mt-4 md:mt-0">
-						<h4 className="text-[10px] font-black text-text-tertiary uppercase tracking-[0.3em] mb-6 md:mb-8">Ecosystem</h4>
+						<h4 className="text-[10px] font-black text-text-tertiary uppercase tracking-[0.3em] mb-6 md:mb-8">Quick Links</h4>
 						<ul className="space-y-4">
 							{[
-								{ name: "Interactive Map", href: "/search" },
-								{ name: "Premium Inventory", href: "/hoardings" },
-								{ name: "Advanced Filters", href: "/filters" },
-								{ name: "Agency Portal", href: "/agency" },
+								{ name: "View Map", href: "/search" },
+								{ name: "All Billboards", href: "/hoardings" },
+								{ name: "Search Filters", href: "/filters" },
+								{ name: "Agency Login", href: "/agency" },
 							].map((link) => (
 								<li key={link.name}>
 									<Link href={link.href} className="text-sm font-bold text-text-secondary hover:text-brand flex items-center gap-1 group transition-colors">
@@ -53,22 +53,22 @@ export default function Footer() {
 
 					{/* Trust & Contact */}
 					<div className="md:col-span-2 mt-4 md:mt-0">
-						<h4 className="text-[10px] font-black text-text-tertiary uppercase tracking-[0.3em] mb-6 md:mb-8">Corporate Headquarters</h4>
+						<h4 className="text-[10px] font-black text-text-tertiary uppercase tracking-[0.3em] mb-6 md:mb-8">Contact Us</h4>
 						<div className="bg-surface-sunken p-6 md:p-8 rounded-2xl md:rounded-3xl border border-border-subtle">
 							<ul className="space-y-6">
 								<li className="flex flex-col gap-1">
-									<span className="text-[9px] font-black text-text-tertiary uppercase tracking-widest">Connect</span>
+									<span className="text-[9px] font-black text-text-tertiary uppercase tracking-widest">Email</span>
 									<a href="mailto:hello@hoardify.in" className="text-base font-black text-text-primary hover:text-brand transition-colors flex items-center gap-2">
 										hello@hoardify.in
 										<Mail size={16} strokeWidth={2.5} />
 									</a>
 								</li>
 								<li className="flex flex-col gap-1">
-									<span className="text-[9px] font-black text-text-tertiary uppercase tracking-widest">Registration</span>
+									<span className="text-[9px] font-black text-text-tertiary uppercase tracking-widest">Company ID</span>
 									<span className="text-sm font-black text-text-primary uppercase tracking-tight">CIN: U73100JH2025PTC026007</span>
 								</li>
 								<li className="flex flex-col gap-1">
-									<span className="text-[9px] font-black text-text-tertiary uppercase tracking-widest">Location</span>
+									<span className="text-[9px] font-black text-text-tertiary uppercase tracking-widest">Address</span>
 									<span className="text-sm font-bold text-text-secondary leading-relaxed">
 										Hoardify Private Limited, Ranchi, Jharkhand, India
 									</span>
@@ -82,19 +82,19 @@ export default function Footer() {
 				<div className="pt-12 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-8">
 					<div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
 						<p className="text-[10px] font-bold text-text-tertiary uppercase tracking-widest">
-							&copy; {new Date().getFullYear()} Ranchi_HQ
+							&copy; {new Date().getFullYear()} Hoardify
 						</p>
 						<div className="h-1 w-1 rounded-full bg-border-strong hidden sm:block" />
 						<p className="text-[10px] font-bold text-text-tertiary uppercase tracking-widest">
-							Engineered with Intelligence
+							Made in Ranchi
 						</p>
 					</div>
 					<div className="flex gap-6 md:gap-8">
 						<Link href="#" className="text-[10px] font-black text-text-tertiary uppercase tracking-[0.2em] hover:text-text-primary transition-colors">
-							Privacy Node
+							Privacy Policy
 						</Link>
 						<Link href="#" className="text-[10px] font-black text-text-tertiary uppercase tracking-[0.2em] hover:text-text-primary transition-colors">
-							Terms of Deployment
+							Terms of Service
 						</Link>
 					</div>
 				</div>

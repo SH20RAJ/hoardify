@@ -53,7 +53,7 @@ export default function TopBar() {
 				{/* Middle: Search bar (simplified) */}
 				<div className="hidden md:flex flex-1 max-w-sm mx-12">
 					<Link href="/search" className="flex items-center w-full h-12 bg-surface-sunken border border-border-subtle rounded-full px-5 hover:shadow-premium-md hover:border-brand/20 transition-all cursor-pointer group">
-						<span className="text-sm font-bold text-text-tertiary group-hover:text-text-primary transition-colors flex-1">Start your campaign...</span>
+						<span className="text-sm font-bold text-text-tertiary group-hover:text-text-primary transition-colors flex-1">Search for billboards...</span>
 						<div className="bg-text-primary p-2 rounded-full text-background group-hover:bg-brand transition-colors">
 							<Search size={14} strokeWidth={3} />
 						</div>
@@ -97,7 +97,7 @@ export default function TopBar() {
 										{user.primaryEmail?.[0].toUpperCase()}
 									</div>
 								)}
-								<span className="text-xs font-bold text-text-primary hidden lg:block">Intelligence Profile</span>
+								<span className="text-xs font-bold text-text-primary hidden lg:block">Profile</span>
 							</Link>
 						</div>
 					) : (

@@ -36,7 +36,7 @@ export default function AirbnbSearchBar() {
             onChange={(e) => setLocation(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            placeholder="Search high-impact nodes"
+            placeholder="Search city or area"
             className="text-sm md:text-base text-text-primary bg-transparent border-none outline-none w-full placeholder:text-text-tertiary font-bold"
           />
           {location && (

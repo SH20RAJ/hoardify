@@ -11,7 +11,7 @@ export default function SearchHeader({ viewMode, onViewModeChange }: SearchHeade
 		<NavbarSync 
 			title={
 				<div className="flex items-center gap-2">
-					<span className="font-black text-sm md:text-base text-text-primary tracking-tight">Explore Intelligence</span>
+					<span className="font-black text-sm md:text-base text-text-primary tracking-tight">Explore Billboards</span>
 				</div>
 			}
 			showBack

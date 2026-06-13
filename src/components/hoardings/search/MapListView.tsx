@@ -45,7 +45,7 @@ export default function MapListView({ viewMode, hoardings }: MapListViewProps) {
 								<Search size={18} className="text-brand" />
 								<input 
 									type="text" 
-									placeholder="Search area..." 
+									placeholder="Search for a place..." 
 									className="flex-1 bg-transparent outline-none text-sm font-bold text-text-primary placeholder:text-text-tertiary"
 									defaultValue="Ranchi, JH"
 								/>
@@ -58,7 +58,7 @@ export default function MapListView({ viewMode, hoardings }: MapListViewProps) {
 							<div className="bg-background/95 backdrop-blur-xl rounded-[2rem] p-4 shadow-premium-xl border border-border-subtle max-h-[45vh] overflow-y-auto">
 								<div className="w-10 h-1.5 bg-border-strong rounded-full mx-auto mb-5"></div>
 								<div className="flex items-center justify-between mb-6">
-									<h2 className="text-sm font-black text-text-primary uppercase tracking-tight">Nearby Nodes</h2>
+									<h2 className="text-sm font-black text-text-primary uppercase tracking-tight">Spots Near You</h2>
 									<button className="text-[10px] font-black underline underline-offset-4 text-brand uppercase tracking-widest">See all</button>
 								</div>
 								<HorizontalScrollList className="pb-2">

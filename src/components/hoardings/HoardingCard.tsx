@@ -201,7 +201,7 @@ export default function HoardingCard({
 					)}
 					<div className="absolute top-4 left-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
 						<div className="px-3 py-1 bg-background/80 backdrop-blur-md rounded-full border border-border-subtle">
-							<p className="text-[9px] font-black text-brand uppercase tracking-widest">Verified Intelligence</p>
+							<p className="text-[9px] font-black text-brand uppercase tracking-widest">Verified Spot</p>
 						</div>
 					</div>
 				</div>
@@ -219,7 +219,7 @@ export default function HoardingCard({
 					<div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-border-subtle flex items-center justify-between">
 						{price && (
 							<div className="flex flex-col">
-								<span className="text-[8px] md:text-[9px] font-bold text-text-tertiary uppercase tracking-widest">Monthly Deployment</span>
+								<span className="text-[8px] md:text-[9px] font-bold text-text-tertiary uppercase tracking-widest">Monthly Rent</span>
 								<p className="text-lg md:text-xl font-black text-text-primary tracking-tighter">
 									{formatCurrency(price)}
 								</p>
@@ -234,7 +234,7 @@ export default function HoardingCard({
 								}}
 								className="h-8 md:h-10 px-4 md:px-6 rounded-full bg-surface-sunken text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-text-primary hover:bg-brand hover:text-white transition-all active:scale-95 shadow-premium-sm"
 							>
-								Intelligence 3D
+								View in 3D
 							</button>
 						)}
 					</div>

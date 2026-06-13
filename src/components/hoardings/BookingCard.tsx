@@ -96,7 +96,7 @@ export default function BookingCard({ price, hoardingId }: BookingCardProps) {
 					<div className="text-[9px] font-black uppercase text-text-tertiary tracking-widest mb-1">Campaign Size</div>
 					<div className="text-sm font-bold text-text-primary flex items-center gap-2">
 						<div className="h-1.5 w-1.5 rounded-full bg-brand" />
-						1 Premium Node
+						1 Billboard Spot
 					</div>
 				</div>
 			</div>
@@ -106,18 +106,18 @@ export default function BookingCard({ price, hoardingId }: BookingCardProps) {
 				disabled={loading}
 				className="w-full bg-brand text-white py-4 rounded-2xl font-black text-base md:text-lg hover:scale-[1.02] active:scale-[0.98] transition-all mb-4 disabled:opacity-70 shadow-premium-md hover:shadow-premium-lg"
 			>
-				{loading ? "Processing Intelligence..." : "Check Availability"}
+				{loading ? "Please wait..." : "Check if Available"}
 			</button>
 			
-			<p className="text-center text-[10px] md:text-xs font-bold text-text-tertiary uppercase tracking-widest mb-6 md:mb-8">No immediate commitment required</p>
+			<p className="text-center text-[10px] md:text-xs font-bold text-text-tertiary uppercase tracking-widest mb-6 md:mb-8">No payment needed now</p>
 
 			<div className="space-y-4 pt-4 border-t border-border-subtle">
 				<div className="flex justify-between text-sm md:text-base font-medium text-text-secondary">
-					<span className="underline decoration-border-strong underline-offset-4">Monthly Rental</span>
+					<span className="underline decoration-border-strong underline-offset-4">Monthly Rent</span>
 					<span className="text-text-primary font-bold">{formatCurrency(price)}</span>
 				</div>
 				<div className="flex justify-between text-sm md:text-base font-medium text-text-secondary">
-					<span className="underline decoration-border-strong underline-offset-4">Operations & Verify</span>
+					<span className="underline decoration-border-strong underline-offset-4">Setup & Check</span>
 					<span className="text-text-primary font-bold">₹ 0</span>
 				</div>
 				<div className="pt-4 border-t border-border-strong flex justify-between text-lg md:text-xl font-black text-text-primary tracking-tight">
