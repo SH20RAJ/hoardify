@@ -1,4 +1,5 @@
 import { Sparkles, Send } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface AIContextBarProps {
 	isAIChatOpen: boolean;
@@ -19,6 +20,7 @@ export default function AIContextBar({
 	aiQuery,
 	setAiQuery
 }: AIContextBarProps) {
+	const router = useRouter();
 	const contexts = [
 		{ label: "All", count: hoardingsCount },
 		{ label: "High-Traffic", count: 12 },
@@ -26,6 +28,16 @@ export default function AIContextBar({
 		{ label: "Corporate Hubs", count: 5 },
 		{ label: "Transit", count: 4 },
 	];
+
+	const handleAISubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		if (!aiQuery.trim()) return;
+		
+		const params = new URLSearchParams();
+		params.set("location", aiQuery);
+		router.push(`/search?${params.toString()}`);
+		setIsAIChatOpen(false);
+	};
 
 	return (
 		<div className="relative">
@@ -79,7 +91,7 @@ export default function AIContextBar({
 							&quot;Find me a high-traffic spot near Ranchi Main Road that would be visible to morning commuters...&quot;
 						</div>
 
-						<div className="relative">
+						<form onSubmit={handleAISubmit} className="relative">
 							<input 
 								type="text" 
 								value={aiQuery}
@@ -87,10 +99,10 @@ export default function AIContextBar({
 								placeholder="Describe your target audience..." 
 								className="w-full h-12 bg-surface-sunken rounded-xl pl-4 pr-12 text-sm text-text-primary border border-border-subtle focus:border-brand outline-none transition-all placeholder:text-text-tertiary font-bold"
 							/>
-							<button className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-brand text-white rounded-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-premium-sm">
+							<button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-brand text-white rounded-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-premium-sm">
 								<Send size={14} />
 							</button>
-						</div>
+						</form>
 					</div>
 				</div>
 			)}

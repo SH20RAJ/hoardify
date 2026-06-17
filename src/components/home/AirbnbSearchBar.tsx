@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 export default function AirbnbSearchBar() {
   const [location, setLocation] = useState("");
   const [category, setCategory] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const router = useRouter();
 
@@ -14,6 +16,8 @@ export default function AirbnbSearchBar() {
     const params = new URLSearchParams();
     if (location) params.set("location", location);
     if (category) params.set("category", category);
+    if (startDate) params.set("from", startDate);
+    if (endDate) params.set("to", endDate);
     
     router.push(`/search?${params.toString()}`);
   };
@@ -78,18 +82,33 @@ export default function AirbnbSearchBar() {
         <div className="h-px w-full bg-border-subtle mx-0 md:h-10 md:w-px md:mx-2" />
         
         {/* Dates Section */}
-        <button 
-          className="w-full flex flex-col items-start px-4 py-2.5 md:py-3 hover:bg-surface-sunken rounded-[1rem] md:rounded-[1.5rem] transition-all text-left active:scale-[0.98]"
-          onClick={() => setIsFocused(true)}
-        >
-          <span className="text-[8px] md:text-[9px] font-black text-text-tertiary uppercase tracking-[0.2em] mb-0.5 md:mb-1">Timeline</span>
-          <span className="text-sm md:text-base text-text-tertiary font-bold">Select Dates</span>
-        </button>
+        <div className="w-full flex flex-col items-start px-4 py-2.5 md:py-3 hover:bg-surface-sunken rounded-[1rem] md:rounded-[1.5rem] transition-all group relative cursor-pointer active:scale-[0.98]">
+          <label className="text-[8px] md:text-[9px] font-black text-text-tertiary uppercase tracking-[0.2em] mb-0.5 md:mb-1">When</label>
+          <div className="flex items-center gap-1 md:gap-2 w-full">
+            <input 
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              className="text-[10px] md:text-sm text-text-primary bg-transparent border-none outline-none w-full font-bold cursor-pointer"
+            />
+            <span className="text-text-tertiary font-bold">-</span>
+            <input 
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              className="text-[10px] md:text-sm text-text-primary bg-transparent border-none outline-none w-full font-bold cursor-pointer"
+            />
+          </div>
+        </div>
         
         {/* Search CTA */}
         <button 
           onClick={handleSearch}
-          className="group relative bg-brand px-6 py-3 md:py-4 rounded-[1rem] md:rounded-[1.5rem] text-white font-bold text-sm transition-all mt-2 md:mt-0 md:ml-4 shadow-premium-md hover:shadow-premium-lg active:scale-90 flex items-center justify-center gap-2 overflow-hidden"
+          className="group relative bg-brand px-6 py-3 md:py-4 rounded-[1rem] md:rounded-[1.5rem] text-white font-bold text-sm transition-all mt-2 md:mt-0 md:ml-4 shadow-premium-md hover:shadow-premium-lg active:scale-90 flex items-center justify-center gap-2 overflow-hidden shrink-0"
         >
           <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           <Search size={18} strokeWidth={3} className="relative z-10" />
